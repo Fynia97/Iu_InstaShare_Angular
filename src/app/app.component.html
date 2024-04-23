@@ -1,1 +1,23 @@
-Bücherverwaltung
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="">InstaShare</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <body>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </body>
+
+  <footer>
+    @{{currentYear}} InstaShare | <a class="link" routerLink="/impressum">Impressum</a> | <a class="link" routerLink="privacy">Datenschutz</a>
+  </footer>
