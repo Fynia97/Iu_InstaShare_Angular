@@ -1,1 +1,39 @@
-<p>book-display works!</p>
+<h2>Deine Bücher</h2>
+<button type="button" class="btn btn-primary">Neu</button>
+
+<div class="container">
+  <ng-template #loader>
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf="books; else loader">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ISBN</th>
+        <th scope="col">Titel</th>
+        <th scope="col">Autor</th>
+        <th scope="col">Verlag</th>
+        <th scope="col">Erscheinungsjahr</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of books">
+        <td>{{element.id}}</td>
+        <td>{{element.isbn}}</td>
+        <td>{{element.title}}</td>
+        <td>{{element.author}}</td>
+        <td>{{element.publisher}}</td>
+        <td>{{element.publishingYear | date: "yyyy"}}</td>
+        <td><button type="button" class="btn btn-primary">Bearbeiten</button></td>
+        <td><button type="button" class="btn btn-warning">Löschen</button></td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

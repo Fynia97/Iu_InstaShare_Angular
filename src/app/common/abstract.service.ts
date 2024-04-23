@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export abstract class AbstractService<T> {
-  private baseUrl = 'https://localhost:4200/api/';
+  private baseUrl = 'https://localhost:7092/api/';
   protected abstract name: string;
 
   constructor(protected client: HttpClient) { }
