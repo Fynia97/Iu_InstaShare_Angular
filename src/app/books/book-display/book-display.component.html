@@ -1,5 +1,5 @@
 <h2>Deine Bücher</h2>
-<button type="button" class="btn btn-primary">Neu</button>
+<button type="button" class="btn btn-primary" [routerLink]='["/buecher/erstellen"]'>Neu</button>
 
 <div class="container">
   <ng-template #loader>
@@ -31,8 +31,8 @@
         <td>{{element.author}}</td>
         <td>{{element.publisher}}</td>
         <td>{{element.publishingYear | date: "yyyy"}}</td>
-        <td><button type="button" class="btn btn-primary">Bearbeiten</button></td>
-        <td><button type="button" class="btn btn-warning">Löschen</button></td>
+        <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
+        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
       </tr>
     </tbody>
   </table>

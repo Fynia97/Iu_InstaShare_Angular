@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
 import { Book } from '../book.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-book-display',
@@ -10,7 +11,7 @@ import { Book } from '../book.model';
 export class BookDisplayComponent implements OnInit {
   public books: Book[];
 
-  constructor(private service: BookService) { }
+  constructor(private service: BookService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.service.getAll().subscribe({
@@ -18,6 +19,16 @@ export class BookDisplayComponent implements OnInit {
         this.books = data;
       }
     })
+  }
+
+  public btnDeleteClicked(element: Book) {
+    if (confirm("Möchtest du das Thema wirklich löschen?")) {
+      this.service.deleteById(element.id).subscribe({
+        next: (data) => {
+          this.ngOnInit()
+        }
+      });
+    }
   }
 
 }

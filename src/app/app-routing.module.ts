@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'buecher', pathMatch: 'full', component: BookDisplayComponent
   },
   {
-    path: 'buecher/neu', pathMatch: 'full', component: BookCreateComponent
+    path: 'buecher/erstellen', pathMatch: 'full', component: BookCreateComponent
   },
   {
     path: 'buecher/:id/bearbeiten', pathMatch: 'full', component: BookEditComponent

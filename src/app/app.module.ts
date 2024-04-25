@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { BookCreateComponent } from './books/book-create/book-create.component';
 import { BookDisplayComponent } from './books/book-display/book-display.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,9 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
