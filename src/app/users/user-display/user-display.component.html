@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="container">
+      <ng-template #loader>
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </ng-template>
+    </div>
+  
+    <ng-container *ngIf="user; else loader">
+      <h3 style="margin-top: 5vh;">UserProfile</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col0">Id</th>
+            <th scope="col1">Vorname</th>
+            <th scope="col2">Nachname</th>
+            <th scope="col3">Email</th>
+            <th scope="col1">Straße</th>
+            <th scope="col2">Ort</th>
+            <th scope="col3">Plz</th>
+            <th scope="col9"></th>
+            <th scope="col9"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{user.id}}</td>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.street}}</td>
+            <td>{{user.zip}}</td>
+            <td>{{user.city}}</td>
+            <td><button class="btn btn-warning"
+                [routerLink]="['/user/' + user.id + '/bearbeiten']">Bearbeiten</button></td>
+            <td><button class="btn btn-danger" (click)="btnDeleteClicked(user)">Löschen</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>

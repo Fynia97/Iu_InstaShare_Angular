@@ -11,6 +11,8 @@ import { BookCreateComponent } from './books/book-create/book-create.component';
 import { BookDisplayComponent } from './books/book-display/book-display.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserDisplayComponent } from './users/user-display/user-display.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomeComponent,
     BookCreateComponent,
     BookDisplayComponent,
-    BookEditComponent
+    BookEditComponent,
+    UserEditComponent,
+    UserDisplayComponent
   ],
   imports: [
     BrowserModule,

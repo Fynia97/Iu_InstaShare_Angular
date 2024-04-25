@@ -4,10 +4,18 @@ import { HomeComponent } from './home/home.component';
 import { BookDisplayComponent } from './books/book-display/book-display.component';
 import { BookCreateComponent } from './books/book-create/book-create.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserDisplayComponent } from './users/user-display/user-display.component';
 
 const routes: Routes = [
   {
     path: '', pathMatch: 'full', component: HomeComponent
+  },
+  {
+    path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent
+  },
+  {
+    path: 'user/:id/bearbeiten', pathMatch: 'full', component: UserEditComponent
   },
   {
     path: 'buecher', pathMatch: 'full', component: BookDisplayComponent

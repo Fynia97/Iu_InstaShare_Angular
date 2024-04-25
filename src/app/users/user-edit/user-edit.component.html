@@ -1,0 +1,48 @@
+<div class="container" *ngIf="user">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  
+      <!--Firstname-->
+      <div class="mb-3">
+        <input formControlName="firstName" type="text" class="form-control" placeholder="Vorname" id="firstName">
+        <div *ngIf="userForm.controls['firstName'].invalid">
+          <span>Bitte geben Sie Ihren Vornamen ein.</span>
+        </div>
+      </div>
+  
+      <!--Lastname-->
+      <div class="mb-3">
+        <input formControlName="lastName" type="text" class="form-control" placeholder="Nachname" id="lastName">
+        <div *ngIf="userForm.controls['lastName'].invalid">
+          <span>Bitte geben Sie Ihren Nachnamen ein.</span>
+        </div>
+      </div>
+  
+      <!--Email-->
+      <div class="mb-3">
+        <input formControlName="email" type="email" class="form-control" placeholder="E-Mail-Adresse" id="email" (blur)="emailValidate()" >
+        <div *ngIf="emailValidated == true && userForm.controls['email'].invalid">
+          <span>Bitte geben Sie eine gültige E-Mail-Adresse ein.</span>
+        </div>
+      </div>
+  
+      <!--Password-->
+      <div class="mb-3">
+        <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Passwort" id="password" (blur)="passwordValidate()">
+        <div *ngIf="userForm.value.password != '' && userForm.controls['password'].invalid && passwordValidated == true">
+          <span style="color: red;">Nicht stark genug (muss enthalten: mind. 8 Zeichen, Groß- und Kleinbuchstabe, Sonderzeichen, Zahl)</span>
+        </div>        
+        <div>
+            <input type="checkbox" value="showPassword" (click)="changeShowPassword()">Passwort anzeigen
+        </div>
+      </div>
+  
+      <!--Submit-->
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary submit" [disabled]="this.userForm.invalid">Speichern</button>
+      </div>
+  
+    </form>
+     
+    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
+
+  </div>
