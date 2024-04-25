@@ -32,6 +32,11 @@ export class BookCreateComponent {
     })
   }
 
+  public cancel()
+  {
+    this.router.navigate(['/buecher']);
+  }
+  
   public onSubmit() {
     this.book = this.bookForm.value;
     this.service.create(this.book).subscribe({

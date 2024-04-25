@@ -39,9 +39,13 @@ export class BookEditComponent implements OnInit {
       }
     });
   }
+
+  public cancel()
+  {
+    this.router.navigate(['/buecher']);
+  }
+
   public onSubmit() {
-
-
     this.book = this.bookForm.value;
     this.service.update(this.book).subscribe({
       next: (data) => this.router.navigate(['/buecher'])
