@@ -28,9 +28,14 @@ export class UserDisplayComponent implements OnInit {
 
   public btnDeleteClicked(user: User) {
     if (confirm("Möchtest du den Account wirklich löschen?")) {
-      this.service.deleteById(user.id).subscribe({
-        next: (data) => this.ngOnInit()
-      });
+      if (user.id == 2) {
+        confirm("Dieser Testnutzer ist nicht löschbar.")
+      }
+      else {
+        this.service.deleteById(user.id).subscribe({
+          next: (data) => this.ngOnInit()
+        });
+      }
     }
   }
 }

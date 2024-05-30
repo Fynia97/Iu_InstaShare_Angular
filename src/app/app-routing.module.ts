@@ -6,6 +6,9 @@ import { BookCreateComponent } from './books/book-create/book-create.component';
 import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserDisplayComponent } from './users/user-display/user-display.component';
+import { LendDisplayComponent } from './lends/lend-display/lend-display.component';
+import { LendCreateComponent } from './lends/lend-create/lend-create.component';
+import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
 
 const routes: Routes = [
   {
@@ -25,6 +28,16 @@ const routes: Routes = [
   },
   {
     path: 'buecher/:id/bearbeiten', pathMatch: 'full', component: BookEditComponent
+  },
+  {
+    path: 'ausleihe', pathMatch: 'full', component: LendDisplayComponent
+  },
+  //NUR ZU TESTZWECKEN TODO
+  {
+    path: 'ausleihe/erstellen', pathMatch: 'full', component: LendCreateComponent
+  },
+  {
+    path: 'ausleihe/:id/bearbeiten', pathMatch: 'full', component: LendEditComponent
   }
 ];
 

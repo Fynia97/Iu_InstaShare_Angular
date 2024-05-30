@@ -1,0 +1,24 @@
+<div class="container" *ngIf="lend">
+    <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
+        <!--LendFrom-->
+        <div class="input-group mb-3">
+            <input type="date" formControlName="lendFrom">
+        </div>
+
+        <!--LendTo-->
+        <div class="input-group mb-3">
+            <input type="date" formControlName="lendTo">
+        </div>
+
+        <!--Note-->
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Notiz" formControlName="note">
+        </div>
+
+        <!--Submit-->
+        <button class="btn btn-primary submit" type="submit">Speichern</button>
+    </form>
+
+    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
+
+</div>

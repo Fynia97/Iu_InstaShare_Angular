@@ -13,6 +13,10 @@ import { BookEditComponent } from './books/book-edit/book-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserDisplayComponent } from './users/user-display/user-display.component';
+import { LendDisplayComponent } from './lends/lend-display/lend-display.component';
+import { LendCreateComponent } from './lends/lend-create/lend-create.component';
+import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
+import { BooleanPipe } from './costum/booleanPipe.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import { UserDisplayComponent } from './users/user-display/user-display.componen
     BookDisplayComponent,
     BookEditComponent,
     UserEditComponent,
-    UserDisplayComponent
+    UserDisplayComponent,
+    LendDisplayComponent,
+    LendCreateComponent,
+    LendEditComponent,
+    BooleanPipe
   ],
   imports: [
     BrowserModule,

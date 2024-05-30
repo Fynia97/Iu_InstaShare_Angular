@@ -19,6 +19,7 @@
         <th scope="col">Autor</th>
         <th scope="col">Verlag</th>
         <th scope="col">Erscheinungsjahr</th>
+        <th scope="col">Ausgeliehen?</th>
         <th scope="col"></th>
         <th scope="col"></th>
       </tr>
@@ -31,6 +32,7 @@
         <td>{{element.author}}</td>
         <td>{{element.publisher}}</td>
         <td>{{element.publishingYear | date: "yyyy"}}</td>
+        <td>{{element.lendOut | BooleanPipe}}</td>
         <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
         <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
       </tr>

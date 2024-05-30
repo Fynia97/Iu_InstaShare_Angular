@@ -28,7 +28,8 @@ export class BookCreateComponent {
       title: [this.book.title],
       author: [this.book.author],
       publisher: [this.book.publisher],
-      publishingYear: [this.book.publishingYear]
+      publishingYear: [this.book.publishingYear],
+      lendOut: [this.book.lendOut]
     })
   }
 

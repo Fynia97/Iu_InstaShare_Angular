@@ -1,0 +1,39 @@
+<h2>Ausleihen</h2>
+<button type="button" class="btn btn-primary" [routerLink]='["/ausleihe/erstellen"]'>Neu</button>
+
+<div class="container">
+  <ng-template #loader>
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf="lends; else loader">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Ausleihdatum</th>
+        <th scope="col">Rückgabedatum</th>
+        <th scope="col">Ausleiher</th>
+        <th scope="col">Buch</th>
+        <th scope="col">Notiz</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of lends">
+        <td>{{element.id}}</td>
+        <td>{{element.lendFrom | date: "dd.MM.yyyy"}}</td>
+        <td>{{element.lendTo | date: "dd.MM.yyyy"}}</td>
+        <td>{{element.borrower.firstName}} {{element.borrower.lastName}}</td>
+        <td>{{element.book.title}}</td>
+        <td>{{element.note}}</td>
+        <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
+        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
