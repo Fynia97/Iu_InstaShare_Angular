@@ -9,6 +9,9 @@ import { UserDisplayComponent } from './users/user-display/user-display.componen
 import { LendDisplayComponent } from './lends/lend-display/lend-display.component';
 import { LendCreateComponent } from './lends/lend-create/lend-create.component';
 import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
+import { FriendDisplayComponent } from './friends/friend-display/friend-display.component';
+import { FriendEditComponent } from './friends/friend-edit/friend-edit.component';
+import { FriendCreateComponent } from './friends/friend-create/friend-create.component';
 
 const routes: Routes = [
   {
@@ -32,12 +35,20 @@ const routes: Routes = [
   {
     path: 'ausleihe', pathMatch: 'full', component: LendDisplayComponent
   },
-  //NUR ZU TESTZWECKEN TODO
   {
     path: 'ausleihe/erstellen', pathMatch: 'full', component: LendCreateComponent
   },
   {
     path: 'ausleihe/:id/bearbeiten', pathMatch: 'full', component: LendEditComponent
+  },
+  {
+    path: 'freunde', pathMatch: 'full', component: FriendDisplayComponent
+  },
+  {
+    path: 'freunde/finden', pathMatch: 'full', component: FriendCreateComponent
+  },
+  {
+    path: 'freunde/:id/bearbeiten', pathMatch: 'full', component: FriendEditComponent
   }
 ];
 

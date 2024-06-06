@@ -1,0 +1,41 @@
+<h2>Deine Freunde</h2>
+<button type="button" class="btn btn-primary" [routerLink]='["/freunde/finden"]'>Neu</button>
+
+<div class="container">
+  <ng-template #loader>
+    <div class="spinner-border" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </ng-template>
+</div>
+
+<ng-container *ngIf="friends; else loader">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Vorname</th>
+        <th scope="col">Nachname</th>
+        <th scope="col">Strasse</th>
+        <th scope="col">Plz</th>
+        <th scope="col">Ort</th>
+        <th scope="col">E-Mail-Adresse</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of friends">
+        <td>{{element.id}}</td>
+        <td>{{element.firstName}}</td>
+        <td>{{element.lastName}}</td>
+        <td>{{element.street}}</td>
+        <td>{{element.zip}}</td>
+        <td>{{element.city}}</td>
+        <td>{{element.email}}</td>
+        <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
+        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>
