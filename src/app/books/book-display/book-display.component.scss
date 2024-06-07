@@ -1,0 +1,99 @@
+/* Main Content */
+.main-content {
+    display: flex;
+    padding: 20px;
+    align-items: flex-start; /* Beide Elemente oben ausrichten */
+    gap: 20px; /* Abstand zwischen Bild und Büchercontainer */
+}
+
+.left-content {
+    flex: 1;
+    max-width: 40%; /* Maximale Breite für das Bild */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2c6db; /* Rosa Hintergrundfarbe */
+}
+
+.right-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.side-image {
+    max-width: 100%; /* Bildbreite */
+    height: auto; /* Bildhöhe */
+    border-radius: 10px; /* Abgerundete Ecken */
+}
+
+.books-container {
+    background-color: #f6a2c4; /* Hintergrundfarbe des Büchercontainers */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schattierung für den Container */
+}
+
+.book-section {
+    background-color: #d68cb4; /* Hintergrundfarbe des Bücherbereichs */
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px; /* Abstand nach oben */
+}
+
+.book-section .book-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.book-card {
+    background-color: #ffffff; /* Hintergrundfarbe der Buchkarte */
+    border: 2px solid #d68cb4; /* Randfarbe der Buchkarte */
+    border-radius: 10px;
+    padding: 15px;
+    display: flex;
+    align-items: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schattierung für die Karten */
+}
+
+.book-card img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.book-card .book-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d68cb4; /* Textfarbe für den Titel */
+}
+
+
+
+.add-button {
+    background-color: #d68cb4;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+}
+
+.add-button:hover {
+    background-color: #9b0056;
+}
+

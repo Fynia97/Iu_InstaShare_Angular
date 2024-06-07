@@ -1,0 +1,50 @@
+/* General Styles */
+html, body {
+    font-family: Arial, sans-serif;
+    background-color: #f2c6db !important; 
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+.navbar {
+    background-color: #d68cb4 !important; 
+}
+
+
+.navbar .navbar-brand .navbar-logo {
+    margin-right: 10px; /* Abstand zwischen dem Logo und dem Text */
+    height: 40px; /* Anpassen der Höhe des Logos nach Bedarf */
+}
+
+.navbar .nav-link {
+    color: white !important; 
+}
+
+.navbar .nav-link:hover {
+    color: #f2c6db !important;
+}
+
+.navbar .nav-link.active {
+    font-weight: bold !important; /* Fett gedruckt für aktiven Link */
+
+}
+/* Main Content */
+.container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f2c6db !important; 
+    width: 100%; 
+    padding: 20px;
+}
+
+

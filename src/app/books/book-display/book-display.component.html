@@ -1,41 +1,34 @@
-<h2>Deine Bücher</h2>
-<button type="button" class="btn btn-primary" [routerLink]='["/buecher/erstellen"]'>Neu</button>
-
-<div class="container">
-  <ng-template #loader>
-    <div class="spinner-border" role="status">
-      <span class="sr-only"></span>
-    </div>
-  </ng-template>
-</div>
-
-<ng-container *ngIf="books; else loader">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">ISBN</th>
-        <th scope="col">Titel</th>
-        <th scope="col">Autor</th>
-        <th scope="col">Verlag</th>
-        <th scope="col">Erscheinungsjahr</th>
-        <th scope="col">Ausgeliehen?</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let element of books">
-        <td>{{element.id}}</td>
-        <td>{{element.isbn}}</td>
-        <td>{{element.title}}</td>
-        <td>{{element.author}}</td>
-        <td>{{element.publisher}}</td>
-        <td>{{element.publishingYear | date: "yyyy"}}</td>
-        <td>{{element.lendOut | BooleanPipe}}</td>
-        <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
-        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+<main class="main-content">
+  <div class="left-content">
+      <img src="https://via.placeholder.com/1000" alt="Ein Bild" class="side-image">
+  </div>
+  <div class="right-content">
+      <h2>Deine Bücher</h2>
+      <div class="books-container">
+          <div class="hinzufuegen_button">
+              
+              <button type="button" class="btn add-button" [routerLink]='["/buecher/erstellen"]'>+</button>
+          </div>
+          <div class="container">
+              <ng-template #loader>
+                  <div class="spinner-border" role="status">
+                      <span class="sr-only"></span>
+                  </div>
+              </ng-template>
+          </div>
+          <ng-container *ngIf="books; else loader">
+              <div class="book-section">
+                  <div class="book-grid">
+                      <div class="book-card" *ngFor="let book of books">
+                          <img src="https://via.placeholder.com/100" alt="{{book.title}}" class="book-image">
+                          <div class="book-details">
+                              <div class="title">{{book.title}}</div>
+                             
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </ng-container>
+      </div>
+  </div>
+</main>
