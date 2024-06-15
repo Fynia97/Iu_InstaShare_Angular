@@ -18,7 +18,6 @@ import { LendCreateComponent } from './lends/lend-create/lend-create.component';
 import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
 import { BooleanPipe } from './costum/booleanPipe.pipe';
 import { FriendDisplayComponent } from './friends/friend-display/friend-display.component';
-import { FriendEditComponent } from './friends/friend-edit/friend-edit.component';
 import { FriendCreateComponent } from './friends/friend-create/friend-create.component';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { FriendCreateComponent } from './friends/friend-create/friend-create.com
     LendEditComponent,
     BooleanPipe,
     FriendDisplayComponent,
-    FriendEditComponent,
     FriendCreateComponent
   ],
   imports: [

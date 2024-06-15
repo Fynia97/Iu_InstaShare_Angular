@@ -1,1 +1,41 @@
-<p>friend-create works!</p>
+<form [formGroup]="friendForm" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="container">
+      <ng-template #loader>
+        <div class="spinner-border" role="status">
+          <span class="sr-only"></span>
+        </div>
+      </ng-template>
+    </div>
+
+    <ng-container *ngIf="users; else loader">
+      <h3 style="margin-top: 5vh;">UserProfile</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col0">Id</th>
+            <th scope="col1">Vorname</th>
+            <th scope="col2">Nachname</th>
+            <th scope="col3">Email</th>
+            <th scope="col1">Straße</th>
+            <th scope="col2">Ort</th>
+            <th scope="col3">Plz</th>
+            <th scope="col9"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of users">
+            <td>{{element.id}}</td>
+            <td>{{element.firstName}}</td>
+            <td>{{element.lastName}}</td>
+            <td>{{element.email}}</td>
+            <td>{{element.street}}</td>
+            <td>{{element.zip}}</td>
+            <td>{{element.city}}</td>
+            <button class="btn btn-primary submit" type="submit">Als Freund hinzufügen</button>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</form>

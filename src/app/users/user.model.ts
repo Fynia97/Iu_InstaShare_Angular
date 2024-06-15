@@ -7,6 +7,7 @@ export class User {
     public street: string;
     public zip: string;
     public city: string;
+    public friends: User[];
 
     constructor(
         id: number = 0,
@@ -16,7 +17,8 @@ export class User {
         email: string = "",
         street: string = "",
         zip: string = "",
-        city: string = ""
+        city: string = "",
+        friends: User[] = []
     ) {
         this.id = id;
         this.firstName = firstName;
@@ -26,5 +28,6 @@ export class User {
         this.street = street;
         this.zip = zip;
         this.city = city;
+        this.friends = friends;
     }
 }
