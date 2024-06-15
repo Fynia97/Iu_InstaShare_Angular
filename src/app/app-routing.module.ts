@@ -11,10 +11,18 @@ import { LendCreateComponent } from './lends/lend-create/lend-create.component';
 import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
 import { FriendDisplayComponent } from './friends/friend-display/friend-display.component';
 import { FriendCreateComponent } from './friends/friend-create/friend-create.component';
+import { PrivacyComponent } from './footer/privacy/privacy.component';
+import { ImpressumComponent } from './footer/impressum/impressum.component';
 
 const routes: Routes = [
   {
     path: '', pathMatch: 'full', component: HomeComponent
+  },
+  {
+    path: 'privacy', pathMatch: 'full', component: PrivacyComponent
+  },  
+  {
+    path: 'impressum', pathMatch: 'full', component: ImpressumComponent
   },
   {
     path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent
