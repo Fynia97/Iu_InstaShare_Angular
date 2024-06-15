@@ -1,102 +1,80 @@
-<!--Falls Nutzer nicht eingeloggt
-
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaShare</title>
-    <link rel="stylesheet" href="home.component.scss"> 
-</head>
-<body>
-
-    <main class="main-content">
-        <div class="left-content">
-            <div class="welcomeImage-container">
-                <img src="assets/home.png" alt="Arbeitszimmer" class="welcome-image">
-            </div>
+<!--Falls Nutzer nicht eingeloggt-->
+<main class="main-content" *ngIf="!(currentUser$ | async)">
+    <div class="left-content">
+        <div class="welcomeImage-container">
+            <img src="assets/home.png" alt="Arbeitszimmer" class="welcome-image">
         </div>
-        <div class="right-content">
-            <h2>Willkommen bei <strong>InstaShare</strong></h2>
-                <div class="welcometext-container">
-                    <p>Entdecke die Zukunft des privaten Medienaustauschs mit <strong>InstaShare!</strong> Unsere innovative Plattform ermöglicht es Dir Bücher mit Freunden und Familie zu teilen, ohne dabei die Kontrolle über Deine Bücher zu verlieren. Einfach, sicher und unter Deiner eigenen Verwaltung.</p>
-                </div>
-            <h2>Unsere Vision</h2>
-                <div class="welcometext-container">
-                    <p>Wir bei <strong>InstaShare</strong> glauben an eine Welt des gemeinsamen Genießens von Medien, ohne dabei die persönlichen Vorlieben und Privatsphäre zu vernachlässigen. Mit <strong>InstaShare</strong> kannst Du nicht nur Inhalte teilen, sondern auch die Kontrolle über Deine Bibliothek behalten.</p>
-                </div>
-            <h2>Warum <strong>InstaShare</strong>?</h2>
-                <div class="welcometext-container">
-                   <p class="list-group list-group-numbered">
-                        <li class="list-group-item">Intuitive Benutzeroberfläche für mühelosen Bücheraustausch</li>
-                        <li class="list-group-item">Suchfunktion für schnelles Finden Deines Lieblingsbuches</li>
-                        <li class="list-group-item">Einfache Ausleih- und Rückgabefunktionen für eine klare Verwaltung</li>
-                        <li class="list-group-item">Sichere Datenübertragung und Datenschutz stehen bei uns an erster Stelle</li>
-                   </p>                    
-                </div>
-                <div><h5>Entdecke jetzt die Zukunft des Bücheraustauschs mit <strong>InstaShare</strong>!</h5></div>
-            
-        </div>
-    </main>
+    </div>
+    <div class="right-content">
+        <h2>Willkommen bei <strong>InstaShare</strong></h2>
+        
+        <a routerLink="register">Registrieren</a>
 
-</body>
-</html>
--->
+        <div class="welcometext-container">
+            <p>Entdecke die Zukunft des privaten Medienaustauschs mit <strong>InstaShare!</strong> Unsere innovative
+                Plattform ermöglicht es Dir Bücher mit Freunden und Familie zu teilen, ohne dabei die Kontrolle über
+                Deine Bücher zu verlieren. Einfach, sicher und unter Deiner eigenen Verwaltung.</p>
+        </div>
+        <h2>Unsere Vision</h2>
+        <div class="welcometext-container">
+            <p>Wir bei <strong>InstaShare</strong> glauben an eine Welt des gemeinsamen Genießens von Medien, ohne dabei
+                die persönlichen Vorlieben und Privatsphäre zu vernachlässigen. Mit <strong>InstaShare</strong> kannst
+                Du nicht nur Inhalte teilen, sondern auch die Kontrolle über Deine Bibliothek behalten.</p>
+        </div>
+        <h2>Warum <strong>InstaShare</strong>?</h2>
+        <div class="welcometext-container">
+            <p class="list-group list-group-numbered">
+                <li class="list-group-item">Intuitive Benutzeroberfläche für mühelosen Bücheraustausch</li>
+                <li class="list-group-item">Suchfunktion für schnelles Finden Deines Lieblingsbuches</li>
+                <li class="list-group-item">Einfache Ausleih- und Rückgabefunktionen für eine klare Verwaltung</li>
+                <li class="list-group-item">Sichere Datenübertragung und Datenschutz stehen bei uns an erster Stelle
+                </li>
+            </p>
+        </div>
+        <div>
+            <h5>Entdecke jetzt die Zukunft des Bücheraustauschs mit <strong>InstaShare</strong>!</h5>
+        </div>
+
+    </div>
+</main>
 
 <!--Falls Nutzer eingeloggt-->
-
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaShare</title>
-    <link rel="stylesheet" href="home.component.scss"> 
-</head>
-<body>
-
-    <main class="main-content">
-        <div class="left-content">
-            <div class="welcomeImage-container">
-                <img src="assets/buecher.png" alt="Willkommen" class="welcome-image">
-            </div>
+<main class="main-content" *ngIf="currentUser$ | async">
+    <div class="left-content">
+        <div class="welcomeImage-container">
+            <img src="assets/buecher.png" alt="Willkommen" class="welcome-image">
         </div>
-        <div class="right-content">
-            <h2>Willkommen zurück Max</h2>
-            <div class="books-container">
-               
-                <div class="container-wrapper" routerLink="buecher" routerLinkActive="active">
-                    <h3 class="container-title">Büchersammlung</h3>
-                    <div class="container" style="background-image: url('assets/buechersammlung.png');">
-                        <div class="statusAnzeige">4</div>
-                    </div>  
+    </div>
+    <div class="right-content">
+        <h2>Willkommen zurück, {{user.firstName}}</h2>
+        <div class="books-container">
+
+            <div class="container-wrapper" routerLink="buecher" routerLinkActive="active">
+                <h3 class="container-title">Büchersammlung</h3>
+                <div class="container" style="background-image: url('assets/buechersammlung.png');">
+                    <div class="statusAnzeige">{{numberOfBooks}}</div>
                 </div>
-                
-                <div class="container-wrapper" routerLink="ausleihe" routerLinkActive="active">
-                    <h3 class="container-title">Ausgeliehen</h3>
-                    <div class="container" style="background-image: url('assets/freunde.png');">
-                        <div class="statusAnzeige">3</div>
-                    </div>
+            </div>
+
+            <div class="container-wrapper" routerLink="ausleihe" routerLinkActive="active">
+                <h3 class="container-title">Ausgeliehen</h3>
+                <div class="container" style="background-image: url('assets/freunde.png');">
+                    <div class="statusAnzeige">{{numberOfLends}}</div>
                 </div>
-            
-                <div class="container-wrapper">
-                    <h3 class="container-title">Nächste Rückgabe</h3>
-                    <div class="container" style="background-image: url('assets/rueckgabe.png');">
-                        <div class="statusAnzeige">23.08.2024</div>
-                    </div>
+            </div>
+
+            <div class="container-wrapper" routerLink="ausleihe" routerLinkActive="active">
+                <h3 class="container-title">Nächste Rückgabe</h3>
+                <div class="container" style="background-image: url('assets/rueckgabe.png');">
+                    <div class="statusAnzeige">{{nextLendFrom.lendFrom}}</div>
                 </div>
-                <div class="container-wrapper">
-                    <h3 class="container-title">Offene Anfragen</h3>
-                    <div class="container" style="background-image: url('assets/fragezeichen.png');">
-                        <div class="statusAnzeige">2</div>
-                    </div>
+            </div>
+            <div class="container-wrapper" routerLink="ausleihe" routerLinkActive="active">
+                <h3 class="container-title">Offene Anfragen</h3>
+                <div class="container" style="background-image: url('assets/fragezeichen.png');">
+                    <div class="statusAnzeige">{{numberOfLendsRequests}}</div>
                 </div>
             </div>
         </div>
-    </main>
-
-
-</body>
-</html>
-
+    </div>
+</main>

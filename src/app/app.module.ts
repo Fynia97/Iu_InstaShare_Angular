@@ -19,6 +19,7 @@ import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
 import { BooleanPipe } from './costum/booleanPipe.pipe';
 import { FriendDisplayComponent } from './friends/friend-display/friend-display.component';
 import { FriendCreateComponent } from './friends/friend-create/friend-create.component';
+import { RegisterComponent } from './register/register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { FriendCreateComponent } from './friends/friend-create/friend-create.com
     LendEditComponent,
     BooleanPipe,
     FriendDisplayComponent,
-    FriendCreateComponent
+    FriendCreateComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,45 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, map } from 'rxjs';
+import { LoggedInUser } from './loggedInUser.model';
+import { Login } from './login.model';
+import { User } from '../users/user.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class LoginService {
+  //um den currentUser in components aufzurufen, nutze this.loginService.currentUser$.pipe(take(1)).subscribe({next: (user) => this.loggedInUser = user})
+  private currentUser = new BehaviorSubject<LoggedInUser | null>(null);
+  private name = "https://localhost:7092/api/Account/"
+  currentUser$ = this.currentUser.asObservable();
+
+  constructor(protected client: HttpClient) { }
+
+  public login(login: Login)
+  {
+    return this.client.post<LoggedInUser>(this.name + "login", login).pipe(
+      map((data: LoggedInUser) => {
+        const user = data;
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user))
+          this.currentUser.next(user);
+        }
+      })
+    )
+  }
+
+  public setCurrentUser(user: LoggedInUser)
+  {
+    this.currentUser.next(user);
+  }
+
+  public logout() {
+    localStorage.removeItem('user');
+    this.currentUser.next(null);
+  }
+
+  public register(user: User): Observable<User> {
+    return this.client.post<User>(this.name + 'register', user);
+  }
+}

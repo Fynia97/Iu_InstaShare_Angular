@@ -11,10 +11,14 @@ import { LendCreateComponent } from './lends/lend-create/lend-create.component';
 import { LendEditComponent } from './lends/lend-edit/lend-edit.component';
 import { FriendDisplayComponent } from './friends/friend-display/friend-display.component';
 import { FriendCreateComponent } from './friends/friend-create/friend-create.component';
+import { RegisterComponent } from './register/register/register.component';
 
 const routes: Routes = [
   {
     path: '', pathMatch: 'full', component: HomeComponent
+  },
+  {
+    path: 'register', pathMatch: 'full', component: RegisterComponent
   },
   {
     path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent

@@ -17,7 +17,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" *ngIf="currentUser$ | async">
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/">Home</a>
                     </li>
@@ -31,13 +31,19 @@
                         <a class="nav-link" routerLink="freunde" routerLinkActive="active">Freunde</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="user/2/anzeigen" routerLinkActive="active">Profil</a>
+                        <a class="nav-link" [routerLink]="['/user/' + user.id + '/anzeigen']"  routerLinkActive="active">Profil</a>
                     </li>
                     <li class="nav-item">
-                        <button class="nav-link" type="button" routerLinkActive="active">Abmelden</button>
+                        <button class="nav-link" type="button" routerLinkActive="active" (click)="logout()" routerLink="/">Abmelden</button>
                     </li>
                 </ul>
             </div>
+
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex" *ngIf="!(currentUser$ | async)">
+                <input class="form-control me-2" formControlName="email" type="text" placeholder="Email">
+                <input class="form-control me-2" formControlName="password" type="password" placeholder="Passwort">
+                <button class="btn btn-btn-outline-success" type="submit">Login</button>
+            </form>
         </div>
     </nav>
 
