@@ -36,8 +36,8 @@
                                     <div class="title">{{book.title}}</div>
                                     <!-- Weitere Buchdetails können hier hinzugefügt werden -->
                                     <div class="book-actions">
-                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']">✏️</button>
-                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)">🗑️</button>
+                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']" title="bearbeiten">✏️</button>
+                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)" title="löschen">🗑️</button>
                                     </div>
                                 </div>
                             </div>

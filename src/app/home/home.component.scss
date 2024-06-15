@@ -1,0 +1,182 @@
+/* General Styles */
+html, body {
+    font-family: Arial, sans-serif;
+    background-color: #f2c6db !important; /* Rosa Hintergrundfarbe */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #d68cb4 !important; /* Rosa Hintergrund für Navbar */
+}
+
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    color: black !important; /* Schwarz für "InstaShare" */
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.navbar .navbar-brand .navbar-logo {
+    margin-right: 10px; /* Abstand zwischen dem Logo und dem Text */
+    height: 40px; /* Anpassen der Höhe des Logos nach Bedarf */
+}
+
+.navbar .nav-link {
+    color: white !important; /* Weiß für die anderen Links */
+}
+
+.navbar .nav-link:hover {
+    color: #f2c6db !important;
+}
+
+.navbar .nav-link.active {
+    font-weight: bold !important; /* Fett gedruckt für aktiven Link */
+}
+
+/* Main Content */
+
+.main-content {
+    display: flex;
+    padding: 20px;
+    align-items: flex-start; /* Beide Elemente oben ausrichten */
+    gap: 20px; /* Abstand zwischen Bild und Büchercontainer */
+}
+
+.left-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2c6db; /* Rosa Hintergrundfarbe */
+    margin-top: 65px;
+
+}
+
+.right-content {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontal zentrieren */
+    justify-content: center; /* Vertikal zentrieren */
+    text-align: center;
+    gap: 20px;
+    background-color: #f2c6db;
+}
+
+.bookshelf-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.bookshelf-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.side-image {
+    max-width: 100%; /* Bildbreite */
+    height: auto; /* Bildhöhe */
+    border-radius: 10px; /* Abgerundete Ecken */
+}
+
+.books-container {
+    background-color: #BCA8F2; /* Hintergrundfarbe des Büchercontainers */
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schattierung für den Container */
+    width: 100%;
+}
+
+.welcomeImage-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+}
+
+.welcome-image {
+    max-width: 100%;
+    height:auto;
+    border-radius: 1vh;
+}
+
+.welcometext-container {
+    font-size: large;
+}
+
+.list-group {
+    font-size: large;
+}
+
+.list-group-item {
+    background-color: #d68cb4;
+    border: 0px;
+    text-align: left;
+}
+
+.container-wrapper {
+    flex: 1 1 calc(50% - 20px); /* Two containers per row with some margin */
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontal zentrieren */
+    background-color: #481BBF;
+    border-radius: 1dvh;
+    cursor: pointer; /* Mauszeiger wird zu Hand wenn über Container*/
+}
+
+.container {
+    width: 100%;
+    height:200px; /* Adjust the height as needed */
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-bottom-left-radius: 1vh;
+    border-bottom-right-radius: 1vh;
+    overflow: hidden; /* Ensure children don't overflow */
+    display: flex;
+    justify-content: center; /* Vertikal zentrieren */
+    align-items: center; /* Horizontal zentrieren */
+    margin-top: 0;
+    margin-bottom: 0vh;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.5); /* White overlay with 50% transparency */
+    z-index: 1; /* Ensure it is behind any content */
+}
+
+.statusAnzeige {
+    z-index: 2; /* Ensure it is above the overlay */
+    position: relative; /* Ensure proper positioning */
+    color: rgb(14, 7, 7); /* Text color */
+    font-size: 24px; /* Adjust font size as needed */
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.container-title {
+    font-size: 18px; /* Adjust font size as needed */
+    margin-bottom: 10px; /* Abstand zwischen Überschrift und Inhalt */
+    margin-top: 10px;
+    color: white;
+}
