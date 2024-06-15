@@ -1,34 +1,52 @@
-<main class="main-content">
-  <div class="left-content">
-      <img src="https://via.placeholder.com/1000" alt="Ein Bild" class="side-image">
-  </div>
-  <div class="right-content">
-      <h2>Deine Bücher</h2>
-      <div class="books-container">
-          <div class="hinzufuegen_button">
-              
-              <button type="button" class="btn add-button" [routerLink]='["/buecher/erstellen"]'>+</button>
-          </div>
-          <div class="container">
-              <ng-template #loader>
-                  <div class="spinner-border" role="status">
-                      <span class="sr-only"></span>
-                  </div>
-              </ng-template>
-          </div>
-          <ng-container *ngIf="books; else loader">
-              <div class="book-section">
-                  <div class="book-grid">
-                      <div class="book-card" *ngFor="let book of books">
-                          <img src="https://via.placeholder.com/100" alt="{{book.title}}" class="book-image">
-                          <div class="book-details">
-                              <div class="title">{{book.title}}</div>
-                             
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </ng-container>
-      </div>
-  </div>
-</main>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaShare</title>
+    <link rel="stylesheet" href="book-display.component.scss"> 
+</head>
+<body>
+
+    <main class="main-content">
+        <div class="left-content">
+            <div class="bookshelf-container">
+                <img src="assets/book_display.png" alt="Bücherregal" class="bookshelf-image">
+            </div>
+        </div>
+        <div class="right-content">
+            <h2>Deine Bücher</h2>
+            <div class="books-container">
+                <div class="search-bar">
+                    <input type="text" placeholder="Suche">
+                    <button type="button" class="btn add-button" [routerLink]='["/buecher/erstellen"]'>+</button>
+                </div>
+                <div class="container">
+                    <ng-template #loader>
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </ng-template>
+                </div>
+                <ng-container *ngIf="books; else loader">
+                    <div class="book-section">
+                        <div class="book-grid">
+                            <div class="book-card" *ngFor="let book of books">
+                                <div class="book-details">
+                                    <div class="title">{{book.title}}</div>
+                                    <!-- Weitere Buchdetails können hier hinzugefügt werden -->
+                                    <div class="book-actions">
+                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']" title="bearbeiten">✏️</button>
+                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)" title="löschen">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
