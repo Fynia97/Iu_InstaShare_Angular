@@ -14,6 +14,7 @@ import { FriendCreateComponent } from './friends/friend-create/friend-create.com
 import { PrivacyComponent } from './footer/privacy/privacy.component';
 import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
+import { RouteGuardGuard } from './login/route-guard.guard';
 
 const routes: Routes = [
   {
@@ -29,34 +30,34 @@ const routes: Routes = [
     path: 'register', pathMatch: 'full', component: RegisterComponent
   },
   {
-    path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent
+    path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'user/:id/bearbeiten', pathMatch: 'full', component: UserEditComponent
+    path: 'user/:id/bearbeiten', pathMatch: 'full', component: UserEditComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'buecher', pathMatch: 'full', component: BookDisplayComponent
+    path: 'buecher', pathMatch: 'full', component: BookDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'buecher/erstellen', pathMatch: 'full', component: BookCreateComponent
+    path: 'buecher/erstellen', pathMatch: 'full', component: BookCreateComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'buecher/:id/bearbeiten', pathMatch: 'full', component: BookEditComponent
+    path: 'buecher/:id/bearbeiten', pathMatch: 'full', component: BookEditComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'ausleihe', pathMatch: 'full', component: LendDisplayComponent
+    path: 'ausleihe', pathMatch: 'full', component: LendDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'ausleihe/erstellen', pathMatch: 'full', component: LendCreateComponent
+    path: 'ausleihe/erstellen', pathMatch: 'full', component: LendCreateComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'ausleihe/:id/bearbeiten', pathMatch: 'full', component: LendEditComponent
+    path: 'ausleihe/:id/bearbeiten', pathMatch: 'full', component: LendEditComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'freunde', pathMatch: 'full', component: FriendDisplayComponent
+    path: 'freunde', pathMatch: 'full', component: FriendDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'freunde/finden', pathMatch: 'full', component: FriendCreateComponent
+    path: 'freunde/finden', pathMatch: 'full', component: FriendCreateComponent, canActivate: [RouteGuardGuard]
   }
 ];
 

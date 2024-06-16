@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { LoggedInUser } from '../login/loggedInUser.model';
-import { LoginService } from '../login/login.service';
+import { LoginRegisterService } from '../common/loginRegister.service';
 import { UserService } from '../users/user.service';
 import { User } from '../users/user.model';
 import { BookService } from '../books/book.service';
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   public numberOfLendsRequests: number;
   public nextLendFrom: Lend;
 
-  constructor(private loginService: LoginService, private userService: UserService, private bookService: BookService, private lendService: LendService) { }
+  constructor(private loginService: LoginRegisterService, private userService: UserService, private bookService: BookService, private lendService: LendService) { }
 
   ngOnInit(): void {
     this.currentUser$ = this.loginService.currentUser$;

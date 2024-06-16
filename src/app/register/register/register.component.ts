@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LoginService } from 'src/app/login/login.service';
+import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { User } from 'src/app/users/user.model';
 import { UserService } from 'src/app/users/user.service';
 
@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formbuilder: FormBuilder,
-    private service: LoginService,
+    private service: LoginRegisterService,
     private router: Router,
     private route: ActivatedRoute
   ) { }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from './users/user.model';
 import { Login } from './login/login.model';
-import { LoginService } from './login/login.service';
+import { LoginRegisterService } from './common/loginRegister.service';
 import { LoggedInUser } from './login/loggedInUser.model';
 import { UserService } from './users/user.service';
 import { Observable, of } from 'rxjs';
@@ -19,9 +19,11 @@ export class AppComponent implements OnInit {
   public login: Login = new Login("", "");
   public user: User;
 
+  public loginWrong = false;
+
   public currentUser$: Observable<LoggedInUser | null> = of(null)
 
-  constructor(private formbuilder: FormBuilder, private service: LoginService, private router: Router, private userService: UserService) {}
+  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
@@ -51,14 +53,17 @@ export class AppComponent implements OnInit {
   onSubmit() {
     this.login = this.loginForm.value;
     this.service.login(this.login).subscribe({
-      next: (data) => {}
+      next: (data) => {console.log(data)},
+      error: (error) => {this.loginWrong = true}
     });
+    ;
   }
 
   logout() {
     this.service.logout();
     this.login.email = "";
     this.login.password = "";
+    this.loginWrong = false;
 
     this.ngOnInit();
   }

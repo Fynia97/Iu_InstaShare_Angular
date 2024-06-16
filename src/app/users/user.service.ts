@@ -10,6 +10,6 @@ export class UserService extends AbstractService<User> {
   protected name = "UserProfile";
 
   public getByEmail(email: string): Observable<User> {
-    return this.client.get<User>(AbstractService.baseUrl + this.name + '/getByEmail?email=' + email);
+    return this.client.get<User>(AbstractService.baseUrl + this.name + '/getByEmail?email=' + email, AbstractService.Authorize());
   }
 }

@@ -42,6 +42,7 @@
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="d-flex" *ngIf="!(currentUser$ | async)">
                 <input class="form-control me-2" formControlName="email" type="text" placeholder="Email">
                 <input class="form-control me-2" formControlName="password" type="password" placeholder="Passwort">
+                <span *ngIf="loginWrong" style="font-style: italic;">Fehler <br>Passwort vergessen?</span>
                 <button class="btn btn-btn-outline-success" type="submit">Login</button>
             </form>
         </div>

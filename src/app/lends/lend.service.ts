@@ -10,10 +10,10 @@ export class LendService extends AbstractService<Lend> {
   protected name = "Lend";
 
   public getNextLendFrom(): Observable<Lend> {
-    return this.client.get<Lend>(AbstractService.baseUrl + this.name + '/getNextLendFrom');
+    return this.client.get<Lend>(AbstractService.baseUrl + this.name + '/getNextLendFrom', AbstractService.Authorize());
   }
 
   public countLendsWithStatus(status: number): Observable<number> {
-    return this.client.get<number>(AbstractService.baseUrl + this.name + '/getLendsWithStatus?status=' + status);
+    return this.client.get<number>(AbstractService.baseUrl + this.name + '/getLendsWithStatus?status=' + status, AbstractService.Authorize());
   }
 }

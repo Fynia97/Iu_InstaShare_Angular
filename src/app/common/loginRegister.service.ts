@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { LoggedInUser } from './loggedInUser.model';
-import { Login } from './login.model';
+import { LoggedInUser } from '../login/loggedInUser.model';
+import { Login } from '../login/login.model';
 import { User } from '../users/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginRegisterService {
   //um den currentUser in components aufzurufen, nutze this.loginService.currentUser$.pipe(take(1)).subscribe({next: (user) => this.loggedInUser = user})
   private currentUser = new BehaviorSubject<LoggedInUser | null>(null);
   private name = "https://localhost:7092/api/Account/"
