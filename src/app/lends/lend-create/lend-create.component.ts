@@ -15,7 +15,7 @@ import { UserService } from 'src/app/users/user.service';
   styleUrls: ['./lend-create.component.scss']
 })
 export class LendCreateComponent implements OnInit {
-  public lend: Lend = new Lend(0, new Date(), new Date(), new User(), new Book(0, "", "", "", "", new Date()), "");
+  public lend: Lend;
   public lends: Lend[] = [];
   public lendForm!: FormGroup;
 

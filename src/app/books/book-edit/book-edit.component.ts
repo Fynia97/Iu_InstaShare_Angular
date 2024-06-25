@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../book.model';
 import { formatDate } from '@angular/common';
+import { BookCategoryEnum } from '../book.enum';
 
 @Component({
   selector: 'app-book-edit',
@@ -11,6 +12,8 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./book-edit.component.scss']
 })
 export class BookEditComponent implements OnInit {
+  public categoryForDropdown: any;
+    
   public book!: Book;
   public bookForm!: FormGroup;
   public year: String;
@@ -35,10 +38,16 @@ export class BookEditComponent implements OnInit {
           author: [this.book.author],
           publisher: [this.book.publisher],
           publishingYear: [this.book.publishingYear],
-          lendOut: [this.book.lendOut]
+          lendOut: [this.book.lendOut],
+          category: [this.book.category]
         });
       }
     });
+
+    this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
+      label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
+      value: key
+      }));
   }
 
   public cancel()

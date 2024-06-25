@@ -15,6 +15,10 @@ export abstract class AbstractService<T> {
     return this.client.get<T[]>(AbstractService.baseUrl + this.name + '/getAll', AbstractService.Authorize());
   }
 
+  public getAllByUserId(userId: number): Observable<T[]> {
+    return this.client.get<T[]>(AbstractService.baseUrl + this.name + '/getAllByUserId?userId=' + userId, AbstractService.Authorize());
+  }
+
   public getById(id: number): Observable<T> {
     return this.client.get<T>(AbstractService.baseUrl + this.name + '/getById?id=' + id, AbstractService.Authorize());
   }
