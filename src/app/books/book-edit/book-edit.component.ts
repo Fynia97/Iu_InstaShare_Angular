@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../book.model';
 import { formatDate } from '@angular/common';
 import { BookCategoryEnum } from '../book.enum';
+import { IdService } from 'src/app/common/id.service';
 
 @Component({
   selector: 'app-book-edit',
@@ -13,6 +14,7 @@ import { BookCategoryEnum } from '../book.enum';
 })
 export class BookEditComponent implements OnInit {
   public categoryForDropdown: any;
+  public id: number;
     
   public book!: Book;
   public bookForm!: FormGroup;
@@ -21,13 +23,18 @@ export class BookEditComponent implements OnInit {
   constructor(
     private formbuilder: FormBuilder,
     private service: BookService,
-    private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private idService: IdService
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.service.getById(Number(id)).subscribe({
+    this.idService.getData().subscribe({
+      next: (id) => {
+        this.id = id;
+      }
+    })
+
+    this.service.getById(this.id).subscribe({
       next: (b) => {
         this.book = b;
 
@@ -57,6 +64,7 @@ export class BookEditComponent implements OnInit {
 
   public onSubmit() {
     this.book = this.bookForm.value;
+ 
     this.service.update(this.book).subscribe({
       next: (data) => this.router.navigate(['/buecher'])
     });

@@ -42,7 +42,7 @@ const routes: Routes = [
     path: 'buecher/erstellen', pathMatch: 'full', component: BookCreateComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'buecher/:id/bearbeiten', pathMatch: 'full', component: BookEditComponent, canActivate: [RouteGuardGuard]
+    path: 'buecher/bearbeiten', pathMatch: 'full', component: BookEditComponent, canActivate: [RouteGuardGuard]
   },
   {
     path: 'ausleihe', pathMatch: 'full', component: LendDisplayComponent, canActivate: [RouteGuardGuard]
