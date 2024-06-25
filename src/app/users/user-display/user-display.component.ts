@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { LoginRegisterService } from 'src/app/common/loginRegister.service';
+import { Observable, of, take } from 'rxjs';
+import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 
 @Component({
   selector: 'app-user-display',
@@ -9,34 +11,33 @@ import { UserService } from '../user.service';
   styleUrls: ['./user-display.component.scss']
 })
 export class UserDisplayComponent implements OnInit {
-
+  public currentUser$: Observable<LoggedInUser | null> = of(null);
   public user: User;
+  public loggedInUser: LoggedInUser | null;
 
   constructor(
     private service: UserService,
-    private route: ActivatedRoute
+    private loginService: LoginRegisterService
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.service.getById(Number(id)).subscribe({
-      next: (u) => {
-        this.user = u;
+    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+
+    if(this.loggedInUser != null)
+      {
+        this.service.getByEmail(this.loggedInUser.email).subscribe({
+          next: (u) => {
+            this.user = u;
+          }
+        })
       }
-    })
   }
 
   public btnDeleteClicked(user: User) {
     if (confirm("Möchtest du den Account wirklich löschen?")) {
-      if (user.id == 2) {
-        confirm("Dieser Testnutzer ist nicht löschbar.")
-      }
-      else {
-        this.service.deleteById(user.id).subscribe({
-          next: (data) => this.ngOnInit()
-        });
-      }
+      this.service.deleteById(user.id).subscribe({
+        next: (data) => this.ngOnInit()
+      });
     }
   }
 }
-

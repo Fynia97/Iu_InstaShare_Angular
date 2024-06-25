@@ -30,7 +30,7 @@ const routes: Routes = [
     path: 'register', pathMatch: 'full', component: RegisterComponent
   },
   {
-    path: 'user/:id/anzeigen', pathMatch: 'full', component: UserDisplayComponent, canActivate: [RouteGuardGuard]
+    path: 'user/anzeigen', pathMatch: 'full', component: UserDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
     path: 'user/:id/bearbeiten', pathMatch: 'full', component: UserEditComponent, canActivate: [RouteGuardGuard]

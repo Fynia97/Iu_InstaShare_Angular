@@ -7,6 +7,7 @@ import { LoggedInUser } from './login/loggedInUser.model';
 import { UserService } from './users/user.service';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -17,13 +18,12 @@ export class AppComponent implements OnInit {
   public currentYear = new Date().getFullYear();
   public loginForm!: FormGroup;
   public login: Login = new Login("", "");
-  public user: User;
 
   public loginWrong = false;
 
   public currentUser$: Observable<LoggedInUser | null> = of(null)
 
-  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService, private router: Router, private userService: UserService) {}
+  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
@@ -33,16 +33,6 @@ export class AppComponent implements OnInit {
 
     this.setCurrentUser();
     this.currentUser$ = this.service.currentUser$;
-
-    this.currentUser$.subscribe((loggedInUser: LoggedInUser | null) => {
-      if (loggedInUser) {
-        this.userService.getByEmail(loggedInUser.email).subscribe({
-          next: (data) => {
-            this.user = data;
-          }
-        });
-      }
-    });
   }
 
   public setCurrentUser() {
@@ -56,7 +46,6 @@ export class AppComponent implements OnInit {
       next: (data) => {console.log(data)},
       error: (error) => {this.loginWrong = true}
     });
-    ;
   }
 
   logout() {
