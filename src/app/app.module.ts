@@ -22,6 +22,7 @@ import { FriendCreateComponent } from './friends/friend-create/friend-create.com
 import { PrivacyComponent } from './footer/privacy/privacy.component';
 import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
+import { SearchPipe } from './common/search.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { RegisterComponent } from './register/register/register.component';
     FriendCreateComponent,
     PrivacyComponent,
     ImpressumComponent,
-    RegisterComponent
+    RegisterComponent,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

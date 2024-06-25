@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BookDisplayComponent implements OnInit {
   
   public books: Book[];
+  public searchText: string;
   constructor(private service: BookService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
