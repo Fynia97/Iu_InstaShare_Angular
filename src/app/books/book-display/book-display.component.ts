@@ -36,7 +36,6 @@ export class BookDisplayComponent implements OnInit {
           this.service.getAllByUserId(this.user.id).subscribe({
             next: (data) => {
               this.books = data;
-              console.log(this.books)
             }
           })
         }
