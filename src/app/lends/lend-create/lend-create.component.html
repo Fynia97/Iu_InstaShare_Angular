@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buchinformationen</title>
-    <link rel="stylesheet" href="lend-create.component.scss">
+    <link rel="stylesheet" href="lend-create.component.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">Max Mustermann`s Buch</div>
+        <div class="header">
+          <div class="which-user">Sabrina`s Buch</div>
+          <div class="titel">Ausleihanfrage</div>
+        </div>
         <div class="row">
             <div class="column">
-                <!--<img src="bild.jpg" alt="Buchbild">-->
+                <!--<img src="bild.jpg" alt="Titelbild">-->
             </div>
             <div class="column">
                 <div>
@@ -36,39 +39,30 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="lend">
-            <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
-                <div class="form-group">
+        <div class="row">
+            <div class="column">
+                <div>
                     <label for="status">Status:</label>
-                    <span id="status" class="form-control">Ausleihbar</span> <!-- Status aus Datenbank -->
+                    <span id="status">Verfügbar</span>
                 </div>
-                <div class="form-group">
-                    <label for="lendFrom">Ausgeliehen am:</label>
-                    <input type="date" id="lendFrom" formControlName="lendFrom" class="form-control">
+                <div>
+                    <label for="borrower">Ausgeliehen an:</label>
+                    <span id="borrower">N/A</span>
                 </div>
-                <div class="form-group">
-                    <label for="lendTo">Rückgabe am:</label>
-                    <input type="date" id="lendTo" formControlName="lendTo" class="form-control">
+                <div>
+                    <label for="return-date">Rückgabe am:</label>
+                    <span id="return-date">N/A</span>
                 </div>
-                <div class="form-group">
-                    <label for="note">Notizen:</label>
-                    <input type="text" id="note" formControlName="note" class="form-control" placeholder="Notiz">
-                </div>
-            </form> 
+            </div>
         </div>
       <div class="form-actions">
-                    <button class="borrow-btn" type="submit">Ausleihen</button>
+                    <button class="borrow-btn" type="submit">Ausleihen</button><!--Ausleihfunktion muss eingefügt werden. Durch betätigen des "Ausleihen"Buttons wechselt die Ansicht im unteren Bereich in den Bearbeitungs-Modus "lend-create". Das Feld "Rückgabe am" wird dann bearbeitbar und das Feld "Notiz" erscheint zusätzlich. -->
                     <button class="cancel-btn" type="button" onclick="cancel()">Abbrechen</button>
-      </div>
+      </div><!-- Abbrechen Funktion muss eingefügt werden-->
     </div>
     <script>
         function closeContainer() {
             document.querySelector('.container').style.display = 'none';
-        }
-
-        function cancel() {
-            // cancel-funkion muss hier eingefügt werden.
-            alert("Abbrechen wurde geklickt");
         }
     </script>
 </body>

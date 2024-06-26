@@ -30,6 +30,14 @@ body {
     box-sizing: border-box;
     color: white;
     font-size: 24px;
+    flex-direction: column;
+    gap: 10px;
+}
+.which-user {
+  font-size:15px;
+  align-items: left;
+  color: black;
+  margin-top: 10px;
 }
 
 .form-actions {
@@ -62,6 +70,7 @@ body {
 
 .borrow-btn, .cancel-btn {
     background-color: green;
+    background-color: rgba(0, 128, 0, 0.6); 
     color: white;
     border: none;
     border-radius: 20px;
@@ -71,7 +80,7 @@ body {
 }
 
 .cancel-btn {
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.6); 
 }
 
 .row {
@@ -108,7 +117,7 @@ body {
 }
 
 #status {
-    color: white;
+    color: black;
 }
 
 @media (max-width: 600px) {
