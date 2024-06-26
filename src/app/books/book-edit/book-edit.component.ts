@@ -44,7 +44,7 @@ export class BookEditComponent implements OnInit {
           publisher: [this.book.publisher],
           publishingYear: [this.book.publishingYear],
           lendOut: [this.book.lendOut],
-          category: [this.categoryForDropdown[this.book.category].value]
+          category: [this.book.category]
         });
       }
     });
