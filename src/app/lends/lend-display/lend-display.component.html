@@ -28,8 +28,8 @@
         <td>{{element.id}}</td>
         <td>{{element.lendFrom | date: "dd.MM.yyyy"}}</td>
         <td>{{element.lendTo | date: "dd.MM.yyyy"}}</td>
-        <td>{{element.borrower.firstName}} {{element.borrower.lastName}}</td>
-        <td>{{element.book.title}}</td>
+        <td>{{element.borrower?.firstName}} {{element.borrower?.lastName}}</td>
+        <td>{{element.book?.title}}</td>
         <td>{{element.note}}</td>
         <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
         <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from './users/user.model';
 import { Login } from './login/login.model';
@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
   onSubmit() {
     this.login = this.loginForm.value;
     this.service.login(this.login).subscribe({
-      next: (data) => {console.log(data)},
+      next: (data) => {},
       error: (error) => {this.loginWrong = true}
     });
   }

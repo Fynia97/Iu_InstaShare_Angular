@@ -16,6 +16,7 @@
         </div>
         <div class="right-content">
             <h2>Deine Bücher</h2>
+            <button type="button" class="btn btn-primary" [routerLink]='["/buecher/erstellen"]'>Neu</button>
             <div class="books-container">
                 <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
                 <div class="container">

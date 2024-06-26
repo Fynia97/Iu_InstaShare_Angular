@@ -9,11 +9,11 @@ import { Observable } from 'rxjs';
 export class LendService extends AbstractService<Lend> {
   protected name = "Lend";
 
-  public getNextLendFrom(): Observable<Lend> {
-    return this.client.get<Lend>(AbstractService.baseUrl + this.name + '/getNextLendFrom', AbstractService.Authorize());
+  public getNextLendFrom(userId: number): Observable<Lend> {
+    return this.client.get<Lend>(AbstractService.baseUrl + this.name + '/getNextLendFrom?userId=' + userId, AbstractService.Authorize());
   }
 
-  public countLendsWithStatus(status: number): Observable<number> {
-    return this.client.get<number>(AbstractService.baseUrl + this.name + '/getLendsWithStatus?status=' + status, AbstractService.Authorize());
+  public countLendsWithStatus(status: number, userId: number): Observable<number> {
+    return this.client.get<number>(AbstractService.baseUrl + this.name + '/countLendsWithStatus?status=' + status + "&userId=" + userId, AbstractService.Authorize());
   }
 }

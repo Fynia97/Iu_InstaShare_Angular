@@ -23,6 +23,10 @@ export abstract class AbstractService<T> {
     return this.client.get<T>(AbstractService.baseUrl + this.name + '/getById?id=' + id, AbstractService.Authorize());
   }
 
+  public getByIdAndUserId(id: number, userId: number): Observable<T> {
+    return this.client.get<T>(AbstractService.baseUrl + this.name + '/getByIdAndUserId?id=' + id + "&userId=" + userId, AbstractService.Authorize());
+  }
+
   public create(entity: T): Observable<T> {
     return this.client.post<T>(AbstractService.baseUrl + this.name + '/create', entity, AbstractService.Authorize());
   }

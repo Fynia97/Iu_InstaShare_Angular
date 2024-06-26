@@ -5,16 +5,20 @@ export class Lend {
     public id: number
     public lendFrom: Date
     public lendTo: Date
-    public borrower: User
-    public book: Book
+    public borrowerId: number
+    public bookId: number
     public note: string
+    public book: Book | null
+    public borrower: User | null
 
-    constructor(id = 0, lendFrom: Date, lendTo: Date, borrower: User, book: Book, note: string = "") {
+    constructor(id = 0, lendFrom: Date = new Date(), lendTo: Date = new Date(), borrowerId: number = 0, bookId: number = 0, note: string = "", book: Book = new Book(), borrower: User = new User()) {
         this.id = id;
         this.lendFrom = lendFrom;
         this.lendTo = lendTo;
-        this.borrower = borrower;
-        this.book = book;
+        this.borrowerId = borrowerId;
+        this.bookId = bookId;
         this.note = note;
+        this.book = book;
+        this.borrower = borrower;
     }
 }

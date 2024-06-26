@@ -69,6 +69,10 @@ export class BookCreateComponent {
   }
   
   public onSubmit() {
+    if(this.bookForm.value.category == "Sonstiges")
+      {
+        this.bookForm.value.category = "OTHER";
+      }
     this.book = this.bookForm.value;
     this.book.userId = this.user.id;
     this.service.create(this.book).subscribe({

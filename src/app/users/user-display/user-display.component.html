@@ -9,7 +9,7 @@
   
     <ng-container *ngIf="user; else loader">
       <h3 style="margin-top: 5vh;">UserProfile</h3>
-      <table class="table">
+      <table class="table" *ngIf="deleted == false">
         <thead>
           <tr>
             <th scope="col0">Id</th>
@@ -33,10 +33,11 @@
             <td>{{user.zip}}</td>
             <td>{{user.city}}</td>
             <td><button class="btn btn-warning"
-                [routerLink]="['/user/' + user.id + '/bearbeiten']">Bearbeiten</button></td>
+                [routerLink]="['/user/bearbeiten']">Bearbeiten</button></td>
             <td><button class="btn btn-danger" (click)="btnDeleteClicked(user)">Löschen</button></td>
           </tr>
         </tbody>
       </table>
+      <p *ngIf="deleted">Der Account wurde gelöscht.</p>
     </ng-container>
   </div>

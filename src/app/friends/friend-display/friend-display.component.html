@@ -14,7 +14,6 @@
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">User</th>
         <th scope="col">Friend</th>
         <th scope="col"></th>
         <th scope="col"></th>
@@ -24,9 +23,7 @@
     <tbody>
       <tr *ngFor="let element of friends">
         <td>{{element.id}}</td>
-        <td>{{element.user}}</td>
         <td>{{element.friend.firstName}} {{element.friend.lastName}}</td>
-        <td><button class="btn btn-primary" [routerLink]="['../user/' + element.friendId + '/anzeigen']">Anzeigen</button></td>
         <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
       </tr>
     </tbody>

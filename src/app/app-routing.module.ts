@@ -15,6 +15,7 @@ import { PrivacyComponent } from './footer/privacy/privacy.component';
 import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
 import { RouteGuardGuard } from './login/route-guard.guard';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,7 @@ const routes: Routes = [
     path: 'user/anzeigen', pathMatch: 'full', component: UserDisplayComponent, canActivate: [RouteGuardGuard]
   },
   {
-    path: 'user/:id/bearbeiten', pathMatch: 'full', component: UserEditComponent, canActivate: [RouteGuardGuard]
+    path: 'user/bearbeiten', pathMatch: 'full', component: UserEditComponent, canActivate: [RouteGuardGuard]
   },
   {
     path: 'buecher', pathMatch: 'full', component: BookDisplayComponent, canActivate: [RouteGuardGuard]
@@ -58,7 +59,11 @@ const routes: Routes = [
   },
   {
     path: 'freunde/finden', pathMatch: 'full', component: FriendCreateComponent, canActivate: [RouteGuardGuard]
-  }
+  },
+  {
+    path: 'deletedAccount', pathMatch: 'full', component: AppComponent, canActivate: [RouteGuardGuard]
+  },
+  
 ];
 
 @NgModule({
