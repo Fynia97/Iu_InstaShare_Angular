@@ -7,7 +7,6 @@ import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 import { User } from 'src/app/users/user.model';
 import { UserService } from 'src/app/users/user.service';
-import { IdService } from 'src/app/common/id.service';
 
 @Component({
   selector: 'app-book-display',
@@ -24,8 +23,7 @@ export class BookDisplayComponent implements OnInit {
 
   constructor(private service: BookService,
     private userService: UserService,
-    private loginService: LoginRegisterService,
-    private idService: IdService) { }
+    private loginService: LoginRegisterService) { }
 
   ngOnInit(): void {
     this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
@@ -38,15 +36,12 @@ export class BookDisplayComponent implements OnInit {
           this.service.getAllByUserId(this.user.id).subscribe({
             next: (data) => {
               this.books = data;
+              console.log(this.books)
             }
           })
         }
       })
     }
-  }
-
-  public sendId(id: number){
-    this.idService.setData(id);
   }
 
   public btnDeleteClicked(element: Book) {
