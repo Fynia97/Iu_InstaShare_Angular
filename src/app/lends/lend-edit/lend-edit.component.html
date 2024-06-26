@@ -1,67 +1,86 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buchinformationen</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ausleihanfrage</title>
+  <link rel="stylesheet" href="lend-edit.component.scss">
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
-          <div class="which-user">Max`s Buch</div>
-            <button class="save-button">Speichern</button>
-          <button class="delete-button">Löschen</button>
-            <span class="close-button" onclick="closeContainer()">X</span>
-        </div>
-        <div class="row">
-            <div class="column">
-                <!--<img src="bild.jpg" alt="Titelbild">-->
-            </div>
-            <div class="column">
-                <div>
-                    <label for="title">Titel:</label>
-                    <span id="title">Harry Potter und der Gefangene von Askaban</span>
-                </div>
-                <div>
-                    <label for="author">Autor:</label>
-                    <span id="author">Max Mustermann</span>
-                </div>
-                <div>
-                    <label for="category">Kategorie:</label>
-                    <span id="category">Fantasy</span>
-                </div>
-                <div>
-                    <label for="isbn">ISBN:</label>
-                    <span id="isbn">978-3-16-148410-0</span>
-                </div>
-                <div>
-                    <label for="year">Erscheinungsjahr:</label>
-                    <span id="year">2002</span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <div>
-                    <label for="status">Status:</label>
-                    <span id="status">Verfügbar</span>
-                </div>
-                <div>
-                    <label for="borrower">Ausgeliehen an:</label>
-                    <span id="borrower">N/A</span>
-                </div>
-                <div>
-                    <label for="return-date">Rückgabe am:</label>
-                    <span id="return-date">N/A</span>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="header">
+      <div class="owner-book">Sabrina`s Buch</div>
+      <div class="titel">Ausleihanfrage</div>
     </div>
-    <script>
-        function closeContainer() {
-            document.querySelector('.container').style.display = 'none';
-        }
-    </script>
+    <div class="row">
+      <div class="column">
+        <!--<img src="bild.jpg" alt="Titelbild">-->
+      </div>
+      <div class="column">
+        <div>
+          <label for="title">Titel:</label>
+          <span id="title">Harry Potter und der Gefangene von Askaban</span>
+        </div>
+        <div>
+          <label for="author">Autor:</label>
+          <span id="author">Max Mustermann</span>
+        </div>
+        <div>
+          <label for="category">Kategorie:</label>
+          <span id="category">Fantasy</span>
+        </div>
+        <div>
+          <label for="isbn">ISBN:</label>
+          <span id="isbn">978-3-16-148410-0</span>
+        </div>
+        <div>
+          <label for="year">Erscheinungsjahr:</label>
+          <span id="year">2002</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div>
+          <label for="status">Status:</label>
+          <span id="status">Verfügbar</span><!--muss von der Datenbank abgerufen werden-->
+        </div>
+        <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
+          <!--LendFrom-->
+          <div class="input-group mb-3">
+            <label for="borrowed-on">Ausgeliehen am:</label>
+            <input type="date" formControlName="lendFrom">  <!--Das Ausgeliehen-Datum sollte erst gesetzt werden, wenn die Anfrage bestätigt wird.-->
+          </div>
+
+        <!--LendTo-->
+          <div class="input-group mb-3">
+            <label for="return-date">Rückgabe am:</label>
+            <input type="date" formControlName="lendTo">
+          </div>
+
+          <!--Note-->
+          <div class="input-group mb-3">
+            <label for="notes">Notizen:</label>
+            <input type="text" class="form-control" placeholder="Notiz" formControlName="note">
+          </div>
+        </form>
+
+      </div>
+      
+      <div class="form-actions">
+        <button class="borrow-btn" type="submit">Speichern</button>
+        <!--Mit dem Betätigen des Speichern-Buttons geht erst die Anfrage an den Besitzer des Buches (owner-book) -->
+        <button class="cancel-btn" type="button" onclick="cancel()">Löschen</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    function closeContainer() {
+      document.querySelector('.container').style.display = 'none';
+    }
+  </script>
 </body>
+
 </html>
