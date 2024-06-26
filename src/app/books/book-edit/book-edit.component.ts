@@ -31,6 +31,11 @@ export class BookEditComponent implements OnInit {
       next: (b) => {
         this.book = b;
 
+        this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
+          label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
+          value: key
+          }));
+
         this.bookForm = this.formbuilder.group({
           id: [this.book.id],
           isbn: [this.book.isbn],
@@ -39,15 +44,10 @@ export class BookEditComponent implements OnInit {
           publisher: [this.book.publisher],
           publishingYear: [this.book.publishingYear],
           lendOut: [this.book.lendOut],
-          category: [this.book.category]
+          category: [this.categoryForDropdown[this.book.category].value]
         });
       }
     });
-
-    this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
-      label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
-      value: key
-      }));
   }
 
   public cancel()
