@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, of } from 'rxjs';
 import { LoggedInUser } from '../login/loggedInUser.model';
 import { Login } from '../login/login.model';
 import { User } from '../users/user.model';
@@ -14,7 +14,8 @@ export class LoginRegisterService {
   private name = "https://localhost:7092/api/Account/"
   currentUser$ = this.currentUser.asObservable();
 
-  constructor(protected client: HttpClient) { }
+
+constructor(protected client: HttpClient) { }
 
   public login(login: Login)
   {
