@@ -7,7 +7,6 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #d68cb4;
-  
 }
 
 .container {
@@ -33,11 +32,11 @@ body {
     flex-direction: column;
     gap: 10px;
 }
+
 .owner-book {
-  font-size:15px;
-  align-items: left;
-  color: black;
-  margin-top: 10px;
+    font-size: 15px;
+    color: black;
+    margin-top: 10px;
 }
 
 .form-actions {
@@ -50,21 +49,29 @@ body {
 
 .form-group {
     color: black;
-    padding-left: 30px; 
+    padding-left: 30px;
     padding: 10px;
 }
 
+.input-group {
+    display: wrap;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-control {
+    min-width: 250px; /* Mindestbreite */
+    padding-left: 5px;
+}
 
 .borrow-btn, .cancel-btn {
-    background-color: green;
     background-color: rgba(0, 128, 0, 0.6); 
     color: white;
     border: none;
     border-radius: 20px;
-    padding: 10px 90px;
+    padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
-    
 }
 
 .cancel-btn {
@@ -112,11 +119,12 @@ body {
     .row {
         flex-direction: column;
     }
-   
+
     .form-actions {
         flex-direction: column;
         gap: 15px;
     }
+
     .borrow-btn, .cancel-btn {
         width: 100%;
     }

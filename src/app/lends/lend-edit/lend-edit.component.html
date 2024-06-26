@@ -63,24 +63,20 @@
           <!--Note-->
           <div class="input-group mb-3">
             <label for="notes">Notizen:</label>
-            <input type="text" class="form-control" placeholder="Notiz" formControlName="note">
+            <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
           </div>
         </form>
-
       </div>
       
-      <div class="form-actions">
+      
+    </div>
+    <div class="form-actions">
         <button class="borrow-btn" type="submit">Speichern</button>
         <!--Mit dem Betätigen des Speichern-Buttons geht erst die Anfrage an den Besitzer des Buches (owner-book) -->
         <button class="cancel-btn" type="button" onclick="cancel()">Löschen</button>
       </div>
-    </div>
   </div>
-  <script>
-    function closeContainer() {
-      document.querySelector('.container').style.display = 'none';
-    }
-  </script>
+ 
 </body>
 
 </html>
