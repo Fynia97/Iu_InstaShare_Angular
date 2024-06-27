@@ -1,47 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../book.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from '../book.model';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, of, take } from 'rxjs';
+import { LoginRegisterService } from 'src/app/common/loginRegister.service';
+import { LoggedInUser } from 'src/app/login/loggedInUser.model';
+import { User } from 'src/app/users/user.model';
+import { UserService } from 'src/app/users/user.service';
 
 @Component({
-  selector: 'app-book-create',
-  templateUrl: './book-create.component.html',
-  styleUrls: ['./book-create.component.scss']
+  selector: 'app-book-display',
+  templateUrl: './book-display.component.html',
+  styleUrls: ['./book-display.component.scss']
 })
-export class BookCreateComponent {
-  public book: Book = new Book(0, "", "", "", "", new Date());
-  public books: Book[] = [];
-  public bookForm!: FormGroup;
+export class BookDisplayComponent implements OnInit {
+  public currentUser$: Observable<LoggedInUser | null> = of(null);
+  public user: User;
+  public loggedInUser: LoggedInUser | null;
 
-  constructor(
-    private formbuilder: FormBuilder,
-    private service: BookService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+  public books: Book[];
+  public searchText: string;
+
+  constructor(private service: BookService,
+    private userService: UserService,
+    private loginService: LoginRegisterService) { }
 
   ngOnInit(): void {
+    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
 
-    this.bookForm = this.formbuilder.group({
-      isbn: [this.book.isbn],
-      title: [this.book.title],
-      author: [this.book.author],
-      publisher: [this.book.publisher],
-      publishingYear: [this.book.publishingYear],
-      lendOut: [this.book.lendOut]
-    })
+    if (this.loggedInUser != null) {
+      this.userService.getByEmail(this.loggedInUser.email).subscribe({
+        next: (u) => {
+          this.user = u;
+
+          this.service.getAllByUserId(this.user.id).subscribe({
+            next: (data) => {
+              this.books = data;
+            }
+          })
+        }
+      })
+    }
   }
 
-  public cancel()
-  {
-    this.router.navigate(['/buecher']);
+  public btnDeleteClicked(element: Book) {
+    if (confirm("Möchtest du das Thema wirklich löschen?")) {
+      this.service.deleteById(element.id).subscribe({
+        next: (data) => {
+          this.ngOnInit()
+        }
+      });
+    }
   }
-  
-  public onSubmit() {
-    this.book = this.bookForm.value;
-    this.service.create(this.book).subscribe({
-      next: (data) => this.router.navigate(['/buecher'])
-    });
-  }
+
 }

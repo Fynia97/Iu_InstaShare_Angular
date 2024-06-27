@@ -1,34 +1,50 @@
-<div class="container" *ngIf="book">
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-        <!--ISBN-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="ISBN" formControlName="isbn">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaShare</title>
+    <link rel="stylesheet" href="book-display.component.scss"> 
+</head>
+<body>
+
+    <main class="main-content">
+        <div class="left-content">
+            <div class="bookshelf-container">
+                <img src="assets/book_display.png" alt="Bücherregal" class="bookshelf-image">
+            </div>
         </div>
-
-        <!--Titel-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Titel" formControlName="title">
+        <div class="right-content">
+            <h2>Deine Bücher</h2>
+            <button type="button" class="btn btn-primary" [routerLink]='["/buecher/erstellen"]'>Neu</button>
+            <div class="books-container">
+                <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                <div class="container">
+                    <ng-template #loader>
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </ng-template>
+                </div>
+                <ng-container *ngIf="books; else loader">
+                    <div class="book-section">
+                        <div class="book-grid">
+                            <div class="book-card" *ngFor="let book of books | search: searchText">
+                                <div class="book-details">
+                                    <div class="title">{{book.title}}</div>
+                                    <!-- Weitere Buchdetails können hier hinzugefügt werden -->
+                                    <div class="book-actions">
+                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']" title="bearbeiten">✏️</button>
+                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)" title="löschen">🗑️</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
         </div>
+    </main>
 
-        <!--Author-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Autor" formControlName="author">
-        </div>
-
-        <!--Publisher-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Verlag" formControlName="publisher">
-        </div>
-
-        <!--PublishingYear-->
-        <div class="input-group mb-3">
-            <input type="date" formControlName="publishingYear">
-        </div>
-
-        <!--Submit-->
-        <button class="btn btn-primary submit" type="submit">Speichern</button>
-    </form>
-
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
-
-</div>
+</body>
+</html>
