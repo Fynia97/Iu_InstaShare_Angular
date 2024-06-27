@@ -13,4 +13,16 @@ export class FriendService extends AbstractService<Friend> {
   public getAllPossibleFriends(userId: number): Observable<User[]> {
     return this.client.get<User[]>(AbstractService.baseUrl + this.name + '/getAllPossibleFriends?userId=' + userId, AbstractService.Authorize());
   }
+
+  public getAllFriendsByUserId(userId: number): Observable<Friend[]> {
+    return this.client.get<Friend[]>(AbstractService.baseUrl + this.name + '/getAllFriendsByUserId?userId=' + userId, AbstractService.Authorize());
+  }
+
+  public getAllFriendsAskedForMe(friendId: number): Observable<Friend[]> {
+    return this.client.get<Friend[]>(AbstractService.baseUrl + this.name + '/getAllFriendsAskedForMe?friendId=' + friendId, AbstractService.Authorize());
+  }
+
+  public deleteByFriendIdAndUserId(friendId: number, userId: number): Observable<Friend> {
+    return this.client.delete<Friend>(AbstractService.baseUrl + this.name + '/deleteByFriendIdAndUserId?friendId=' + friendId + "&userId=" + userId, AbstractService.Authorize())
+  }
 }

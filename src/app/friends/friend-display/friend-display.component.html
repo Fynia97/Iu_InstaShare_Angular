@@ -10,6 +10,7 @@
 </div>
 
 <ng-container *ngIf="friends; else loader">
+  <h2>Deine Freundschaftsanfragen</h2>
   <table class="table">
     <thead>
       <tr>
@@ -21,7 +22,49 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let element of friends">
+      <tr *ngFor="let element of friendsAsked">
+        <td>{{element.id}}</td>
+        <td>{{element.friend.firstName}} {{element.friend.lastName}}</td>
+        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Zurückziehen</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Freundschaftsanfragen zum Akzeptieren</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Friend</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of friendsAskedForMe">
+        <td>{{element.id}}</td>
+        <td>{{element.user.firstName}} {{element.user.lastName}}</td>
+        <td><button type="button" class="btn btn-primary" (click)="btnAcceptedClicked(element)">Annehmen</button></td>
+        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Ablehnen</button></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Deine Freunde</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Friend</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let element of friendsAccepted">
         <td>{{element.id}}</td>
         <td>{{element.friend.firstName}} {{element.friend.lastName}}</td>
         <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
