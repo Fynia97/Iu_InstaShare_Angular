@@ -25,6 +25,16 @@
             <input type="date" formControlName="publishingYear">
         </div>
 
+        <!--Category-->
+        <div class="form-group">
+            <label for="category">Kategorie</label>
+            <select formControlName="category" class="form-control" id="category">
+                <option *ngFor="let element of categoryForDropdown" [ngValue]="element.value">
+                    {{ element.label }}
+                </option>
+            </select>
+        </div>
+
         <!--Submit-->
         <button class="btn btn-primary submit" type="submit">Speichern</button>
     </form>
