@@ -4,38 +4,6 @@ body {
     background: rgba(216, 168, 0, 0.5);
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(65, 122, 93, 0.50);
-    border-bottom: 1px solid #486284;
-    padding: 10px 20px;
-    box-sizing: border-box;
-}
-
-.header img {
-    max-width: 100%;
-    height: auto;
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-}
-
-.nav-links div {
-    color: white;
-    line-height: 24px;
-    cursor: pointer;
-}
-
-.button-container {
-    display: flex;
-    justify-content: center;
-}
-
 .content-container {
     display: flex;
     flex-wrap: wrap;
