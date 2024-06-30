@@ -1,7 +1,12 @@
 body {
+    font-family: Arial, sans-serif;
     margin: 0;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: rgba(216, 168, 0, 0.5);
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #d68cb4;
 }
 
 .content-container {
@@ -88,5 +93,5 @@ body {
 
 .main-content {
     text-align: center;
-    color: black;
+    color: white;
 }
