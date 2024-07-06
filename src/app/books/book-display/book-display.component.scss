@@ -1,7 +1,6 @@
-/* General Styles */
 html, body {
     font-family: Arial, sans-serif;
-    background-color: #f2c6db !important; /* Rosa Hintergrundfarbe */
+    background-color: #f2c6db !important; 
     margin: 0;
     padding: 0;
     height: 100%;
@@ -13,41 +12,12 @@ body {
     min-height: 100vh;
 }
 
-.navbar {
-    background-color: #d68cb4 !important; /* Rosa Hintergrund für Navbar */
-}
-
-.navbar .navbar-brand {
-    display: flex;
-    align-items: center;
-    color: black !important; /* Schwarz für "InstaShare" */
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.navbar .navbar-brand .navbar-logo {
-    margin-right: 10px; /* Abstand zwischen dem Logo und dem Text */
-    height: 40px; /* Anpassen der Höhe des Logos nach Bedarf */
-}
-
-.navbar .nav-link {
-    color: white !important; /* Weiß für die anderen Links */
-}
-
-.navbar .nav-link:hover {
-    color: #f2c6db !important;
-}
-
-.navbar .nav-link.active {
-    font-weight: bold !important; /* Fett gedruckt für aktiven Link */
-}
-
 /* Main Content */
 .main-content {
     display: flex;
     padding: 20px;
-    align-items: flex-start; /* Beide Elemente oben ausrichten */
-    gap: 20px; /* Abstand zwischen Bild und Büchercontainer */
+    align-items: flex-start; 
+    gap: 20px; 
 }
 
 .left-content {
@@ -55,15 +25,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f2c6db; /* Rosa Hintergrundfarbe */
+    background-color: #f2c6db; 
 }
 
 .right-content {
     flex: 2;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Horizontal zentrieren */
-    justify-content: center; /* Vertikal zentrieren */
+    align-items: center; 
+    justify-content: center; 
     text-align: center;
     gap: 20px;
 }
@@ -81,24 +51,24 @@ body {
 }
 
 .side-image {
-    max-width: 100%; /* Bildbreite */
-    height: auto; /* Bildhöhe */
-    border-radius: 10px; /* Abgerundete Ecken */
+    max-width: 100%; 
+    height: auto; 
+    border-radius: 10px; 
 }
 
 .books-container {
-    background-color: #f6a2c4; /* Hintergrundfarbe des Büchercontainers */
+    background-color: #f6a2c4; 
     border-radius: 10px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schattierung für den Container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     width: 100%;
 }
 
 .book-section {
-    background-color: #d68cb4; /* Hintergrundfarbe des Bücherbereichs */
+    background-color: #d68cb4; 
     padding: 20px;
     border-radius: 10px;
-    margin-top: 20px; /* Abstand nach oben */
+    margin-top: 20px; 
 }
 
 .book-section .book-grid {
@@ -108,13 +78,13 @@ body {
 }
 
 .book-card {
-    background-color: #ffffff; /* Hintergrundfarbe der Buchkarte */
-    border: 2px solid #d68cb4; /* Randfarbe der Buchkarte */
+    background-color: #ffffff; 
+    border: 2px solid #d68cb4; 
     border-radius: 10px;
     padding: 15px;
     display: flex;
     flex-direction: column;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Schattierung für die Karten */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 }
 
 .book-card .book-details {
@@ -126,7 +96,7 @@ body {
 .book-card .title {
     font-size: 18px;
     font-weight: bold;
-    color: #d68cb4; /* Textfarbe für den Titel */
+    color: #d68cb4; 
     margin-bottom: 10px;
 }
 

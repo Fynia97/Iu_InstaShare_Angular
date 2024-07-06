@@ -34,7 +34,6 @@
                             <div class="book-card" *ngFor="let book of books">
                                 <div class="book-details">
                                     <div class="title">{{book.title}}</div>
-                                    <!-- Weitere Buchdetails können hier hinzugefügt werden -->
                                     <div class="book-actions">
                                         <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']">✏️</button>
                                         <button class="btn delete-button" (click)="btnDeleteClicked(book)">🗑️</button>
