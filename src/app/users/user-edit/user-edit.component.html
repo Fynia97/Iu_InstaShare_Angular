@@ -1,45 +1,69 @@
-<div class="container" *ngIf="user">
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  
-      <!--Firstname-->
-      <div class="mb-3">
-        <input formControlName="firstName" type="text" class="form-control" placeholder="Vorname" id="firstName">
-        <div *ngIf="userForm.controls['firstName'].invalid">
-          <span>Bitte geben Sie Ihren Vornamen ein.</span>
-        </div>
-      </div>
-  
-      <!--Lastname-->
-      <div class="mb-3">
-        <input formControlName="lastName" type="text" class="form-control" placeholder="Nachname" id="lastName">
-        <div *ngIf="userForm.controls['lastName'].invalid">
-          <span>Bitte geben Sie Ihren Nachnamen ein.</span>
-        </div>
-      </div>
-  
-      <!--Email-->
-      <div class="mb-3">
-        <p>{{user.email}}</p>
-      </div>
-  
-      <!--Password-->
-      <div class="mb-3">
-        <input formControlName="password" [type]="showPassword ? 'text' : 'password'" class="form-control" placeholder="Passwort" id="password" (blur)="passwordValidate()">
-        <div *ngIf="userForm.value.password != '' && userForm.controls['password'].invalid && passwordValidated == true">
-          <span style="color: red;">Nicht stark genug (muss enthalten: mind. 8 Zeichen, Groß- und Kleinbuchstabe, Sonderzeichen, Zahl)</span>
-        </div>        
-        <div>
-            <input type="checkbox" value="showPassword" (click)="changeShowPassword()">Passwort anzeigen
-        </div>
-      </div>
-  
-      <!--Submit-->
-      <div class="mb-3">
-        <button type="submit" class="btn btn-primary submit" [disabled]="this.userForm.invalid">Speichern</button>
-      </div>
-  
-    </form>
-     
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Bearbeiten</title>
+    <link rel="stylesheet" href="user-edit.component.scss">
+</head>
+<body>
 
-  </div>
+    <main class="main-content">
+        <div class="edit-profile-container">
+            <div class="profile-image-container">
+                <img src="assets/profil.png" alt="Bild" class="profile-image">
+            </div>
+            <div class="profile-details">
+                <h2>Profil bearbeiten</h2>
+                <form class="edit-profile-form">
+                    <div class="form-group">
+                        <label for="firstName">Vorname:</label>
+                        <input type="text" id="firstName" name="firstName" value="Max" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Nachname:</label>
+                        <input type="text" id="lastName" name="lastName" value="Mustermann" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="street">Straße und Hausnummer:</label>
+                        <input type="text" id="street" name="street" value="Musterstraße 1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="postalCode">Postleitzahl:</label>
+                        <input type="text" id="postalCode" name="postalCode" value="12345" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="city">Ort:</label>
+                        <input type="text" id="city" name="city" value="Musterstadt" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email-Adresse:</label>
+                        <input type="email" id="email" name="email" value="max@mustermann.de" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Telefonnummer:</label>
+                        <input type="tel" id="phone" name="phone" value="01234 567890" class="form-control">
+                    </div>
+                    <div class="form-group password-group">
+                        <label for="currentPassword">Aktuelles Passwort:</label>
+                        <input type="password" id="currentPassword" name="currentPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="newPassword">Neues Passwort:</label>
+                        <input type="password" id="newPassword" name="newPassword" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Neues Passwort bestätigen:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" class="btn cancel-button" title="Abbrechen">Abbrechen</button>
+                        <button type="submit" class="btn save-button" title="Änderungen speichern">Änderungen speichern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
