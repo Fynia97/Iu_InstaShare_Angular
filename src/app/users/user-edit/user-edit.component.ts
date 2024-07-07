@@ -53,7 +53,8 @@ export class UserEditComponent implements OnInit {
             password: [this.user.password, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[§/()=!@#$%^&.,]).{8,}')]],
             street: [this.user.street],
             zip: [this.user.zip],
-            city: [this.user.city]
+            city: [this.user.city],
+            phoneNumber: [this.user.phoneNumber]
           })
         }
       })

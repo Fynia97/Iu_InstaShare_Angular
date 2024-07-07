@@ -1,58 +1,42 @@
-/* General Styles */
-html, body {
-    font-family: Arial, sans-serif;
-    background-color: #f2c6db !important; /* Rosa Hintergrundfarbe */
-    margin: 0;
-    padding: 0;
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 .main-content {
     display: flex;
     padding: 20px;
-    align-items: flex-start; /* Beide Elemente oben ausrichten */
-    gap: 20px; /* Abstand zwischen Bild und Bildcontainer */
+    align-items: flex-start;
+    gap: 20px;
 }
 
-
 .edit-profile-container {
-    max-width: 500px; /* Setzt maximale Breite auf 500px */
+    max-width: 500px;
     width: 100%;
-    margin: 0 auto; /* Zentriert den Container horizontal */
+    margin: 0 auto; 
     display: flex;
-    flex-direction: row; /* Ändert die Richtung der Flexbox auf Reihe */
-    align-items: flex-start; /* Elemente oben ausrichten */
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .profile-image-container {
-    flex: 0 0 auto; /* Verhindert, dass das Bild flexibel ist und die Größe beibehält */
+    flex: 0 0 auto;
     display: flex;
-    justify-content: center; /* Horizontal zentriert */
-    align-items: flex-start; /* Oben ausgerichtet */
-    margin-right: 20px; /* Abstand zwischen Bild und Profilangaben */
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 20px;
 }
 
 .profile-image {
-    max-width: 100%; /* Bild nimmt maximale Breite des Containers */
+    max-width: 100%;
     height: auto;
     border-radius: 25px;
 }
 
 .profile-details {
-    flex: 1; /* Nimmt den verbleibenden Platz ein */
-    background-color: #d68cb4; /* Hintergrundfarbe des Details Containers */
+    flex: 1;
+    background-color: #d68cb4; 
     border-radius: 25px; 
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); 
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Zwischenraum zwischen den Elementen im Container */
+    justify-content: space-between;
 }
 
 .profile-details h2 {
@@ -88,7 +72,7 @@ body {
 }
 
 .edit-profile-form .password-group {
-    margin-top: 50px; /* Verdoppelt den Abstand vor dem Passwortbereich */
+    margin-top: 50px; 
 }
 
 .profile-actions {

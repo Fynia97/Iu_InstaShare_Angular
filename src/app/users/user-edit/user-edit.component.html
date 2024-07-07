@@ -1,52 +1,38 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Bearbeiten</title>
-    <link rel="stylesheet" href="user-edit.component.scss">
-</head>
-<body>
-
     <main class="main-content">
         <div class="edit-profile-container">
             <div class="profile-image-container">
                 <img src="assets/profil.png" alt="Bild" class="profile-image">
             </div>
-            <div class="profile-details">
+            <div *ngIf="userForm" class="profile-details">
                 <h2>Profil bearbeiten</h2>
-                <form class="edit-profile-form">
+                <form class="edit-profile-form" [formGroup]="userForm">
                     <div class="form-group">
                         <label for="firstName">Vorname:</label>
-                        <input type="text" id="firstName" name="firstName" value="Max" class="form-control">
+                        <input type="text" id="firstName" formControlName="firstName" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="lastName">Nachname:</label>
-                        <input type="text" id="lastName" name="lastName" value="Mustermann" class="form-control">
+                        <input type="text" id="lastName" formControlName="lastName" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="street">Straße und Hausnummer:</label>
-                        <input type="text" id="street" name="street" value="Musterstraße 1" class="form-control">
+                        <input type="text" id="street" formControlName="street" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="postalCode">Postleitzahl:</label>
-                        <input type="text" id="postalCode" name="postalCode" value="12345" class="form-control">
+                        <input type="text" id="postalCode" formControlName="zip" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="city">Ort:</label>
-                        <input type="text" id="city" name="city" value="Musterstadt" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email-Adresse:</label>
-                        <input type="email" id="email" name="email" value="max@mustermann.de" class="form-control">
+                        <input type="text" id="city" formControlName="city" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="phone">Telefonnummer:</label>
-                        <input type="tel" id="phone" name="phone" value="01234 567890" class="form-control">
+                        <input type="tel" id="phone" formControlName="phoneNumber" class="form-control">
                     </div>
                     <div class="form-group password-group">
                         <label for="currentPassword">Aktuelles Passwort:</label>
-                        <input type="password" id="currentPassword" name="currentPassword" class="form-control">
+                        <input type="password" id="currentPassword" formControlName="password" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="newPassword">Neues Passwort:</label>
@@ -57,13 +43,11 @@
                         <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
                     </div>
                     <div class="profile-actions">
-                        <button type="button" class="btn cancel-button" title="Abbrechen">Abbrechen</button>
-                        <button type="submit" class="btn save-button" title="Änderungen speichern">Änderungen speichern</button>
+                        <button type="button" class="btn cancel-button" title="Abbrechen" (click)="cancel()">Abbrechen</button>
+                        <span>Bitte geben Sie Ihr Passwort ein, um Ihre Änderungen zu speichern.</span>
+                        <button type="submit" class="btn save-button" title="Änderungen speichern" (click)="onSubmit()" [disabled]="userForm.invalid">Änderungen speichern</button>
                     </div>
                 </form>
             </div>
         </div>
     </main>
-
-</body>
-</html>
