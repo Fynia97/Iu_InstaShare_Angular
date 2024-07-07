@@ -1,44 +1,36 @@
-<div class="container" *ngIf="book">
-    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-        <!--ISBN-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="ISBN" formControlName="isbn">
-        </div>
-
-        <!--Titel-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Titel" formControlName="title">
-        </div>
-
-        <!--Author-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Autor" formControlName="author">
-        </div>
-
-        <!--Publisher-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Verlag" formControlName="publisher">
-        </div>
-
-        <!--PublishingYear-->
-        <div class="input-group mb-3">
-            <input type="date" formControlName="publishingYear">
-        </div>
-
-        <!--Category-->
-        <div class="form-group">
-            <label for="category">Kategorie</label>
-            <select formControlName="category" class="form-control" id="category">
-                <option *ngFor="let element of categoryForDropdown" [ngValue]="element.value">
-                    {{ element.label }}
-                </option>
-            </select>
-        </div>
-
-        <!--Submit-->
-        <button class="btn btn-primary submit" type="submit">Speichern</button>
-    </form>
-
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
-
-</div>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buch Erstellen</title>
+    <link rel="stylesheet" href="book-create.component.scss">
+</head>
+<body>
+    <h2>Neues Buch erfassen</h2>
+    <div class="container">
+        
+        <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <input class="form-control" type="text" formControlName="isbn" placeholder="ISBN">
+            <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+            <input class="form-control" type="text" formControlName="author" placeholder="Autor">
+            <input class="form-control" type="text" formControlName="publisher" placeholder="Verlag">
+            <label>Erscheinungsjahr</label>
+            <input class="form-control" type="date" formControlName="publishingYear">
+            
+            <div class="form-group">
+                <label for="category">Kategorie</label>
+                <select formControlName="category" class="form-control" id="category">
+                    <option *ngFor="let element of categoryForDropdown" [ngValue]="element.value">
+                        {{ element.label }}
+                    </option>
+                </select>
+            </div>
+            
+            <button type="submit" class="save-button">Speichern</button>
+            <button type="button" class="cancel-button" (click)="cancel()">Abbrechen</button>
+        </form>
+    </div>
+    
+</body>
+</html>
