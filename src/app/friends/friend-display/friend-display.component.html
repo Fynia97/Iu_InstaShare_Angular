@@ -1,74 +1,46 @@
-<h2>Deine Freunde</h2>
-<button type="button" class="btn btn-primary" [routerLink]='["/freunde/finden"]'>Neu</button>
-
-<div class="container">
-  <ng-template #loader>
-    <div class="spinner-border" role="status">
-      <span class="sr-only"></span>
-    </div>
-  </ng-template>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaShare</title>
+    <link rel="stylesheet" href="friend-display.component.scss"> 
+</head>
+<body>
+<main class="main-content">
+  <h2>Freunde</h2>
+  <div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Neue Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
+  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Suchen</button>
 </div>
 
-<ng-container *ngIf="friends; else loader">
-  <h2>Deine Freundschaftsanfragen</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Friend</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let element of friendsAsked">
-        <td>{{element.id}}</td>
-        <td>{{element.friend.firstName}} {{element.friend.lastName}}</td>
-        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Zurückziehen</button></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="content-container">
+    <div class="image-container">
+      <img src="assets/freunde.png" alt="Bild von Freunden" class="welcome-image">
+    </div>
 
-  <h2>Freundschaftsanfragen zum Akzeptieren</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Friend</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let element of friendsAskedForMe">
-        <td>{{element.id}}</td>
-        <td>{{element.user.firstName}} {{element.user.lastName}}</td>
-        <td><button type="button" class="btn btn-primary" (click)="btnAcceptedClicked(element)">Annehmen</button></td>
-        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Ablehnen</button></td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="section-2">
+      <div class="section-title">Meine Freunde</div>
+      <div class="ownFriendsSearch-container">
+        <input type="text" class="form-control" placeholder="Deine Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
+        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Suchen</button>
+    </div>
+      <div class="section-2-sub">
+        <div class="friend-card">
+          <div>Sabrina Wonderwoman</div>
+        </div>
+        <div class="friend-card">
+          <div>Markus Superman</div>
+        </div>
+      </div>
+    </div>
 
-  <h2>Deine Freunde</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Friend</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let element of friendsAccepted">
-        <td>{{element.id}}</td>
-        <td>{{element.friend.firstName}} {{element.friend.lastName}}</td>
-        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+    <div class="requests-container">
+        <div class="friends-requests">Freundschaftsanfragen</div>
+        <div class="friend-card">
+          <div>Max Meier</div>
+        </div>
+      </div>
+      </div>
+</main>
+</body>

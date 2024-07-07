@@ -1,0 +1,132 @@
+
+
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2c6db;
+}
+
+.main-content{
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .section-2, .requests-container, .image-container {
+        width: 100%;
+    }
+}
+
+.section-2, .requests-container {
+    width: calc(50% - 10px);
+    box-sizing: border-box;
+    box-shadow: 4px 0px 4px 4px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: flex-start;
+    background: rgba(255, 216, 41, 0.7);
+    padding: 20px;
+}
+
+.section-2-sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.image-container {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: normal;
+    align-items: center;
+    padding-bottom: 0px;
+}
+
+.image-container img {
+    max-width: 50%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 25px;
+}
+
+.section-2 {
+    background: rgba(255, 216, 41, 0.7);
+}
+
+.requests-container {
+    background: rgb(235, 25, 25, 0.8);
+}
+
+.section-title,
+.friends-requests {
+    font-size: 24px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.friend-card {
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+    box-shadow: 4px 0px 4px 4px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 50%; /* Setzt maximale Breite */
+}
+
+.input-group .form-control {
+    flex: 1; 
+    margin-right: 10px; /* Abstand zum Button */
+}
+
+.input-group button {
+    width: auto; /* Automatische Breite */
+}
+
+.main-content h2 {
+    margin: 20px 0;
+    padding: 0;
+    text-align: center;
+    color: white;
+}
+.ownFriendsSearch-container {
+    display: flex;
+    gap: 5px; /* Lücke von 5px zwischen Input und Button */
+    align-items: center;
+    margin-bottom: 40px; 
+}
