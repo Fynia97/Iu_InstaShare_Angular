@@ -1,53 +1,67 @@
-    <main class="main-content">
-        <div class="edit-profile-container">
-            <div class="profile-image-container">
-                <img src="assets/profil.png" alt="Bild" class="profile-image">
-            </div>
-            <div *ngIf="userForm" class="profile-details">
-                <h2>Profil bearbeiten</h2>
-                <form class="edit-profile-form" [formGroup]="userForm">
-                    <div class="form-group">
-                        <label for="firstName">Vorname:</label>
-                        <input type="text" id="firstName" formControlName="firstName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="lastName">Nachname:</label>
-                        <input type="text" id="lastName" formControlName="lastName" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="street">Straße und Hausnummer:</label>
-                        <input type="text" id="street" formControlName="street" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="postalCode">Postleitzahl:</label>
-                        <input type="text" id="postalCode" formControlName="zip" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="city">Ort:</label>
-                        <input type="text" id="city" formControlName="city" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Telefonnummer:</label>
-                        <input type="tel" id="phone" formControlName="phoneNumber" class="form-control">
-                    </div>
-                    <div class="form-group password-group">
-                        <label for="currentPassword">Aktuelles Passwort:</label>
-                        <input type="password" id="currentPassword" formControlName="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="newPassword">Neues Passwort:</label>
-                        <input type="password" id="newPassword" name="newPassword" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmPassword">Neues Passwort bestätigen:</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
-                    </div>
-                    <div class="profile-actions">
-                        <button type="button" class="btn cancel-button" title="Abbrechen" (click)="cancel()">Abbrechen</button>
-                        <span>Bitte geben Sie Ihr Passwort ein, um Ihre Änderungen zu speichern.</span>
-                        <button type="submit" class="btn save-button" title="Änderungen speichern" (click)="onSubmit()" [disabled]="userForm.invalid">Änderungen speichern</button>
-                    </div>
-                </form>
-            </div>
+<main class="main-content">
+    <div class="edit-profile-container">
+        <div class="profile-image-container">
+            <img src="assets/profil.png" alt="Bild" class="profile-image">
         </div>
-    </main>
+        <div *ngIf="userForm" class="profile-details">
+            <h2>Profil bearbeiten</h2>
+            <form class="edit-profile-form" [formGroup]="userForm">
+                <div class="form-group">
+                    <label for="firstName">Vorname:</label>
+                    <input type="text" id="firstName" formControlName="firstName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Nachname:</label>
+                    <input type="text" id="lastName" formControlName="lastName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="street">Straße und Hausnummer:</label>
+                    <input type="text" id="street" formControlName="street" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="postalCode">Postleitzahl:</label>
+                    <input type="text" id="postalCode" formControlName="zip" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="city">Ort:</label>
+                    <input type="text" id="city" formControlName="city" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefonnummer:</label>
+                    <input type="tel" id="phone" formControlName="phoneNumber" class="form-control">
+                </div>
+                <div class="form-group password-group">
+                    <label for="currentPassword">Aktuelles Passwort:</label>
+                    <input type="password" id="currentPassword" formControlName="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">Neues Passwort:</label>
+                    <input formControlName="newPassword" [type]="showNewPassword ? 'text' : 'password'" class="form-control" id="newPassword" (blur)="passwordValidate()">
+                        <div *ngIf="userForm.value.newPassword != '' && userForm.controls['newPassword'].invalid && passwordValidated == true">
+                        <span style="color: red;">Nicht stark genug (muss enthalten: mind. 8 Zeichen, Groß- und Kleinbuchstabe, Sonderzeichen, Zahl)</span>
+                        </div>
+                        <div>
+                            <input type="checkbox" (click)="changeShowNewPassword()">Passwort anzeigen
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Neues Passwort bestätigen:</label>
+                    <input  [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" class="form-control" id="confirmPassword" (blur)="[validatePasswordMatch(), passwordValidate()]">
+                    <div *ngIf="passwordMatch == false">
+                        <span style="color: red;">Die Passwörter stimmen nicht überein.</span>
+                    </div>
+                    <div>
+                        <input type="checkbox" (click)="changeShowConfirmPassword()">Passwort anzeigen
+                    </div>
+                </div>
+                <div class="profile-actions">
+                    <button type="button" class="btn cancel-button" title="Abbrechen"
+                        (click)="cancel()">Abbrechen</button>
+                    <span>Bitte geben Sie Ihr Passwort ein, um Ihre Änderungen zu speichern.</span>
+                    <button type="submit" class="btn save-button" title="Änderungen speichern" (click)="onSubmit()"
+                        [disabled]="userForm.invalid">Änderungen speichern</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>

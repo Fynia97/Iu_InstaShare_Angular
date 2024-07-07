@@ -18,10 +18,13 @@ export class UserEditComponent implements OnInit {
 
   public user!: User;
   public userForm!: FormGroup;
-  public emailValidated: Boolean = false;
   public passwordValidated: Boolean = false;
-  public showPassword: Boolean = false;
+  public showNewPassword: Boolean = false;
+  public showConfirmPassword: Boolean = false;
 
+  public newPassword: string = "";
+  public confirmPassword: string = "";
+  public passwordMatch: Boolean = true;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -41,7 +44,7 @@ export class UserEditComponent implements OnInit {
 
           this.service.getById(Number(this.user.id)).subscribe({
             next: (u) => {
-              this.user = u; 
+              this.user = u;
             }
           })
 
@@ -49,25 +52,53 @@ export class UserEditComponent implements OnInit {
             id: [this.user.id],
             firstName: [this.user.firstName, Validators.required],
             lastName: [this.user.lastName, Validators.required],
-            email: [this.user.email, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+            email: [this.user.email],
             password: [this.user.password, [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[§/()=!@#$%^&.,]).{8,}')]],
             street: [this.user.street],
             zip: [this.user.zip],
             city: [this.user.city],
-            phoneNumber: [this.user.phoneNumber]
-          })
+            phoneNumber: [this.user.phoneNumber],
+            newPassword: [this.newPassword, [Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[§/()=!@#$%^&.,]).{8,}')]],
+            confirmPassword: [this.confirmPassword]
+          },
+            { validator: this.passwordMatchValidator }
+          );
         }
       })
     }
   }
 
-  public changeShowPassword() {
-    this.showPassword = !this.showPassword;
+  public validatePasswordMatch() {
+    if (this.userForm.value.confirmPassword != "" && this.userForm.value.newPassword != "") {
+      this.userForm.value.newPassword == this.userForm.value.confirmPassword ? this.passwordMatch = true : this.passwordMatch = false;
+    }
   }
 
-  public emailValidate(): void {
-    this.emailValidated = true;
+  public passwordMatchValidator(fg: FormGroup): { [key: string]: any } | null {
+    const newPasswordControl = fg.get('newPassword');
+    const confirmPasswordControl = fg.get('confirmPassword');
+
+    if (!newPasswordControl) {
+      return null;
+    }
+
+    if (newPasswordControl && confirmPasswordControl) {
+      const newPassword = newPasswordControl.value;
+      const confirmPassword = confirmPasswordControl.value;
+      return newPassword === confirmPassword ? null : { 'mismatch': true };
+    }
+
+    return null;
   }
+
+  public changeShowNewPassword() {
+    this.showNewPassword = !this.showNewPassword;
+  }
+
+  public changeShowConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
+
   public passwordValidate(): void {
     this.passwordValidated = true;
   }
@@ -77,6 +108,9 @@ export class UserEditComponent implements OnInit {
   }
 
   public onSubmit() {
+    if (this.userForm.value.confirmPassword != "" && this.userForm.value.newPassword != "") {
+      this.userForm.value.password = this.userForm.value.newPassword;
+    }
     this.user = this.userForm.value;
     this.service.update(this.user).subscribe({
       next: (data) => this.router.navigate(['/user/anzeigen'])
