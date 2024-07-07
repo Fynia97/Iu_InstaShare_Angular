@@ -1,0 +1,144 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f2c6db;
+}
+
+.container {
+    width: 95%;
+    max-width: 1400px; /* Maximale Breite */
+    min-width: 700px;  /* Minimale Breite */
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 80px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    background-color: #f6a2c4;
+    transition: width 0.3s ease; /* Weicher Übergang bei Größenänderungen */
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+    color: white;
+    font-size: 24px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.which-user {
+    font-size: 15px;
+    align-items: left;
+    color: black;
+    margin-top: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.form-group {
+    color: black;
+    padding: 10px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group .form-control {
+    display: block;
+    width: 100%; 
+    margin-bottom: 10px; 
+    padding: 5px;
+    border-radius: 5px;
+    border: 0px solid #ccc;
+}
+
+.borrow-btn, .cancel-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    flex: 1;
+    max-width: 45%;
+    min-width: 120px;
+    text-align: center;
+}
+
+.cancel-btn {
+    background-color: rgba(255, 0, 0, 0.6); 
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.column {
+    flex: 1;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    background-color: #d68cb4;
+}
+
+.column img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.column label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+    color: white;
+}
+
+.column div {
+    margin-bottom: 15px;
+}
+
+#status {
+    color: black;
+}
+
+@media (max-width: 900px) {
+    .container {
+        width: 95%; /* Passt die Breite des Containers an kleine Bildschirme an */
+        min-width: unset; /* Entfernt die minimale Breite auf kleinen Bildschirmen */
+    }
+    
+    .row {
+        flex-direction: column;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .borrow-btn, .cancel-btn {
+        width: 100%;
+    }
+}

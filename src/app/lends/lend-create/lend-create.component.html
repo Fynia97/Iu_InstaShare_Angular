@@ -1,24 +1,70 @@
-<div class="container">
-    <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
-        <!--LendFrom-->
-        <div class="input-group mb-3">
-            <input type="date" formControlName="lendFrom">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buchinformationen</title>
+    <link rel="stylesheet" href="lend-create.component.scss">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+          <div class="which-user">Sabrina`s Buch</div>
+          <div class="titel">Ausleihanfrage</div>
         </div>
-
-        <!--LendTo-->
-        <div class="input-group mb-3">
-            <input type="date" formControlName="lendTo">
+        <div class="row">
+            <div class="column">
+                <!--<img src="bild.jpg" alt="Titelbild">-->
+            </div>
+            <div class="column">
+                <div>
+                    <label for="title">Titel:</label>
+                    <span id="title">Harry Potter und der Gefangene von Askaban</span>
+                </div>
+                <div>
+                    <label for="author">Autor:</label>
+                    <span id="author">Max Mustermann</span>
+                </div>
+                <div>
+                    <label for="category">Kategorie:</label>
+                    <span id="category">Fantasy</span>
+                </div>
+                <div>
+                    <label for="isbn">ISBN:</label>
+                    <span id="isbn">978-3-16-148410-0</span>
+                </div>
+                <div>
+                    <label for="year">Erscheinungsjahr:</label>
+                    <span id="year">2002</span>
+                </div>
+            </div>
         </div>
-
-        <!--Note-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Notiz" formControlName="note">
+        <div class="row">
+            <div class="column">
+                <div>
+                    <label for="status">Status:</label>
+                    <span id="status">Verfügbar</span>
+                </div>
+                <div>
+                    <label for="borrower">Ausgeliehen an:</label>
+                    <span id="borrower">N/A</span>
+                </div>
+                <div>
+                    <label for="return-date">Rückgabe am:</label>
+                    <span id="return-date">N/A</span>
+                </div>
+            </div>
         </div>
-
-        <!--Submit-->
-        <button class="btn btn-primary submit" type="submit">Speichern</button>
-    </form>
-
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
-
-</div>
+      <div class="form-actions">
+        <button class="cancel-btn" type="button" onclick="cancel()">Abbrechen</button>  <!-- Abbrechen Funktion muss eingefügt werden-->          
+        <button class="borrow-btn" type="submit">Ausleihen</button><!--Ausleihfunktion muss eingefügt werden. Durch betätigen des "Ausleihen"Buttons wechselt die Ansicht im unteren Bereich in den Bearbeitungs-Modus "lend-create". Das Feld "Rückgabe am" wird dann bearbeitbar und das Feld "Notiz" erscheint zusätzlich. -->
+                    
+      </div>
+    </div>
+    <script>
+        function closeContainer() {
+            document.querySelector('.container').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
