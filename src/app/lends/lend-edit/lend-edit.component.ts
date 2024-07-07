@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class LendEditComponent {
 
+  public lendForm: any;
+  public onSubmit(){}
+  public cancel(){}
+
 }
