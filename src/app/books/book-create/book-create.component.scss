@@ -1,0 +1,50 @@
+body {
+    background-color: #f2c6db; 
+
+}
+
+/* Formular Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 50px 0;
+}
+
+/* Formular Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 600px;
+    padding: 20px;
+    background-color: #ff9ab3; 
+    border: 2px solid #9b0056;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: none; 
+}
+
+form input {
+    padding: 10px;
+    border: 2px solid #ff69b4; 
+    border-radius: 5px;
+}
+
+form button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form .save-button {
+    background-color: #0057b7; 
+    color: #ffffff;
+}
+
+form .cancel-button {
+    background-color: #ffffff;
+    color: #0057b7;
+    border: 2px solid #0057b7;
+}
+

@@ -1,45 +1,15 @@
-<div class="container" *ngIf="book">
+<h2>Buch bearbeiten</h2>
+<div class="container">
+   
     <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-        <!--ISBN-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="ISBN" formControlName="isbn">
-        </div>
-
-        <!--Titel-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Titel" formControlName="title">
-        </div>
-
-        <!--Author-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Autor" formControlName="author">
-        </div>
-
-        <!--Publisher-->
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Verlag" formControlName="publisher">
-        </div>
-
-        <!--PublishingYear-->
-        <div class="input-group mb-3">
-            <input type="date" formControlName="publishingYear">
-        </div>
-
-        <!--Category-->
-        <div class="form-group">
-            <label for="category">Kategorie</label>
-            <select formControlName="category" class="form-control" id="category">
-                <option *ngFor="let element of categoryForDropdown" [value]="element.value"
-                    [selected]="element.value === book.category">
-                    {{ element.label }}
-                </option>
-            </select>
-        </div>
-
-        <!--Submit-->
-        <button class="btn btn-primary submit" type="submit">Speichern</button>
+      <input type="text" formControlName="isbn" placeholder="ISBN">
+      <input type="text" formControlName="title" placeholder="Titel">
+      <input type="text" formControlName="author" placeholder="Autor">
+      <input type="text" formControlName="publisher" placeholder="Verlag">
+      <input type="text" formControlName="publishingYear" placeholder="TT.MM.JJJJ">
+      <button type="submit" class="save-button">Aktualisieren</button>
+      <button type="button" class="cancel-button" (click)="cancel()">Abbrechen</button>
     </form>
-
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
-
-</div>
+  </div>
+  
+  
