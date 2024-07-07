@@ -3,7 +3,7 @@ import { BookService } from '../book.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../book.model';
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { BookCategoryEnum } from '../book.enum';
 import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
@@ -27,13 +27,16 @@ export class BookEditComponent implements OnInit {
   public bookForm!: FormGroup;
   public year: String;
 
+  public publishingYearWithoutTime: any;
+
   constructor(
     private formbuilder: FormBuilder,
     private service: BookService,
     private userService: UserService,
     private loginService: LoginRegisterService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit(): void {

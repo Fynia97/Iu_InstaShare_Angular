@@ -11,11 +11,22 @@
     <div class="container">
         
         <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-            <input type="text" formControlName="isbn" placeholder="ISBN">
-            <input type="text" formControlName="title" placeholder="Titel">
-            <input type="text" formControlName="author" placeholder="Autor">
-            <input type="text" formControlName="publisher" placeholder="Verlag">
-            <input type="text" formControlName="publishingYear" placeholder="TT.MM.JJJJ">
+            <input class="form-control" type="text" formControlName="isbn" placeholder="ISBN">
+            <input class="form-control" type="text" formControlName="title" placeholder="Titel">
+            <input class="form-control" type="text" formControlName="author" placeholder="Autor">
+            <input class="form-control" type="text" formControlName="publisher" placeholder="Verlag">
+            <label>Erscheinungsjahr</label>
+            <input class="form-control" type="date" formControlName="publishingYear">
+            
+            <div class="form-group">
+                <label for="category">Kategorie</label>
+                <select formControlName="category" class="form-control" id="category">
+                    <option *ngFor="let element of categoryForDropdown" [ngValue]="element.value">
+                        {{ element.label }}
+                    </option>
+                </select>
+            </div>
+            
             <button type="submit" class="save-button">Speichern</button>
             <button type="button" class="cancel-button" (click)="cancel()">Abbrechen</button>
         </form>

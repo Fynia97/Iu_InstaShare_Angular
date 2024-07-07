@@ -1,12 +1,27 @@
 <h2>Buch bearbeiten</h2>
-<div class="container">
+<div *ngIf="bookForm" class="container">
    
     <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-      <input type="text" formControlName="isbn" placeholder="ISBN">
-      <input type="text" formControlName="title" placeholder="Titel">
-      <input type="text" formControlName="author" placeholder="Autor">
-      <input type="text" formControlName="publisher" placeholder="Verlag">
-      <input type="text" formControlName="publishingYear" placeholder="TT.MM.JJJJ">
+      <label for="isbn">ISBN</label>
+      <input class="form-control" type="text" formControlName="isbn" placeholder="ISBN" id="isbn">
+      <label for="title">Titel</label>
+      <input class="form-control" type="text" formControlName="title" placeholder="Titel" id="title">
+      <label for="author">Autor</label>
+      <input class="form-control" type="text" formControlName="author" placeholder="Autor" id="author">
+      <label for="publisher">Verlag</label>
+      <input class="form-control" type="text" formControlName="publisher" placeholder="Verlag" id="publisher">
+      <label for="publishingYear">Erscheinungsjahr (<span>Aktuelle Eingabe: {{book.publishingYear | date: 'dd.MM.yyyy'}}</span>)</label>
+      <input class="form-control" type="date" formControlName="publishingYear" id="publishingYear">
+
+      <div class="form-group">
+        <label for="category">Kategorie</label>
+        <select formControlName="category" class="form-control" id="category">
+            <option *ngFor="let element of categoryForDropdown" [ngValue]="element.value">
+                {{ element.label }}
+            </option>
+        </select>
+    </div>
+
       <button type="submit" class="save-button">Aktualisieren</button>
       <button type="button" class="cancel-button" (click)="cancel()">Abbrechen</button>
     </form>

@@ -16,9 +16,11 @@
         </div>
         <div class="right-content">
             <h2>Deine Bücher</h2>
-            <button type="button" class="btn btn-primary" [routerLink]='["/buecher/erstellen"]'>Neu</button>
             <div class="books-container">
-                <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                <div class="search-bar">
+                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                    <button type="button" class="btn add-button" [routerLink]='["/buecher/erstellen"]'>+</button>
+                </div>
                 <div class="container">
                     <ng-template #loader>
                         <div class="spinner-border" role="status">
@@ -33,8 +35,8 @@
                                 <div class="book-details">
                                     <div class="title">{{book.title}}</div>
                                     <div class="book-actions">
-                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']" title="bearbeiten">✏️</button>
-                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)" title="löschen">🗑️</button>
+                                        <button class="btn edit-button" [routerLink]="[book.id + '/bearbeiten']">✏️</button>
+                                        <button class="btn delete-button" (click)="btnDeleteClicked(book)">🗑️</button>
                                     </div>
                                 </div>
                             </div>

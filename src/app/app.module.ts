@@ -23,6 +23,7 @@ import { PrivacyComponent } from './footer/privacy/privacy.component';
 import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
 import { SearchPipe } from './common/search.pipe';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { SearchPipe } from './common/search.pipe';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
