@@ -1,46 +1,45 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaShare</title>
-    <link rel="stylesheet" href="friend-display.component.scss"> 
-</head>
 <body>
-<main class="main-content">
-  <h2>Freunde</h2>
-  <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Neue Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2">Suchen</button>
-</div>
-
-  <div class="content-container">
-    <div class="image-container">
-      <img src="assets/freunde.png" alt="Bild von Freunden" class="welcome-image">
+  <main class="main-content">
+    <h2>Freunde</h2>
+    <div class="newFriendsSearch-container">
+      <input type="text" class="form-control" placeholder="Neue Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
+      <button class="btn btn-outline-dark" type="submit" id="button-addon2">Suchen</button>
     </div>
-
-    <div class="section-2">
-      <div class="section-title">Meine Freunde</div>
-      <div class="ownFriendsSearch-container">
-        <input type="text" class="form-control" placeholder="Deine Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary" type="button" id="button-addon2">Suchen</button>
-    </div>
-      <div class="section-2-sub">
-        <div class="friend-card">
-          <div>Sabrina Wonderwoman</div>
-        </div>
-        <div class="friend-card">
-          <div>Markus Superman</div>
-        </div>
+  
+    <div class="content-container">
+      <div class="image-container">
+        <img src="assets/freunde.png" alt="Bild von Freunden" class="welcome-image">
       </div>
-    </div>
-
-    <div class="requests-container">
+  
+      <div class="right-content">
+        <div class="section-2">
+          <div class="section-title">Meine Freunde</div>
+          <div class="ownFriendsSearch-container">
+            <input type="text" class="form-control" placeholder="Deine Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
+            <button class="btn btn-outline-light" type="submit" id="button-addon2">Suchen</button>
+          </div>
+          <div class="section-2-sub">
+            <div class="friend-card-1">
+              <div>Sabrina Wonderwoman</div>
+            </div>
+            <div class="friend-card-1">
+              <div>Gunigunde Jones</div>
+            </div>
+            <div class="friend-card-1">
+              <div>Heidrun Hammer</div>
+            </div>
+          </div>
+        </div>
+        <div class="request-container">
         <div class="friends-requests">Freundschaftsanfragen</div>
-        <div class="friend-card">
-          <div>Max Meier</div>
+        <div class="section-2-sub">
+          <div class="friend-card-2">
+            <div>Max Meier</div>
+            <button type="button" class="btn btn-outline-light" [routerLink]='["/freunde/finden"]'>Neu</button>
+          </div>
         </div>
       </div>
-      </div>
-</main>
-</body>
+    </div>
+    </div>
+  </main>
+  </body>
