@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil Bearbeiten</title>
-    <link rel="stylesheet" href="user-edit.component.scss">
-</head>
+
 <body>
 
     <main class="main-content">
@@ -57,13 +50,13 @@
                         <input type="password" id="confirmPassword" name="confirmPassword" class="form-control">
                     </div>
                     <div class="profile-actions">
-                        <button type="button" class="btn cancel-button" title="Abbrechen">Abbrechen</button>
+                      <button type="button" class="btn cancel-button" title="Abbrechen"><a class="nav-link" [routerLink]="['/user/anzeigen']"  routerLinkActive="active">Abbrechen</a></button>
                         <button type="submit" class="btn save-button" title="Änderungen speichern">Änderungen speichern</button>
                     </div>
                 </form>
             </div>
         </div>
     </main>
-
-</body>
-</html>
+  
+  </body>
+  
