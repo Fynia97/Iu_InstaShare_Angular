@@ -5,20 +5,19 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     background-color: #f2c6db;
 }
 
 .container {
-    width: 95%;
+    width: 55%;
     max-width: 1400px; /* Maximale Breite */
-    min-width: 700px;  /* Minimale Breite */
+    min-width: 500px;  /* Minimale Breite */
     background-color: #ffffff;
-    border-radius: 20px;
+    border-radius: 25px;
     box-shadow: 0 10px 80px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    background-color: #f6a2c4;
-    transition: width 0.3s ease; /* Weicher Übergang bei Größenänderungen */
+    background-color: #f2c6db;
+    transition: width 0.6s ease; /* Weicher Übergang bei Größenänderungen */
 }
 
 .header {
@@ -44,28 +43,14 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.form-group {
-    color: black;
     padding: 10px;
+    gap: 200px;
+    flex-wrap: wrap;
+    
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-group .form-control {
-    display: block;
-    width: 100%; 
-    margin-bottom: 10px; 
-    padding: 5px;
-    border-radius: 5px;
-    border: 0px solid #ccc;
+.form-actions .btn:hover{
+    opacity: 0.7;
 }
 
 .borrow-btn, .cancel-btn {
@@ -83,14 +68,14 @@ body {
 }
 
 .cancel-btn {
-    background-color: rgba(255, 0, 0, 0.6); 
+    background-color: #ff4d4d; 
 }
 
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin: 0;
-    padding: 20px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
 }
 
@@ -99,31 +84,27 @@ body {
     padding: 10px;
     margin: 5px;
     box-sizing: border-box;
-    border-radius: 20px;
+    border-radius: 25px;
     background-color: #d68cb4;
 }
 
 .column img {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
 }
 
 .column label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     font-weight: normal;
     color: white;
 }
 
 .column div {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 }
 
-#status {
-    color: black;
-}
-
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .container {
         width: 95%; /* Passt die Breite des Containers an kleine Bildschirme an */
         min-width: unset; /* Entfernt die minimale Breite auf kleinen Bildschirmen */

@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buchinformationen</title>
-    <link rel="stylesheet" href="lend-create.component.scss">
-</head>
 <body>
     <div class="container">
         <div class="header">
@@ -56,9 +48,8 @@
             </div>
         </div>
       <div class="form-actions">
-        <button class="cancel-btn" type="button" onclick="cancel()">Abbrechen</button>  <!-- Abbrechen Funktion muss eingefügt werden-->          
-        <button class="borrow-btn" type="submit">Ausleihen</button><!--Ausleihfunktion muss eingefügt werden. Durch betätigen des "Ausleihen"Buttons wechselt die Ansicht im unteren Bereich in den Bearbeitungs-Modus "lend-create". Das Feld "Rückgabe am" wird dann bearbeitbar und das Feld "Notiz" erscheint zusätzlich. -->
-                    
+        <button class="btn cancel-btn" type="button" onclick="cancel()">Abbrechen</button>  <!-- Abbrechen Funktion muss eingefügt werden-->          
+        <button class="btn borrow-btn" type="submit" [routerLink]="['/ausleihe/:id/bearbeiten']">Ausleihen</button>
       </div>
     </div>
     <script>
@@ -67,4 +58,3 @@
         }
     </script>
 </body>
-</html>
