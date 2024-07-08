@@ -1,35 +1,24 @@
-<!DOCTYPE html>
-<html lang="de">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Freundschaftsanfrage</title>
-  <link rel="stylesheet" href="friend-create.component.scss">
-</head>
-
 <body>
-  <div class="container">
-    <div class="header">
-      <div class="titel">Freundschaftsanfrage</div>
-    </div>
-    <div class="row">
-      <div class="column">
-        <div class="friends-name">
-          <h3>Matthias Batman</h3></div>
+  <main class="main-content">
+      <div class="profile-container">
+          <div class="profile-image-container">
+              <img src="assets/freunde.png" alt="Bild" class="profile-image">
+          </div>
+          <div class="profile-details">
+              <h2>Freundschaftsanfrage</h2>
+              <div class="detail-item"><strong>Vorname:</strong> Max</div>
+              <div class="detail-item"><strong>Nachname:</strong> Meier</div>
+              <div class="detail-item"><strong>Straße und Hausnummer:</strong> Musterstraße 1</div>
+              <div class="detail-item"><strong>Postleitzahl:</strong> 12345</div>
+              <div class="detail-item"><strong>Ort:</strong> Musterstadt</div>
+              <div class="detail-item"><strong>Email-Adresse:</strong> max@mustermann.de</div>
+              <div class="detail-item"><strong>Telefonnummer:</strong> 01234 567890</div>
+              <div class="profile-actions">
+                  <button class="btn cancel-button" title="Anfrage ablehnen">Ablehnen</button>
+                  <button class="btn confirm-button" title="Anfrage annehmen">Annehmen</button>
+              </div>
+          </div>
       </div>
-      <div class="column address">
-        <div>Mustergasse 123</div>
-        <div>12345 Musterstadt</div>
-        <div>matthias.batman@example.com</div>
-        <div>0123 4567890</div>
-      </div>
-    </div>
-    <div class="form-actions">
-      <button class="cancel-btn" type="button" onclick="cancel()">Ablehnen</button>
-      <button class="confirm-btn" type="button">Annehmen</button>
-    </div>
-  </div>
-</body>
+  </main>
 
-</html>
+</body>
