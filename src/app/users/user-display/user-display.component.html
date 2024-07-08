@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaShare</title>
-    <link rel="stylesheet" href="user-display.component.scss">
-</head>
 <body>
-
     <main class="main-content">
         <div class="profile-container">
             <div class="profile-image-container">
@@ -24,11 +15,10 @@
                 <div class="detail-item"><strong>Telefonnummer:</strong> 01234 567890</div>
                 <div class="profile-actions">
                     <button class="btn delete-button" title="Profil löschen">Profil löschen</button>
-                    <button class="btn edit-button" title="Profil bearbeiten">Profil bearbeiten</button>
+                    <button class="btn edit-button" title="Profil bearbeiten"><a class="nav-link" [routerLink]="['/user/bearbeiten']"  routerLinkActive="active">Profil bearbeiten</a></button>
                 </div>
             </div>
         </div>
     </main>
 
 </body>
-</html>
