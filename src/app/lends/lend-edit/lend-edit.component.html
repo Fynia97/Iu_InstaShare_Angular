@@ -1,71 +1,70 @@
 <body>
-    <div class="container">
-      <div class="header">
-        <div class="owner-book">Sabrina`s Buch</div>
-        <div class="titel">Ausleihanfrage</div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <!--<img src="bild.jpg" alt="Titelbild">-->
-        </div>
-        <div class="column">
-          <div>
-            <label for="title">Titel:</label>
-            <span id="title">Harry Potter und der Gefangene von Askaban</span>
-          </div>
-          <div>
-            <label for="author">Autor:</label>
-            <span id="author">Max Mustermann</span>
-          </div>
-          <div>
-            <label for="category">Kategorie:</label>
-            <span id="category">Fantasy</span>
-          </div>
-          <div>
-            <label for="isbn">ISBN:</label>
-            <span id="isbn">978-3-16-148410-0</span>
-          </div>
-          <div>
-            <label for="year">Erscheinungsjahr:</label>
-            <span id="year">2002</span>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="column">
-          <div>
-            <label for="status">Status:</label>
-            <span id="status">Verfügbar</span><!--muss von der Datenbank abgerufen werden-->
-          </div>
-          <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
-            <!--LendFrom-->
-            <div class="input-group mb-3">
-              <label for="borrowed-on">Ausgeliehen am:</label>
-              <input type="date" formControlName="lendFrom">  <!--Das Ausgeliehen-Datum sollte erst gesetzt werden, wenn die Anfrage bestätigt wird.-->
-            </div>
-  
-          <!--LendTo-->
-            <div class="input-group mb-3">
-              <label for="return-date">Rückgabe am:</label>
-              <input type="date" formControlName="lendTo">
-            </div>
-  
-            <!--Note-->
-            <div class="input-group mb-3">
-              <label for="notes">Notizen:</label>
-              <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
-            </div>
-          </form>
-        </div>
-        
-        
-      </div>
-      <div class="form-actions">
-        <button class="cancel-btn" type="button" onclick="cancel()">Löschen</button>
-          <button class="borrow-btn" type="submit">Speichern</button>
-          <!--Mit dem Betätigen des Speichern-Buttons geht erst die Anfrage an den Besitzer des Buches (owner-book) -->
-          
-        </div>
+  <div class="container">
+    <div class="header">
+      <div class="owner-book">Sabrina`s Buch</div>
+      <div class="titel">Ausleihanfrage</div>
     </div>
-   
-  </body>
+    <div class="row">
+      <div class="column">
+        <!--<img src="bild.jpg" alt="Titelbild">-->
+      </div>
+      <div class="column">
+        <div>
+          <label for="title">Titel:</label>
+          <span id="title">Harry Potter und der Gefangene von Askaban</span>
+        </div>
+        <div>
+          <label for="author">Autor:</label>
+          <span id="author">Max Mustermann</span>
+        </div>
+        <div>
+          <label for="category">Kategorie:</label>
+          <span id="category">Fantasy</span>
+        </div>
+        <div>
+          <label for="isbn">ISBN:</label>
+          <span id="isbn">978-3-16-148410-0</span>
+        </div>
+        <div>
+          <label for="year">Erscheinungsjahr:</label>
+          <span id="year">2002</span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <div>
+          <label for="status">Status:</label>
+          <span id="status">Verfügbar</span><!--muss von der Datenbank abgerufen werden-->
+        </div>
+        <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
+          <!--LendFrom-->
+          <div class="input-group mb-3">
+            <label for="borrowed-on">Ausgeliehen am:</label>
+            <input type="date" formControlName="lendFrom">  <!--Das Ausgeliehen-Datum sollte erst gesetzt werden, wenn die Anfrage bestätigt wird.-->
+          </div>
+
+        <!--LendTo-->
+          <div class="input-group mb-3">
+            <label for="return-date">Rückgabe am:</label>
+            <input type="date" formControlName="lendTo">
+          </div>
+
+          <!--Note-->
+          <div class="input-group mb-3">
+            <label for="notes">Notizen:</label>
+            <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
+          </div>
+        </form>
+      </div>
+      
+      
+    </div>
+    <div class="form-actions">
+      <button class="cancel-btn" type="button" onclick="cancel()">Löschen</button>
+        <button class="borrow-btn" type="button">Speichern</button>
+        <!--Mit dem Betätigen des Speichern-Buttons geht erst die Anfrage an den Besitzer des Buches (owner-book) -->
+        
+      </div>
+  </div>
+</body>
