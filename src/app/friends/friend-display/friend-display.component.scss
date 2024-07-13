@@ -1,0 +1,156 @@
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2c6db;
+}
+
+.main-content {
+    margin: 0;
+    width: 100%;
+    max-width: 1200px; /* Maximum width for the content */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 10px;
+    width: 100%;
+    align-items: stretch; /* Ensure all children stretch to the same height */
+    border-radius: 25px;
+}
+
+@media (max-width: 768px) {
+    .section-2, .request-container, .image-container {
+        width: 100%;
+    }
+    .content-container {
+        flex-wrap: wrap;
+    }
+}
+
+.image-container {
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: normal;
+    align-items: center;
+    background-color: white;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    flex-grow: 1; /* Ensure the image grows to fill the container */
+}
+
+.right-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    box-shadow: 0 10px 80px rgba(0, 0, 0, 0.5);
+}
+
+.section-2, .request-container {
+    flex: 1;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 20px;
+}
+
+.section-2 {
+    background-color: rgba(72, 27, 191, 0.4);
+    border-top-right-radius: 25px;
+}
+
+.request-container {
+    background: #d68cb4;
+    border-bottom-right-radius: 25px;
+    padding: 20px;
+}
+
+.section-2-sub {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.section-title,
+.friends-requests {
+    font-size: 24px;
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.friend-card-1, .friend-card-2 {
+    width: calc(50% - 20px);
+    box-sizing: border-box;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.friend-card-1 {
+    background-color: #c496d6;
+}
+
+.friend-card-2 {
+    background-color: #f2b8d7;
+}
+
+.main-content h2 {
+    margin: 20px 0;
+    text-align: center;
+    color: white;
+}
+
+.ownFriendsSearch-container, .newFriendsSearch-container {
+    display: flex;
+    width: 100%; /* Ensures the container takes full width */
+    gap: 5px; /* Lücke von 5px zwischen Input und Button */
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.newFriendsSearch-container input[type="text"] {
+    flex-grow: 1; /* Make the input field grow twice as much as other flex items */
+}
+
+.ownFriendsSearch-container input[type="text"], .newFriendsSearch-container input[type="text"] {
+    flex-grow: 1; /* Make the input field grow normally */
+    padding: 10px; /* Angleichung des Innenabstands */
+    border-radius: 10px; /* Angleichung der Ecken */
+}
+
+.ownFriendsSearch-container button, .newFriendsSearch-container button {
+    padding: 10px; /* Angleichung des Innenabstands */
+    border-radius: 10px; /* Angleichung der Ecken */
+    margin: 0; /* Entfernt eventuell vorhandene Außenabstände */
+}
