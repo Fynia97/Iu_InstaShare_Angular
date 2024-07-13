@@ -24,7 +24,7 @@
                 </div>
                 <div>
                     <label for="year">Erscheinungsjahr:</label>
-                    <span id="year">{{book.publishingYear}}</span>
+                    <span id="year">{{book.publishingYear | date: 'yyyy'}}</span>
                 </div>
             </div>
         </div>
@@ -41,6 +41,22 @@
                 </div>
             </div>
         </div>
+
+        <div class="input-group mb-3">
+            <label for="borrowed-on">Ausleihanfrage ab dem:</label>
+            <input type="date" formControlName="lendFrom">
+        </div>
+
+        <div class="input-group mb-3">
+            <label for="return-date">Rückgabe am:</label>
+            <input type="date" formControlName="lendTo">
+        </div>
+        
+        <div class="input-group mb-3">
+            <label for="notes">Notizen:</label>
+            <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
+        </div>
+
         <div class="form-actions">
             <button class="btn cancel-btn" type="button" (click)="cancel()">Abbrechen</button>
             <button class="btn borrow-btn" type="submit">Ausleihen</button>

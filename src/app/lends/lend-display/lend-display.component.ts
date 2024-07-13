@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lend } from '../lend.model';
 import { LendService } from '../lend.service';
-import { ActivatedRoute } from '@angular/router';
-import { BookService } from 'src/app/books/book.service';
 import { UserService } from 'src/app/users/user.service';
-import { Book } from 'src/app/books/book.model';
 import { User } from 'src/app/users/user.model';
 import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
