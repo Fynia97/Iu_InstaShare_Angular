@@ -54,7 +54,7 @@ export class LendCreateComponent implements OnInit {
         next: (u) => {
           this.user = u;
 
-          this.bookService.getByIdAndUserId(5, 2).subscribe({
+          this.bookService.getByIdAndUserId(17, 8).subscribe({
             next: (b) => { this.book = b; }
           });
         }
@@ -71,13 +71,10 @@ export class LendCreateComponent implements OnInit {
     this.lendForm.value.borrowerId = this.user.id;
     this.lendForm.value.bookId = this.book.id;
 
-    console.log(this.lendForm.value)
-    console.log(this.lend)
-
     this.lend = this.lendForm.value;
 
     this.service.create(this.lend).subscribe({
-      next: (data) => this.router.navigate(['/ausleihe'])
+      next: () => this.router.navigate(['/ausleihe'])
     });
   }
 }

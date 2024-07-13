@@ -1,60 +1,49 @@
-<body>
-    <div class="container">
-        <div class="header">
-          <div class="which-user">Sabrina`s Buch</div>
-          <div class="titel">Ausleihanfrage</div>
-        </div>
+<div class="container">
+    <div class="header">
+        <div class="titel">Ausleihanfrage</div>
+    </div>
+
+    <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
         <div class="row">
-            <div class="column">
-                <!--<img src="bild.jpg" alt="Titelbild">-->
-            </div>
             <div class="column">
                 <div>
                     <label for="title">Titel:</label>
-                    <span id="title">Harry Potter und der Gefangene von Askaban</span>
+                    <span id="title">{{book.title}}</span>
                 </div>
                 <div>
                     <label for="author">Autor:</label>
-                    <span id="author">Max Mustermann</span>
+                    <span id="author">{{book.author}}</span>
                 </div>
                 <div>
                     <label for="category">Kategorie:</label>
-                    <span id="category">Fantasy</span>
+                    <span id="category">{{book.category}}</span>
                 </div>
                 <div>
                     <label for="isbn">ISBN:</label>
-                    <span id="isbn">978-3-16-148410-0</span>
+                    <span id="isbn">{{book.isbn}}</span>
                 </div>
                 <div>
                     <label for="year">Erscheinungsjahr:</label>
-                    <span id="year">2002</span>
+                    <span id="year">{{book.publishingYear}}</span>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="column">
                 <div>
-                    <label for="status">Status:</label>
-                    <span id="status">Verfügbar</span>
-                </div>
-                <div>
-                    <label for="borrower">Ausgeliehen an:</label>
-                    <span id="borrower">N/A</span>
+                    <label for="status">Bereits ausgeliehen:</label>
+                    <span id="status">{{book.lendOut | BooleanPipe}}</span>
                 </div>
                 <div>
                     <label for="return-date">Rückgabe am:</label>
-                    <span id="return-date">N/A</span>
+                    <span id="return-date" *ngIf="book.lendOut == true">{{lend.lendTo | date: 'dd.MM.yyyy'}}</span>
+                    <span id="return-date" *ngIf="book.lendOut == false">--</span>
                 </div>
             </div>
         </div>
-      <div class="form-actions">
-        <button class="btn cancel-btn" type="button" onclick="cancel()">Abbrechen</button>  <!-- Abbrechen Funktion muss eingefügt werden-->          
-        <button class="btn borrow-btn" type="submit" [routerLink]="['/ausleihe/:id/bearbeiten']">Ausleihen</button>
-      </div>
-    </div>
-    <script>
-        function closeContainer() {
-            document.querySelector('.container').style.display = 'none';
-        }
-    </script>
-</body>
+        <div class="form-actions">
+            <button class="btn cancel-btn" type="button" (click)="cancel()">Abbrechen</button>
+            <button class="btn borrow-btn" type="submit">Ausleihen</button>
+        </div>
+    </form>
+</div>

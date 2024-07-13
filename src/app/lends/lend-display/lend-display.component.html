@@ -8,11 +8,9 @@
     <div class="section">
       <div class="section-title">Meine verliehenen Bücher</div>
       <div class="section-sub">
-        <div class="book-card">
-          <div>Titel</div>
-        </div>
-        <div class="book-card">
-          <div>Titel</div>
+        <div class="book-card" *ngFor="let element of lends">
+          <div>{{element.book?.title}}</div>
+          <div>Ausgeliehen von: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
         </div>
       </div>
     </div>
@@ -24,14 +22,9 @@
     <div class="section-2">
       <div class="section-title">Von mir ausgeliehen</div>
       <div class="section-2-sub">
-        <div class="book-card-2">
-          <div>Titel</div>
-        </div>
-        <div class="book-card-2">
-          <div>Titel</div>
-        </div>
-        <div class="book-card-2">
-          <div>Titel</div>
+        <div class="book-card" *ngFor="let element of lends">
+          <div>{{element.book?.title}}</div>
+          <div>Ausgeliehen an: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
         </div>
       </div>
     </div>
@@ -41,20 +34,19 @@
       <div class="sub-section">
         <div class="sub-section-title">Meine Anfragen</div>
         <div class="sub-section-content">
-        <div class="book-card-3">
-          <div>Titel</div>
-        </div>
-        <div class="book-card-3">
-          <div>Titel</div>
-        </div>
+          <div class="book-card" *ngFor="let element of lends">
+            <div>{{element.book?.title}}</div>
+            <div>Anfrage an: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
+          </div>
       </div>
       </div>
       <div class="sub-section">
         <div class="sub-section-title">Anfragen von Freunden</div>
         <div class="sub-section-content">
-          <div class="book-card-3">
-            <div>Titel</div>
-          </div>  
+          <div class="book-card" *ngFor="let element of lends">
+            <div>{{element.book?.title}}</div>
+            <div>Anfrage von: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
+          </div>
         </div>
         
       </div>
