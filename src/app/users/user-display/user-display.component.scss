@@ -16,10 +16,13 @@ body {
 
 /* Main Content */
 .main-content {
+    width: 95%;
+    max-width: 1400px; /* Maximale Breite */
+    min-width: 500px;  /* Minimale Breite */
     display: flex;
     padding: 20px;
     align-items: flex-start; /* Beide Elemente oben ausrichten */
-    gap: 20px; /* Abstand zwischen Bild und Bildcontainer */
+    gap: 10px; /* Abstand zwischen Bild und Bildcontainer */
 }
 
 .profile-container {
@@ -34,23 +37,27 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #d68cb4; /* Hintergrundfarbe des Bildcontainers */
-    border-radius: 25px; /* Abgerundete Ecken */
-    padding: 20px;
+    align-items: flex-start;
+    background-color: #f2c6db; /* Hintergrundfarbe des Bildcontainers */
+    border-top-left-radius:  25px; /* Abgerundete Ecken */
+    border-bottom-left-radius: 25px;
+    padding: 0px;
 }
 
 .profile-image {
     max-width: 100%;
     height: auto;
-    border-radius: 25px;
+    border-top-left-radius:  25px; /* Abgerundete Ecken */
+    border-bottom-left-radius: 25px;
 }
 
 .profile-details {
-    flex: 2;
+    flex: 1;
     background-color: #d68cb4; /* Hintergrundfarbe des Details Containers */
-    border-radius: 25px; 
+    border-top-right-radius: 25px; 
+    border-bottom-right-radius: 25px; 
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); 
+    box-shadow: 0 10px 80px rgba(0, 0, 0, 0.5);
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -88,11 +95,11 @@ body {
 }
 
 .profile-actions .delete-button {
-    background-color: #ff4d4d; 
+    background-color: red; 
 }
 
 .profile-actions .edit-button {
-    background-color: #4CAF50; 
+    background-color: green; 
 }
 
 .profile-actions .btn:hover {
