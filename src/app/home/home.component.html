@@ -1,5 +1,6 @@
 <!--Falls Nutzer nicht eingeloggt-->
-<main class="main-content" *ngIf="!(currentUser$ | async)">
+<body *ngIf="!(currentUser$ | async)">
+<main class="main-content">
     <div class="left-content">
         <div class="welcomeImage-container">
             <img src="assets/home.png" alt="Arbeitszimmer" class="welcome-image">
@@ -8,7 +9,7 @@
     <div class="right-content">
         <h2>Willkommen bei <strong>InstaShare</strong></h2>
         
-        <a routerLink="register">Registrieren</a>
+        <div class="register-btn"><button type="button" class="btn btn-primary"><a routerLink="register" class="register-link">Registrieren</a></button></div>
 
         <div class="welcometext-container">
             <p>Entdecke die Zukunft des privaten Medienaustauschs mit <strong>InstaShare!</strong> Unsere innovative
@@ -37,16 +38,19 @@
 
     </div>
 </main>
+</body>
+
 
 <!--Falls Nutzer eingeloggt-->
-<main class="main-content" *ngIf="currentUser$ | async">
+<body *ngIf="currentUser$ | async">
+<main class="main-content" >
     <div class="left-content">
         <div class="welcomeImage-container">
             <img src="assets/buecher.png" alt="Willkommen" class="welcome-image">
         </div>
     </div>
     <div class="right-content">
-        <h2>Willkommen zurück, {{user.firstName}}</h2>
+        <h2 class="welcome-titel">Willkommen zurück, {{user.firstName}}</h2>
         <div class="books-container">
 
             <div class="container-wrapper" routerLink="buecher" routerLinkActive="active">
@@ -78,3 +82,4 @@
         </div>
     </div>
 </main>
+</body>
