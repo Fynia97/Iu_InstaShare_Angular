@@ -1,29 +1,9 @@
-html, body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f2c6db;
-}
-
-.main-content {
-    margin: 0;
-    width: 100%;
-    max-width: 1200px; /* Maximum width for the content */
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .content-container {
     display: flex;
     flex-wrap: nowrap;
     gap: 10px;
     width: 100%;
-    align-items: stretch; /* Ensure all children stretch to the same height */
+    align-items: stretch;
     border-radius: 25px;
 }
 
@@ -153,4 +133,22 @@ html, body {
     padding: 10px; /* Angleichung des Innenabstands */
     border-radius: 10px; /* Angleichung der Ecken */
     margin: 0; /* Entfernt eventuell vorhandene Außenabstände */
+}
+
+.add-button {
+    background-color: #d68cb4;
+    padding: 10px;
+    margin-bottom: 2vh;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10vw;
+    height: 50px;
+}
+
+.add-button:hover {
+    background-color: #9b0056;
 }

@@ -1,45 +1,36 @@
-<body>
-  <main class="main-content">
-    <h2>Freunde</h2>
-    <div class="newFriendsSearch-container">
-      <input type="text" class="form-control" placeholder="Neue Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
-      <button class="btn btn-outline-dark" type="submit" id="button-addon2">Suchen</button>
-    </div>
-  
-    <div class="content-container">
-      <div class="image-container">
-        <img src="assets/freunde.png" alt="Bild von Freunden" class="welcome-image">
+<h2>Freunde</h2>
+<button type="button" class="btn add-button" [routerLink]='["/freunde/finden"]'>Neuen Freund finden</button>
+
+<div class="content-container">
+  <div class="image-container">
+    <img src="assets/freunde.png" alt="Bild von Freunden" class="welcome-image">
+  </div>
+
+  <div class="right-content">
+    <div class="section-2">
+      <div class="section-title">Meine Freunde</div>
+      <div class="ownFriendsSearch-container">
+        <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
       </div>
-  
-      <div class="right-content">
-        <div class="section-2">
-          <div class="section-title">Meine Freunde</div>
-          <div class="ownFriendsSearch-container">
-            <input type="text" class="form-control" placeholder="Deine Freunde..." aria-label="Friends name" aria-describedby="button-addon2">
-            <button class="btn btn-outline-light" type="submit" id="button-addon2">Suchen</button>
-          </div>
-          <div class="section-2-sub">
-            <div class="friend-card-1">
-              <div>Sabrina Wonderwoman</div>
-            </div>
-            <div class="friend-card-1">
-              <div>Gunigunde Jones</div>
-            </div>
-            <div class="friend-card-1">
-              <div>Heidrun Hammer</div>
-            </div>
-          </div>
-        </div>
-        <div class="request-container">
-        <div class="friends-requests">Freundschaftsanfragen</div>
-        <div class="section-2-sub">
-          <div class="friend-card-2">
-            <div>Max Meier</div>
-            <button type="button" class="btn btn-outline-light" [routerLink]='["/freunde/finden"]'>Neu</button>
-          </div>
+      <div class="section-2-sub">
+        <div class="friend-card-1" *ngFor="let element of friendsAccepted | search: searchText">
+          <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
         </div>
       </div>
     </div>
+    <div class="request-container">
+      <div class="friends-requests">Freundschaftsanfragen</div>
+      <div class="section-2-sub">
+        <div class="friend-card-2" *ngFor="let element of friendsAskedForMe">
+          <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
+          <button type="button" class="btn btn-outline-light" (click)="btnAcceptedClicked(element)">Annehmen</button>
+          <button type="button" class="btn btn-outline-light" (click)="btnDeleteClicked(element)">Ablehnen</button>
+        </div>
+        <div class="friend-card-2" *ngFor="let element of friendsAsked">
+          <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
+          <button type="button" class="btn btn-outline-light" (click)="btnDeleteClicked(element)">Zurückziehen</button>
+        </div>
+      </div>
     </div>
-  </main>
-  </body>
+  </div>
+</div>
