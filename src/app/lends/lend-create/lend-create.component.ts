@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lend } from '../lend.model';
 import { LendService } from '../lend.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/books/book.model';
 import { User } from 'src/app/users/user.model';
@@ -16,7 +16,8 @@ import { BookCategoryEnum } from 'src/app/books/book.enum';
 @Component({
   selector: 'app-lend-create',
   templateUrl: './lend-create.component.html',
-  styleUrls: ['./lend-create.component.scss']
+  styleUrls: ['./lend-create.component.scss'],
+  template: `<div>Received ID: {{friendId, bookId}}</div>`
 })
 export class LendCreateComponent implements OnInit {
   public currentUser$: Observable<LoggedInUser | null> = of(null);
@@ -28,6 +29,10 @@ export class LendCreateComponent implements OnInit {
   public lendForm!: FormGroup;
 
   public book: Book;
+  public bookCategoryEnum = BookCategoryEnum;
+
+  public bookId: Number;
+  public friendId: Number;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -36,14 +41,19 @@ export class LendCreateComponent implements OnInit {
     private loginService: LoginRegisterService,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { friendId: number, bookId: number };
+    this.friendId = state.friendId;
+    this.bookId = state.bookId;
+  }
 
   ngOnInit(): void {
     this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
 
     this.lendForm = this.formbuilder.group({
-      lendFrom: [this.lend.lendFrom],
-      lendTo: [this.lend.lendTo],
+      lendFrom: [this.lend.lendFrom, Validators.required],
+      lendTo: [this.lend.lendTo, Validators.required],
       borrowerId: 0,
       bookId: 0,
       note: [this.lend.note]
@@ -54,13 +64,14 @@ export class LendCreateComponent implements OnInit {
         next: (u) => {
           this.user = u;
 
-          this.bookService.getByIdAndUserId(5, 2).subscribe({
-            next: (b) => { this.book = b; }
+          this.bookService.getByIdAndUserId(Number(this.bookId), Number(this.friendId)).subscribe({
+            next: (b) => { 
+              this.book = b;
+            }
           });
         }
       })
     }
-
   }
 
   public cancel() {
@@ -71,13 +82,10 @@ export class LendCreateComponent implements OnInit {
     this.lendForm.value.borrowerId = this.user.id;
     this.lendForm.value.bookId = this.book.id;
 
-    console.log(this.lendForm.value)
-    console.log(this.lend)
-
     this.lend = this.lendForm.value;
 
     this.service.create(this.lend).subscribe({
-      next: (data) => this.router.navigate(['/ausleihe'])
+      next: () => this.router.navigate(['/ausleihe'])
     });
   }
 }

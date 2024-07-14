@@ -16,6 +16,7 @@ import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
 import { RouteGuardGuard } from './login/route-guard.guard';
 import { AppComponent } from './app.component';
+import { FriendsBookComponent } from './friends/friends-book/friends-book.component';
 
 const routes: Routes = [
   {
@@ -59,6 +60,9 @@ const routes: Routes = [
   },
   {
     path: 'freunde/finden', pathMatch: 'full', component: FriendCreateComponent, canActivate: [RouteGuardGuard]
+  },
+  { 
+    path: 'buecherMeinesFreundes/:id', component: FriendsBookComponent 
   },
   {
     path: 'deletedAccount', pathMatch: 'full', component: AppComponent, canActivate: [RouteGuardGuard]

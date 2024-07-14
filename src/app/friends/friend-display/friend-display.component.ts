@@ -27,6 +27,8 @@ export class FriendDisplayComponent implements OnInit {
 
   public newFriend = new Friend();
   public friendForm!: FormGroup;
+  
+  public searchText: string;
 
   constructor(private formbuilder: FormBuilder,
     private service: FriendService,

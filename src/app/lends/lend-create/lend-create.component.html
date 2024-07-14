@@ -1,24 +1,56 @@
 <div class="container">
+    <div class="header">
+        <div class="titel">Ausleihanfrage</div>
+    </div>
+
     <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
-        <!--LendFrom-->
+        <div class="row">
+            <div class="column">
+                <div>
+                    <label for="title">Titel:</label>
+                    <span id="title">{{book.title}}</span>
+                </div>
+                <div>
+                    <label for="author">Autor:</label>
+                    <span id="author">{{book.author}}</span>
+                </div>
+                <div>
+                    <label for="category">Kategorie:</label>
+                    <span id="category">{{book.category}}</span>
+                </div>
+                <div>
+                    <label for="isbn">ISBN:</label>
+                    <span id="isbn">{{book.isbn}}</span>
+                </div>
+                <div>
+                    <label for="year">Erscheinungsjahr:</label>
+                    <span id="year">{{book.publishingYear | date: 'yyyy'}}</span>
+                </div>
+            </div>
+        </div>
+
         <div class="input-group mb-3">
+            <label for="borrowed-on">Ausleihanfrage ab dem:</label>
             <input type="date" formControlName="lendFrom">
         </div>
 
-        <!--LendTo-->
         <div class="input-group mb-3">
+            <label for="return-date">Rückgabe am:</label>
             <input type="date" formControlName="lendTo">
         </div>
-
-        <!--Note-->
+        
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Notiz" formControlName="note">
+            <label for="notes">Notizen:</label>
+            <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
         </div>
 
-        <!--Submit-->
-        <button class="btn btn-primary submit" type="submit">Speichern</button>
+        <div>
+            <span *ngIf="lendForm.invalid">Bitte geben Sie das Ausleihdatum und das Rückgabedatum ein, um fortzufahren</span>
+        </div>
+
+        <div class="form-actions">
+            <button class="btn cancel-btn" type="button" (click)="cancel()">Abbrechen</button>
+            <button class="btn borrow-btn" type="submit" [disabled]="lendForm.invalid">Ausleihen</button>
+        </div>
     </form>
-
-    <button class="btn btn-light" style="float: right;" (click)="cancel()">Abbrechen</button>
-
 </div>

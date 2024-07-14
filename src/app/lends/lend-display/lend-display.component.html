@@ -1,39 +1,55 @@
-<h2>Ausleihen</h2>
-<button type="button" class="btn btn-primary" [routerLink]='["/ausleihe/erstellen"]'>Neu</button>
+<main class="main-content">
+  <h2>Ausleihen</h2>
 
-<div class="container">
-  <ng-template #loader>
-    <div class="spinner-border" role="status">
-      <span class="sr-only"></span>
+  <div class="content-container">
+    <div class="section">
+      <div class="section-title">Meine verliehenen Bücher</div>
+      <div class="section-sub">
+        <div class="book-card" *ngFor="let element of lendsFromUserAccepted">
+          <div>{{element.book?.title}}</div>
+          <div>Ausgeliehen an: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
+          <div style="color: black;">bis zum {{element.lendTo | date: 'dd.MM.yyyy'}}</div>
+          <button type="button" class="btn btn-outline-light" (click)="handedBack(element)">Zurückgegeben</button>
+        </div>
+      </div>
     </div>
-  </ng-template>
-</div>
 
-<ng-container *ngIf="lends; else loader">
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Ausleihdatum</th>
-        <th scope="col">Rückgabedatum</th>
-        <th scope="col">Ausleiher</th>
-        <th scope="col">Buch</th>
-        <th scope="col">Notiz</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let element of lends">
-        <td>{{element.id}}</td>
-        <td>{{element.lendFrom | date: "dd.MM.yyyy"}}</td>
-        <td>{{element.lendTo | date: "dd.MM.yyyy"}}</td>
-        <td>{{element.borrower?.firstName}} {{element.borrower?.lastName}}</td>
-        <td>{{element.book?.title}}</td>
-        <td>{{element.note}}</td>
-        <td><button class="btn btn-primary" [routerLink]="[element.id + '/bearbeiten']">Bearbeiten</button></td>
-        <td><button type="button" class="btn btn-warning" (click)="btnDeleteClicked(element)">Löschen</button></td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+    <div class="image-container">
+      <img src="assets/freunde.png" alt="Willkommen" class="welcome-image">
+    </div>
+
+    <div class="section-2">
+      <div class="section-title">Von mir ausgeliehen</div>
+      <div class="section-2-sub">
+        <div class="book-card" *ngFor="let element of lendsOfUserAccepted">
+          <div>{{element.book?.title}}</div>
+          <div style="color: black;">bis zum {{element.lendTo | date: 'dd.MM.yyyy'}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="requests-container">
+      <div class="section-title">Ausleihanfragen</div>
+      <div class="sub-section">
+        <div class="sub-section-title">Meine Anfragen</div>
+        <div class="sub-section-content">
+          <div class="book-card" *ngFor="let element of lendsOfUserOpen">
+            <div>{{element.book?.title}}</div>
+            <button type="button" class="btn btn-outline-light" [routerLink]="['/ausleihe/' + element.id + '/bearbeiten']">Bearbeiten</button>
+          </div>
+      </div>
+      </div>
+      <div class="sub-section">
+        <div class="sub-section-title">Anfragen von Freunden</div>
+        <div class="sub-section-content">
+          <div class="book-card" *ngFor="let element of lendsFromUserOpen">
+            <div>{{element.book?.title}}</div>
+            <div>Anfrage von: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
+            <button type="button" class="btn btn-outline-light" [routerLink]="['/ausleihe/' + element.id + '/bearbeiten']">Bearbeiten</button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,37 @@
+    <main class="main-content">
+        <div class="left-content">
+            <div class="bookshelf-container">
+                <img src="assets/book_display.png" alt="Bücherregal" class="bookshelf-image">
+            </div>
+        </div>
+        <div class="right-content">
+            <h2>Bücher von {{friend.firstName}} {{friend.lastName}}</h2>
+            <div class="books-container">
+                <div class="search-bar">
+                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                </div>
+                <div class="container">
+                    <ng-template #loader>
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only"></span>
+                        </div>
+                    </ng-template>
+                </div>
+                <ng-container *ngIf="books; else loader">
+                    <div class="book-section">
+                        <div class="book-grid">
+                            <div class="book-card" *ngFor="let element of books | search: searchText">
+                                <div class="book-details">
+                                    <div class="title">{{element.title}}</div>
+                                    <div class="book-actions">
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-light" (click)="sendData(element.id)" *ngIf="element.lendOut == false">Ausleihen</button>
+                                <span *ngIf="element.lendOut == true">Dieses Buch ist aktuell ausgeliehen.</span>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </main>
