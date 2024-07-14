@@ -6,6 +6,7 @@ import { User } from 'src/app/users/user.model';
 import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 import { LoginRegisterService } from 'src/app/common/loginRegister.service';
+import { LendStatusEnum } from '../lendStatus.enum';
 
 @Component({
   selector: 'app-lend-display',
@@ -17,7 +18,10 @@ export class LendDisplayComponent implements OnInit {
   public user: User;
   public loggedInUser: LoggedInUser | null;
 
-  public lends: Lend[];
+  public lendsOfUserAccepted: Lend[] = [];
+  public lendsOfUserOpen: Lend[] = [];
+  public lendsFromUserAccepted: Lend[] = [];
+  public lendsFromUserOpen: Lend[] = [];
 
   constructor(
     private service: LendService,
@@ -33,9 +37,32 @@ export class LendDisplayComponent implements OnInit {
         next: (u) => {
           this.user = u;
 
-          this.service.getAllByUserId(this.user.id).subscribe({
+          this.service.getAllLendsFromUserByUserId(this.user.id).subscribe({
             next: (data) => {
-              this.lends = data;
+              console.log("getAllLendsFromUserByUserId")
+              console.log(data)
+              data.forEach(element => {
+                if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
+                  this.lendsFromUserOpen.push(element);
+                }
+                else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
+                  this.lendsFromUserAccepted.push(element);
+                }              })
+
+                this.service.getAllLendsOfUserByUserId(this.user.id).subscribe({
+                  next: (data) => {
+                    console.log("getAllLendsOfUserByUserId")
+                    console.log(data)
+                    data.forEach(element => {
+                      if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
+                        this.lendsOfUserOpen.push(element);
+                      }
+                      else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
+                        this.lendsOfUserAccepted.push(element);
+                      }
+                    })
+                  }
+                })
             }
           })
         }

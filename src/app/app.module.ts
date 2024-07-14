@@ -24,6 +24,7 @@ import { ImpressumComponent } from './footer/impressum/impressum.component';
 import { RegisterComponent } from './register/register/register.component';
 import { SearchPipe } from './common/search.pipe';
 import { DatePipe } from '@angular/common';
+import { FriendsBookComponent } from './friends/friends-book/friends-book.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { DatePipe } from '@angular/common';
     PrivacyComponent,
     ImpressumComponent,
     RegisterComponent,
-    SearchPipe
+    SearchPipe,
+    FriendsBookComponent
   ],
   imports: [
     BrowserModule,

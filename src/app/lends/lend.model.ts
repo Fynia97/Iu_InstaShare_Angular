@@ -1,5 +1,6 @@
 import { Book } from "../books/book.model"
 import { User } from "../users/user.model"
+import { LendStatusEnum } from "./lendStatus.enum"
 
 export class Lend {
     public id: number
@@ -10,8 +11,9 @@ export class Lend {
     public note: string
     public book: Book | null
     public borrower: User | null
+    public lendStatus: LendStatusEnum
 
-    constructor(id = 0, lendFrom: Date = new Date(), lendTo: Date = new Date(), borrowerId: number = 0, bookId: number = 0, note: string = "", book: Book = new Book(), borrower: User = new User()) {
+    constructor(id = 0, lendFrom: Date = new Date(), lendTo: Date = new Date(), borrowerId: number = 0, bookId: number = 0, note: string = "", book: Book = new Book(), borrower: User = new User(), lendStatus: LendStatusEnum = LendStatusEnum.REQUESTMADE) {
         this.id = id;
         this.lendFrom = lendFrom;
         this.lendTo = lendTo;
@@ -20,5 +22,6 @@ export class Lend {
         this.note = note;
         this.book = book;
         this.borrower = borrower;
+        this.lendStatus = lendStatus;
     }
 }

@@ -16,7 +16,8 @@ import { BookCategoryEnum } from 'src/app/books/book.enum';
 @Component({
   selector: 'app-lend-create',
   templateUrl: './lend-create.component.html',
-  styleUrls: ['./lend-create.component.scss']
+  styleUrls: ['./lend-create.component.scss'],
+  template: `<div>Received ID: {{friendId, bookId}}</div>`
 })
 export class LendCreateComponent implements OnInit {
   public currentUser$: Observable<LoggedInUser | null> = of(null);
@@ -28,6 +29,10 @@ export class LendCreateComponent implements OnInit {
   public lendForm!: FormGroup;
 
   public book: Book;
+  public bookCategoryEnum = BookCategoryEnum;
+
+  public bookId: Number;
+  public friendId: Number;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -36,7 +41,12 @@ export class LendCreateComponent implements OnInit {
     private loginService: LoginRegisterService,
     private userService: UserService,
     private router: Router
-  ) { }
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as { friendId: number, bookId: number };
+    this.friendId = state.friendId;
+    this.bookId = state.bookId;
+  }
 
   ngOnInit(): void {
     this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
@@ -54,13 +64,14 @@ export class LendCreateComponent implements OnInit {
         next: (u) => {
           this.user = u;
 
-          this.bookService.getByIdAndUserId(17, 8).subscribe({
-            next: (b) => { this.book = b; }
+          this.bookService.getByIdAndUserId(Number(this.bookId), Number(this.friendId)).subscribe({
+            next: (b) => { 
+              this.book = b;
+            }
           });
         }
       })
     }
-
   }
 
   public cancel() {

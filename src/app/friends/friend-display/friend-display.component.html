@@ -13,9 +13,9 @@
         <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
       </div>
       <div class="section-2-sub">
-        <div class="friend-card-1" *ngFor="let element of friendsAccepted | search: searchText">
+        <button class="friend-card-1" *ngFor="let element of friendsAccepted | search: searchText" [routerLink]="['/buecherMeinesFreundes/' + element.friend.id]">
           <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
-        </div>
+        </button>
       </div>
     </div>
     <div class="request-container">
