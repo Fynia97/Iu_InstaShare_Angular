@@ -2,64 +2,84 @@
   <div class="container">
     <div class="header">
       <div class="titel">Ausleihanfrage</div>
+      <button class="cancel-btn" type="button" (click)="deleteLend()" *ngIf="userIsBorrower == true">Zurückziehen</button>
     </div>
-    
-    <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
-    <div class="row">
+
+    <div class="row" *ngIf="userIsBorrower == false">
       <div class="column">
-        <div *ngIf="book.title">
-          <label for="title">Titel:</label>
-          <span id="title">{{book.title}}</span>
+        <div>
+          <label for="borrowerName">Von:</label>
+          <span id="borrowerName">{{lend.borrower?.firstName}} {{lend.borrower?.lastName}}</span>
         </div>
-        <div *ngIf="book.author">
-          <label for="author">Autor:</label>
-          <span id="author">{{book.author}}</span>
+        <div>
+          <label for="borrowerEmail">Email-Kontakt:</label>
+          <span id="borrowerEmail">{{lend.borrower?.email}}</span>
         </div>
-        <div *ngIf="book.category">
-          <label for="category">Kategorie:</label>
-          <span id="category">{{book.category}}</span>
-        </div>
-        <div *ngIf="book.isbn">
-          <label for="isbn">ISBN:</label>
-          <span id="isbn">{{book.isbn}}</span>
-        </div>
-        <div *ngIf="book.publishingYear">
-          <label for="year">Erscheinungsjahr:</label>
-          <span id="year">{{book.publishingYear | date: 'yyyy'}}</span>
+        <div *ngIf="lend.borrower?.phoneNumber">
+          <label for="borrowerPhone">Telefon:</label>
+          <span id="borrowerPhone">{{lend.borrower?.phoneNumber}}</span>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="column">
-        <div>
-          <label for="status">Bereits ausgeliehen:</label>
-          <span id="status">{{book.lendOut | BooleanPipe}}</span>
+
+    <form [formGroup]="lendForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="column">
+          <div *ngIf="book.title">
+            <label for="title">Titel:</label>
+            <span id="title">{{book.title}}</span>
+          </div>
+          <div *ngIf="book.author">
+            <label for="author">Autor:</label>
+            <span id="author">{{book.author}}</span>
+          </div>
+          <div *ngIf="book.category">
+            <label for="category">Kategorie:</label>
+            <span id="category">{{book.category}}</span>
+          </div>
+          <div *ngIf="book.isbn">
+            <label for="isbn">ISBN:</label>
+            <span id="isbn">{{book.isbn}}</span>
+          </div>
+          <div *ngIf="book.publishingYear">
+            <label for="year">Erscheinungsjahr:</label>
+            <span id="year">{{book.publishingYear | date: 'yyyy'}}</span>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <div>
+            <label for="status">Bereits ausgeliehen:</label>
+            <span id="status">{{book.lendOut | BooleanPipe}}</span>
+          </div>
 
           <div class="input-group mb-3">
             <label for="borrowed-on">Ausgeliehen am:</label>
             <span>{{lend.lendFrom | date: 'dd.MM.yyyy'}}</span>
-            <input type="date" formControlName="lendFrom">
+            <input type="date" formControlName="lendFrom" *ngIf="userIsBorrower == true">
           </div>
 
           <div class="input-group mb-3">
             <label for="return-date">Rückgabe am:</label>
             <span>{{lend.lendTo | date: 'dd.MM.yyyy'}}</span>
-            <input type="date" formControlName="lendTo">
+            <input type="date" formControlName="lendTo" *ngIf="userIsBorrower == true">
           </div>
 
           <div class="input-group mb-3">
             <label for="notes">Notizen:</label>
-            <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
+            <span *ngIf="userIsBorrower == false">{{lend.note}}</span>
+            <input type="text" class="form-control" formControlName="note"
+              *ngIf="userIsBorrower == true">
           </div>
+        </div>
+
       </div>
-      
-      
-    </div>
-    <div class="form-actions">
-      <button class="cancel-btn" type="button" onclick="cancel()">Abbrechen</button>
-        <button class="borrow-btn" type="button">Speichern</button>
-        
+      <div class="form-actions">
+        <button class="cancel-btn" type="button" (click)="cancel()" *ngIf="userIsBorrower == true">Abbrechen</button>
+        <button class="borrow-btn" type="submit" *ngIf="userIsBorrower == true">Aktualisieren</button>
+        <button class="cancel-btn" type="button" (click)="deleteLend()" *ngIf="userIsBorrower == false">Ablehnen</button>
+        <button class="borrow-btn" type="button" (click)="acceptLend()" *ngIf="userIsBorrower == false">Annehmen</button>
       </div>
     </form>
   </div>

@@ -7,7 +7,6 @@ import { User } from '../users/user.model';
 import { BookService } from '../books/book.service';
 import { LendService } from '../lends/lend.service';
 import { Lend } from '../lends/lend.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +17,7 @@ export class HomeComponent implements OnInit {
   public currentUser$: Observable<LoggedInUser | null> = of(null);
   public user: User;
   public loggedInUser: LoggedInUser | null;
-  
+
   public numberOfBooks: number;
   public numberOfLends: number;
   public numberOfLendsRequests: number;
@@ -36,17 +35,14 @@ export class HomeComponent implements OnInit {
         next: (u) => {
           this.user = u;
 
-          
-    this.SetUser();
-    this.CountBooks();
-    this.CountLends();
-    this.NextLendFrom();
-    this.GetNumberOfLends();
-    this.GetNumberOfLendsRequests();
+          this.SetUser();
+          this.CountBooks();
+          this.NextLendFrom();
+          this.GetNumberOfLends();
+          this.GetNumberOfLendsRequests();
         }
       })
     }
-
   }
 
   public SetUser() {
@@ -69,31 +65,23 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  public CountLends() {
-    this.lendService.getAllByUserId(this.user.id).subscribe({
-      next: (data) => {
-        this.numberOfLends = data.length;
-      }
-    })
-  }
-
   public NextLendFrom() {
     this.lendService.getNextLendFrom(this.user.id).subscribe({
       next: (data) => {
-            this.nextLendFrom = data;
+        this.nextLendFrom = data;
       }
     })
   }
 
   private GetNumberOfLends() {
-    this.lendService.countLendsWithStatus(0, this.user.id).subscribe((count) => {
-    this.numberOfLends = count;
+    this.lendService.countLendsWithStatus(1, this.user.id).subscribe((count) => {
+      this.numberOfLends = count;
     });
-    }
+  }
 
-    private GetNumberOfLendsRequests() {
-    this.lendService.countLendsWithStatus(4, this.user.id).subscribe((count) => {
-    this.numberOfLendsRequests = count;
+  private GetNumberOfLendsRequests() {
+    this.lendService.countLendsWithStatus(0, this.user.id).subscribe((count) => {
+      this.numberOfLendsRequests = count;
     });
-    }
+  }
 }

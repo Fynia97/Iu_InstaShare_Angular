@@ -7,6 +7,9 @@ import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { LendStatusEnum } from '../lendStatus.enum';
+import { BookService } from 'src/app/books/book.service';
+import { BookCategoryEnum } from 'src/app/books/book.enum';
+import { Book } from 'src/app/books/book.model';
 
 @Component({
   selector: 'app-lend-display',
@@ -18,6 +21,8 @@ export class LendDisplayComponent implements OnInit {
   public user: User;
   public loggedInUser: LoggedInUser | null;
 
+  public book: Book;
+
   public lendsOfUserAccepted: Lend[] = [];
   public lendsOfUserOpen: Lend[] = [];
   public lendsFromUserAccepted: Lend[] = [];
@@ -26,7 +31,8 @@ export class LendDisplayComponent implements OnInit {
   constructor(
     private service: LendService,
     private loginService: LoginRegisterService,
-    private userService: UserService
+    private userService: UserService,
+    private bookService: BookService
   ) { }
 
   ngOnInit(): void {
@@ -39,30 +45,27 @@ export class LendDisplayComponent implements OnInit {
 
           this.service.getAllLendsFromUserByUserId(this.user.id).subscribe({
             next: (data) => {
-              console.log("getAllLendsFromUserByUserId")
-              console.log(data)
               data.forEach(element => {
                 if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
                   this.lendsFromUserOpen.push(element);
                 }
                 else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
                   this.lendsFromUserAccepted.push(element);
-                }              })
+                }
+              })
 
-                this.service.getAllLendsOfUserByUserId(this.user.id).subscribe({
-                  next: (data) => {
-                    console.log("getAllLendsOfUserByUserId")
-                    console.log(data)
-                    data.forEach(element => {
-                      if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
-                        this.lendsOfUserOpen.push(element);
-                      }
-                      else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
-                        this.lendsOfUserAccepted.push(element);
-                      }
-                    })
-                  }
-                })
+              this.service.getAllLendsOfUserByUserId(this.user.id).subscribe({
+                next: (data) => {
+                  data.forEach(element => {
+                    if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
+                      this.lendsOfUserOpen.push(element);
+                    }
+                    else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
+                      this.lendsOfUserAccepted.push(element);
+                    }
+                  })
+                }
+              })
             }
           })
         }
@@ -71,13 +74,38 @@ export class LendDisplayComponent implements OnInit {
   }
 
   public btnDeleteClicked(element: Lend) {
-    if (confirm("Möchtest du das Thema wirklich löschen?")) {
+    if (confirm("Möchtest du dies wirklich löschen?")) {
       this.service.deleteById(element.id).subscribe({
-        next: (data) => {
+        next: () => {
           this.ngOnInit()
         }
       });
     }
   }
 
+  public handedBack(element: Lend) {
+    if (confirm("Wurde das Buch zurückgegeben?")) {
+      this.service.deleteById(element.id).subscribe({
+        next: () => {
+
+          if (element.book != null) {
+
+            this.bookService.getByIdAndUserId(element.book.id, element.book.userId).subscribe({
+              next: (data) => {
+                this.book = data;
+
+                this.book.lendOut = false;
+
+                this.bookService.update(this.book).subscribe({
+                  next: () => {
+                    this.ngOnInit()
+                  }
+                })
+              }
+            })
+          }
+        }
+      });
+    }
+  }
 }

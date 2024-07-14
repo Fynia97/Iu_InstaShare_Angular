@@ -4,8 +4,8 @@ import { LendStatusEnum } from "./lendStatus.enum"
 
 export class Lend {
     public id: number
-    public lendFrom: Date
-    public lendTo: Date
+    public lendFrom: Date | null
+    public lendTo: Date | null
     public borrowerId: number
     public bookId: number
     public note: string
@@ -13,7 +13,7 @@ export class Lend {
     public borrower: User | null
     public lendStatus: LendStatusEnum
 
-    constructor(id = 0, lendFrom: Date = new Date(), lendTo: Date = new Date(), borrowerId: number = 0, bookId: number = 0, note: string = "", book: Book = new Book(), borrower: User = new User(), lendStatus: LendStatusEnum = LendStatusEnum.REQUESTMADE) {
+    constructor(id = 0, lendFrom: Date | null = null, lendTo: Date | null = null, borrowerId: number = 0, bookId: number = 0, note: string = "", book: Book = new Book(), borrower: User = new User(), lendStatus: LendStatusEnum = LendStatusEnum.REQUESTMADE) {
         this.id = id;
         this.lendFrom = lendFrom;
         this.lendTo = lendTo;

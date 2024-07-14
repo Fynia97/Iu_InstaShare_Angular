@@ -28,19 +28,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="column">
-                <div>
-                    <label for="status">Bereits ausgeliehen:</label>
-                    <span id="status">{{book.lendOut | BooleanPipe}}</span>
-                </div>
-                <div>
-                    <label for="return-date">Rückgabe am:</label>
-                    <span id="return-date" *ngIf="book.lendOut == true">{{lend.lendTo | date: 'dd.MM.yyyy'}}</span>
-                    <span id="return-date" *ngIf="book.lendOut == false">--</span>
-                </div>
-            </div>
-        </div>
 
         <div class="input-group mb-3">
             <label for="borrowed-on">Ausleihanfrage ab dem:</label>
@@ -57,9 +44,13 @@
             <input type="text" class="form-control" placeholder="Bemerkungen" formControlName="note">
         </div>
 
+        <div>
+            <span *ngIf="lendForm.invalid">Bitte geben Sie das Ausleihdatum und das Rückgabedatum ein, um fortzufahren</span>
+        </div>
+
         <div class="form-actions">
             <button class="btn cancel-btn" type="button" (click)="cancel()">Abbrechen</button>
-            <button class="btn borrow-btn" type="submit">Ausleihen</button>
+            <button class="btn borrow-btn" type="submit" [disabled]="lendForm.invalid">Ausleihen</button>
         </div>
     </form>
 </div>

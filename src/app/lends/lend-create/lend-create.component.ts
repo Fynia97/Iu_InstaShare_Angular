@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Lend } from '../lend.model';
 import { LendService } from '../lend.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Book } from 'src/app/books/book.model';
 import { User } from 'src/app/users/user.model';
@@ -52,8 +52,8 @@ export class LendCreateComponent implements OnInit {
     this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
 
     this.lendForm = this.formbuilder.group({
-      lendFrom: [this.lend.lendFrom],
-      lendTo: [this.lend.lendTo],
+      lendFrom: [this.lend.lendFrom, Validators.required],
+      lendTo: [this.lend.lendTo, Validators.required],
       borrowerId: 0,
       bookId: 0,
       note: [this.lend.note]
