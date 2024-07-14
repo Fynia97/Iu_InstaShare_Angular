@@ -1,22 +1,13 @@
 <form [formGroup]="friendForm">
   <div class="container">
-    <ng-template #loader>
-      <div class="spinner-border" role="status">
-        <span class="sr-only"></span>
-      </div>
-    </ng-template>
-
-    <ng-container *ngIf="possibleFriends; else loader">
-      <h3>UserProfile</h3>
+    <ng-container *ngIf="possibleFriends">
+      <h3>Freunde finden</h3>
       <table class="table">
         <thead>
           <tr>
             <th scope="col1">Vorname</th>
             <th scope="col2">Nachname</th>
             <th scope="col3">Email</th>
-            <th scope="col4">Straße</th>
-            <th scope="col5">Ort</th>
-            <th scope="col6">Plz</th>
             <th scope="col7"></th>
           </tr>
         </thead>
@@ -25,9 +16,6 @@
             <td>{{element.firstName}}</td>
             <td>{{element.lastName}}</td>
             <td>{{element.email}}</td>
-            <td>{{element.street}}</td>
-            <td>{{element.city}}</td>
-            <td>{{element.zip}}</td>
             <td><button class="btn btn-primary submit" type="submit" (click)="onSubmit(element.id)">Freundschaftsanfrage versenden</button></td>
           </tr>
         </tbody>
