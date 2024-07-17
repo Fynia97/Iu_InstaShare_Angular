@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,6 +25,7 @@ import { RegisterComponent } from './register/register/register.component';
 import { SearchPipe } from './common/search.pipe';
 import { DatePipe } from '@angular/common';
 import { FriendsBookComponent } from './friends/friends-book/friends-book.component';
+import { AppConfigService } from './common/appConfig.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,21 @@ import { FriendsBookComponent } from './friends/friends-book/friends-book.compon
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe, {
+    provide: APP_INITIALIZER,
+    useFactory: appConfigInit,
+    multi: true,
+    deps: [AppConfigService]
+  }
+
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function appConfigInit(appConfigService: AppConfigService) {
+  return () => {
+    return appConfigService.load()
+  };
+}
+

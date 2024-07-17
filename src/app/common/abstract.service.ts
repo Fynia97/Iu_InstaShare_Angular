@@ -1,15 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AppConfigService } from './appConfig.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class AbstractService<T> {
-  protected static baseUrl = 'https://localhost:7092/api/';
+  protected static baseUrl = "";
   protected abstract name: string;
 
-  constructor(protected client: HttpClient) { }
+  constructor(protected client: HttpClient, private appConfigService: AppConfigService) {
+    AbstractService.baseUrl = appConfigService.apiEndpoint;
+   }
 
   public getAll(): Observable<T[]> {
     return this.client.get<T[]>(AbstractService.baseUrl + this.name + '/getAll', AbstractService.Authorize());
