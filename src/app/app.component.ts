@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
 
   public currentUser$: Observable<LoggedInUser | null> = of(null)
 
-  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService) {}
+  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService, private router: Router) {}
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
@@ -43,7 +43,9 @@ export class AppComponent implements OnInit {
   onSubmit() {
     this.login = this.loginForm.value;
     this.service.login(this.login).subscribe({
-      next: (data) => {},
+      next: (data) => {
+        this.router.navigate(['/'])
+      },
       error: (error) => {this.loginWrong = true}
     });
   }
