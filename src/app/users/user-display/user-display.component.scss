@@ -1,7 +1,6 @@
-/* General Styles */
 html, body {
     font-family: Arial, sans-serif;
-    background-color: #f2c6db !important; /* Rosa Hintergrundfarbe */
+    background-color: #f2c6db !important;
     margin: 0;
     padding: 0;
     height: 100%;
@@ -13,23 +12,20 @@ body {
     min-height: 100vh;
 }
 
-
-/* Main Content */
 .main-content {
     width: 95%;
-    max-width: 1400px; /* Maximale Breite */
-    min-width: 500px;  /* Minimale Breite */
+    max-width: 1400px;
+    min-width: 500px; 
     display: flex;
     padding: 20px;
-    align-items: flex-start; /* Beide Elemente oben ausrichten */
-    gap: 10px; /* Abstand zwischen Bild und Bildcontainer */
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .profile-container {
     display: flex;
-    align-items: stretch; /* Sicherstellen, dass beide Container gleich hoch sind */
-    gap: 10px; /* Abstand zwischen Bild und Profilangaben */
-    width: 100%;
+    align-items: stretch;
+    gap: 10px;
 }
 
 .profile-image-container {
@@ -38,8 +34,8 @@ body {
     justify-content: center;
     align-items: center;
     align-items: flex-start;
-    background-color: #f2c6db; /* Hintergrundfarbe des Bildcontainers */
-    border-top-left-radius:  25px; /* Abgerundete Ecken */
+    background-color: #f2c6db;
+    border-top-left-radius:  25px;
     border-bottom-left-radius: 25px;
     padding: 0px;
 }
@@ -47,13 +43,13 @@ body {
 .profile-image {
     max-width: 100%;
     height: auto;
-    border-top-left-radius:  25px; /* Abgerundete Ecken */
+    border-top-left-radius:  25px;
     border-bottom-left-radius: 25px;
 }
 
 .profile-details {
     flex: 1;
-    background-color: #d68cb4; /* Hintergrundfarbe des Details Containers */
+    background-color: #d68cb4;
     border-top-right-radius: 25px; 
     border-bottom-right-radius: 25px; 
     padding: 20px;
@@ -104,4 +100,10 @@ body {
 
 .profile-actions .btn:hover {
     opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .profile-image {
+    display: none;
+    }
 }
