@@ -6,16 +6,16 @@
     align-items: stretch;
     border-radius: 25px;
 }
-
+    
 @media (max-width: 768px) {
     .section-2, .request-container, .image-container {
-        width: 100%;
+    width: 100%;
     }
     .content-container {
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     }
 }
-
+    
 .image-container {
     flex: 1;
     box-sizing: border-box;
@@ -28,16 +28,16 @@
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
 }
-
+    
 .image-container img {
     max-width: 100%;
     height: auto;
     object-fit: contain;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    flex-grow: 1; /* Ensure the image grows to fill the container */
+    flex-grow: 1;
 }
-
+    
 .right-content {
     flex: 1;
     display: flex;
@@ -47,7 +47,7 @@
     border-bottom-right-radius: 25px;
     box-shadow: 0 10px 80px rgba(0, 0, 0, 0.5);
 }
-
+    
 .section-2, .request-container {
     flex: 1;
     box-sizing: border-box;
@@ -56,18 +56,18 @@
     justify-content: flex-start;
     padding: 20px;
 }
-
+    
 .section-2 {
     background-color: rgba(72, 27, 191, 0.4);
     border-top-right-radius: 25px;
 }
-
+    
 .request-container {
     background: #d68cb4;
     border-bottom-right-radius: 25px;
     padding: 20px;
 }
-
+    
 .section-2-sub {
     display: flex;
     flex-wrap: wrap;
@@ -75,7 +75,7 @@
     align-items: flex-start;
     justify-content: flex-start;
 }
-
+    
 .section-title,
 .friends-requests {
     font-size: 24px;
@@ -84,8 +84,9 @@
     text-align: center;
     margin-bottom: 20px;
 }
-
-.friend-card-1, .friend-card-2 {
+    
+.friend-card-1, 
+.friend-card-2 {
     width: calc(50% - 20px);
     box-sizing: border-box;
     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.4);
@@ -96,45 +97,45 @@
     align-items: center;
     margin-bottom: 20px;
 }
-
+    
 .friend-card-1 {
     background-color: #c496d6;
 }
-
+    
 .friend-card-2 {
     background-color: #f2b8d7;
 }
-
+    
 .main-content h2 {
     margin: 20px 0;
     text-align: center;
     color: white;
 }
-
+    
 .ownFriendsSearch-container, .newFriendsSearch-container {
     display: flex;
-    width: 100%; /* Ensures the container takes full width */
-    gap: 5px; /* Lücke von 5px zwischen Input und Button */
+    width: 100%;
+    gap: 5px;
     align-items: center;
     margin-bottom: 20px;
 }
-
+    
 .newFriendsSearch-container input[type="text"] {
-    flex-grow: 1; /* Make the input field grow twice as much as other flex items */
+    flex-grow: 1;
 }
-
+    
 .ownFriendsSearch-container input[type="text"], .newFriendsSearch-container input[type="text"] {
-    flex-grow: 1; /* Make the input field grow normally */
-    padding: 10px; /* Angleichung des Innenabstands */
-    border-radius: 10px; /* Angleichung der Ecken */
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 10px;
 }
-
+    
 .ownFriendsSearch-container button, .newFriendsSearch-container button {
-    padding: 10px; /* Angleichung des Innenabstands */
-    border-radius: 10px; /* Angleichung der Ecken */
-    margin: 0; /* Entfernt eventuell vorhandene Außenabstände */
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
 }
-
+    
 .add-button {
     background-color: #d68cb4;
     padding: 10px;
@@ -145,10 +146,47 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 10vw;
+    width: 12vw;
     height: 50px;
 }
-
+    
 .add-button:hover {
     background-color: #9b0056;
+}
+    
+@media (max-width: 768px) {
+    .section-2, .request-container, .image-container {
+    width: 100%;
+    }
+    .content-container {
+    flex-wrap: wrap;
+    }
+    
+    .right-content {
+    flex-direction: column;
+    }
+    
+    .friend-card-1, .friend-card-2 {
+    width: 100%;
+    }
+}
+    
+@media (max-width: 480px) {
+    .section-title, .friends-requests {
+    font-size: 20px;
+    }
+    
+    .friend-card-1, .friend-card-2 {
+    width: 100%;
+    padding: 10px;
+    }
+    
+    .ownFriendsSearch-container, .newFriendsSearch-container {
+    flex-direction: column;
+    gap: 10px;
+    }
+    
+    .add-button {
+    width: 100%;
+    }
 }

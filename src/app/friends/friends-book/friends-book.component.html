@@ -26,7 +26,7 @@
                                     <div class="book-actions">
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-outline-light" (click)="sendData(element.id)" *ngIf="element.lendOut == false">Ausleihen</button>
+                                <button type="button" class="btn btn-light" (click)="sendData(element.id)" *ngIf="element.lendOut == false">Ausleihen</button>
                                 <span *ngIf="element.lendOut == true">Dieses Buch ist aktuell ausgeliehen.</span>
                             </div>
                         </div>
