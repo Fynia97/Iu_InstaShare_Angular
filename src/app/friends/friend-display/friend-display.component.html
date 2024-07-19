@@ -10,10 +10,10 @@
     <div class="section-2">
       <div class="section-title">Meine Freunde</div>
       <div class="ownFriendsSearch-container">
-        <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+        <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText" (input)="onFriendsSearched()">
       </div>
       <div class="section-2-sub">
-        <button class="friend-card-1" *ngFor="let element of friendsAccepted | search: searchText" [routerLink]="['/buecherMeinesFreundes/' + element.friend.id]">
+        <button class="friend-card-1" *ngFor="let element of filteredFriends" [routerLink]="['/buecherMeinesFreundes/' + element.friend.id]">
           <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
         </button>
       </div>
@@ -22,7 +22,7 @@
       <div class="friends-requests">Freundschaftsanfragen</div>
       <div class="section-2-sub">
         <div class="friend-card-2" *ngFor="let element of friendsAskedForMe">
-          <div>{{element.friend.firstName}} {{element.friend.lastName}}</div>
+          <div>{{element.user.firstName}} {{element.user.lastName}}</div>
           <button type="button" class="btn btn-outline-light" (click)="btnAcceptedClicked(element)">Annehmen</button>
           <button type="button" class="btn btn-outline-light" (click)="btnDeleteClicked(element)">Ablehnen</button>
         </div>

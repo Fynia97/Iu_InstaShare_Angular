@@ -1,4 +1,3 @@
-import { User } from "../users/user.model"
 import { BookCategoryEnum } from "./book.enum"
 
 export class Book {

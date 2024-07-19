@@ -23,6 +23,7 @@ export class FriendsBookComponent implements OnInit {
   public friend: User;
 
   public books: Book[] = [];
+  public filteredBooks: Book[];
   public searchText: string;
 
   constructor(
@@ -35,18 +36,37 @@ export class FriendsBookComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.friendId = params.get('id')
 
-      this.userService.getById(Number(this.friendId)).subscribe({
-        next: (data) => {
-          this.friend = data;
+      const localStorageUser = localStorage.getItem('user');
+  
+      if (localStorageUser != null) {
+        this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
 
-          this.service.getAllByUserId(Number(this.friendId)).subscribe({
-            next: (data) => {
-              this.books = data;
-            }
-          })
-        }
-      })
+        this.userService.getById(Number(this.friendId)).subscribe({
+          next: (data) => {
+            this.friend = data;
+  
+            this.service.getAllByUserId(Number(this.friendId)).subscribe({
+              next: (data) => {
+                this.books = data;
+                this.filteredBooks = data;
+              }
+            })
+          }
+        })
+      }
     })
+  }
+
+  protected onBooksSearched() {
+    if (this.searchText === '') {
+      this.filteredBooks = this.books;
+    } else {
+      this.filteredBooks = this.books.filter(books => {
+        const searchTerm = this.searchText.trim();
+
+        return books.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || books.author.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      });
+    }
   }
 
   sendData(bookId: Number) {

@@ -35,7 +35,7 @@
         <div class="sub-section-content">
           <div class="book-card" *ngFor="let element of lendsOfUserOpen">
             <div>{{element.book?.title}}</div>
-            <button type="button" class="btn btn-outline-light" [routerLink]="['/ausleihe/' + element.id + '/bearbeiten']">Bearbeiten</button>
+            <button type="button" class="btn btn-outline-light" [routerLink]="['/ausleihe/' + element.id + '/bearbeiten']">Ansehen</button>
           </div>
       </div>
       </div>

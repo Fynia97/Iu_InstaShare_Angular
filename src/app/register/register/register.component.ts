@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { User } from 'src/app/users/user.model';
-import { UserService } from 'src/app/users/user.service';
 
 @Component({
   selector: 'app-register',
@@ -52,9 +51,12 @@ export class RegisterComponent implements OnInit {
   }
 
   public onSubmit() {
-    this.user = this.registerForm.value;
-    this.service.register(this.user).subscribe({
-      next: (data) => this.router.navigate(['/'])
-    });
+    if(this.registerForm.value.firstName.includes("_iu"))
+    {
+      this.user = this.registerForm.value;
+      this.service.register(this.user).subscribe({
+        next: (data) => this.router.navigate(['/'])
+      });
+    }
   }
 }

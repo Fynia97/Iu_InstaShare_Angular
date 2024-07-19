@@ -8,7 +8,7 @@
             <h2>Bücher von {{friend.firstName}} {{friend.lastName}}</h2>
             <div class="books-container">
                 <div class="search-bar">
-                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText" (input)="onBooksSearched()">
                 </div>
                 <div class="container">
                     <ng-template #loader>
@@ -20,7 +20,7 @@
                 <ng-container *ngIf="books; else loader">
                     <div class="book-section">
                         <div class="book-grid">
-                            <div class="book-card" *ngFor="let element of books | search: searchText">
+                            <div class="book-card" *ngFor="let element of filteredBooks">
                                 <div class="book-details">
                                     <div class="title">{{element.title}}</div>
                                     <div class="book-actions">

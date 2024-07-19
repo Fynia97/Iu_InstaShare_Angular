@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from '../login/loggedInUser.model';
 import { LoginRegisterService } from '../common/loginRegister.service';
@@ -15,7 +15,7 @@ import { Lend } from '../lends/lend.model';
 })
 export class HomeComponent implements OnInit {
   public currentUser$: Observable<LoggedInUser | null> = of(null);
-  public user: User;
+  public user: User | undefined;
   public loggedInUser: LoggedInUser | null;
 
   public numberOfBooks: number;
@@ -27,61 +27,60 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUser$ = this.loginService.currentUser$;
-
     this.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    const localStorageValue = localStorage.getItem('currentUser');
 
-          this.SetUser();
-          this.CountBooks();
-          this.NextLendFrom();
-          this.GetNumberOfLends();
-          this.GetNumberOfLendsRequests();
+    if (localStorageValue != null)
+    {
+    this.user = JSON.parse(localStorageValue) as User;
+    
+    this.CountBooks();
+    this.NextLendFrom();
+    this.GetNumberOfLends();
+    this.GetNumberOfLendsRequests();
+    }
+  }
+
+  public CountBooks() {
+    if(this.user != null)
+    {
+      this.bookService.getAllByUserId(this.user.id).subscribe({
+        next: (data) => {
+          this.numberOfBooks = data.length;
         }
       })
     }
   }
 
-  public SetUser() {
-    this.currentUser$.subscribe((loggedInUser: LoggedInUser | null) => {
-      if (loggedInUser) {
-        this.userService.getByEmail(loggedInUser.email).subscribe({
-          next: (data) => {
-            this.user = data;
-          }
-        });
-      }
-    });
-  }
-
-  public CountBooks() {
-    this.bookService.getAllByUserId(this.user.id).subscribe({
-      next: (data) => {
-        this.numberOfBooks = data.length;
-      }
-    })
-  }
-
   public NextLendFrom() {
-    this.lendService.getNextLendFrom(this.user.id).subscribe({
-      next: (data) => {
-        this.nextLendFrom = data;
-      }
-    })
+    if(this.user != null){
+      this.lendService.getNextLendFrom(this.user.id).subscribe({
+        next: (data) => {
+          this.nextLendFrom = data;
+        }
+      })
+    }
+
   }
 
   private GetNumberOfLends() {
-    this.lendService.countLendsWithStatus(1, this.user.id).subscribe((count) => {
-      this.numberOfLends = count;
-    });
+    if(this.user != null)
+    {
+      this.lendService.countLendsWithStatus(1, this.user.id).subscribe((count) => {
+        this.numberOfLends = count;
+      });
+    }
+
   }
 
   private GetNumberOfLendsRequests() {
-    this.lendService.countLendsWithStatus(0, this.user.id).subscribe((count) => {
-      this.numberOfLendsRequests = count;
-    });
+    if(this.user != null)
+    {
+      this.lendService.countLendsWithStatus(0, this.user.id).subscribe((count) => {
+        this.numberOfLendsRequests = count;
+      });
+    }
+
   }
 }

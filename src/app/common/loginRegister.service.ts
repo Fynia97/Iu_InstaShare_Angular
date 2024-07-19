@@ -28,6 +28,7 @@ export class LoginRegisterService {
           localStorage.setItem('user', JSON.stringify(user))
           this.currentUser.next(user);
         }
+        return user;
       })
     )
   }
@@ -39,6 +40,7 @@ export class LoginRegisterService {
 
   public logout() {
     localStorage.removeItem('user');
+    localStorage.removeItem('currentUser');
     this.currentUser.next(null);
   }
 

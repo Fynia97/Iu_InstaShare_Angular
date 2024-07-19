@@ -17,7 +17,7 @@ import { BookCategoryEnum } from '../book.enum';
 })
 export class BookCreateComponent {
   public categoryForDropdown: any;
-    
+
   public book = new Book();
   public books: Book[] = [];
   public bookForm!: FormGroup;
@@ -35,44 +35,39 @@ export class BookCreateComponent {
   ) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if(this.loggedInUser != null)
-      {
-        this.userService.getByEmail(this.loggedInUser.email).subscribe({
-          next: (u) => {
-            this.user = u;
-          }
-        })
-      }
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-    this.bookForm = this.formbuilder.group({
-      isbn: [this.book.isbn],
-      title: [this.book.title],
-      author: [this.book.author],
-      publisher: [this.book.publisher],
-      publishingYear: [this.book.publishingYear],
-      lendOut: [this.book.lendOut],
-      category: [this.book.category],
-      userId: [this.book.userId]
-    })
+      this.bookForm = this.formbuilder.group({
+        isbn: [this.book.isbn],
+        title: [this.book.title],
+        author: [this.book.author],
+        publisher: [this.book.publisher],
+        publishingYear: [this.book.publishingYear],
+        lendOut: [this.book.lendOut],
+        category: [this.book.category],
+        userId: [this.book.userId]
+      })
 
-    this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
-     label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
-     value: key
-     }));
+      this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
+        label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
+        value: key
+      }));
+    }
   }
 
-  public cancel()
-  {
+  public cancel() {
     this.router.navigate(['/buecher']);
   }
-  
+
   public onSubmit() {
-    if(this.bookForm.value.category == "Sonstiges")
-      {
-        this.bookForm.value.category = "OTHER";
-      }
+    if (this.bookForm.value.category == "Sonstiges") {
+      this.bookForm.value.category = "OTHER";
+    }
     this.book = this.bookForm.value;
     this.book.userId = this.user.id;
     this.service.create(this.book).subscribe({

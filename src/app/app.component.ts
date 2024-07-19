@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { User } from './users/user.model';
 import { Login } from './login/login.model';
@@ -7,7 +7,6 @@ import { LoggedInUser } from './login/loggedInUser.model';
 import { UserService } from './users/user.service';
 import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +20,11 @@ export class AppComponent implements OnInit {
 
   public loginWrong = false;
 
+  public user: User = new User();
+
   public currentUser$: Observable<LoggedInUser | null> = of(null)
 
-  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService, private router: Router) {}
+  constructor(private formbuilder: FormBuilder, private service: LoginRegisterService, private router: Router, private userService: UserService) {}
 
   ngOnInit(): void {
     this.loginForm = this.formbuilder.group({
@@ -44,7 +45,12 @@ export class AppComponent implements OnInit {
     this.login = this.loginForm.value;
     this.service.login(this.login).subscribe({
       next: (data) => {
-        this.router.navigate(['/'])
+        this.userService.getByEmail(data.email).subscribe({
+          next: (u) => {
+            localStorage.setItem("currentUser", JSON.stringify(u));
+            window.location.reload();
+          }
+        })
       },
       error: (error) => {this.loginWrong = true}
     });

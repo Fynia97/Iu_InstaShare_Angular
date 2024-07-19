@@ -11,19 +11,19 @@
                     <span id="title">{{book.title}}</span>
                 </div>
                 <div>
-                    <label for="author">Autor:</label>
+                    <label for="author" *ngIf="book.author">Autor:</label>
                     <span id="author">{{book.author}}</span>
                 </div>
                 <div>
                     <label for="category">Kategorie:</label>
-                    <span id="category">{{book.category}}</span>
+                    <span id="category">{{getCategory(book.category)}}</span>
                 </div>
                 <div>
-                    <label for="isbn">ISBN:</label>
+                    <label for="isbn" *ngIf="book.isbn">ISBN:</label>
                     <span id="isbn">{{book.isbn}}</span>
                 </div>
                 <div>
-                    <label for="year">Erscheinungsjahr:</label>
+                    <label for="year" *ngIf="book.publishingYear">Erscheinungsjahr:</label>
                     <span id="year">{{book.publishingYear | date: 'yyyy'}}</span>
                 </div>
             </div>

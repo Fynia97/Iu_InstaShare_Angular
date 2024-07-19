@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Lend } from '../lend.model';
 import { LendService } from '../lend.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Book } from 'src/app/books/book.model';
 import { User } from 'src/app/users/user.model';
 import { BookService } from 'src/app/books/book.service';
@@ -11,7 +11,6 @@ import { Observable, of, take } from 'rxjs';
 import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 import { BookCategoryEnum } from 'src/app/books/book.enum';
-
 
 @Component({
   selector: 'app-lend-create',
@@ -49,8 +48,6 @@ export class LendCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
-
     this.lendForm = this.formbuilder.group({
       lendFrom: [this.lend.lendFrom, Validators.required],
       lendTo: [this.lend.lendTo, Validators.required],
@@ -59,19 +56,23 @@ export class LendCreateComponent implements OnInit {
       note: [this.lend.note]
     });
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-          this.bookService.getByIdAndUserId(Number(this.bookId), Number(this.friendId)).subscribe({
-            next: (b) => { 
-              this.book = b;
-            }
-          });
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
+
+      this.bookService.getByIdAndUserId(Number(this.bookId), Number(this.friendId)).subscribe({
+        next: (b) => {
+          this.book = b;
         }
-      })
+      });
     }
+  }
+
+  protected getCategory(category: string): string {
+    return Object.entries(BookCategoryEnum).find(([key, _]) => key === category)?.[1] + '';
   }
 
   public cancel() {

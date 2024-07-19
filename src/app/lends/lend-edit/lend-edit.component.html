@@ -2,7 +2,6 @@
   <div class="container">
     <div class="header">
       <div class="titel">Ausleihanfrage</div>
-      <button class="cancel-btn" type="button" (click)="deleteLend()" *ngIf="userIsBorrower == true">Zurückziehen</button>
     </div>
 
     <div class="row" *ngIf="userIsBorrower == false">
@@ -35,7 +34,7 @@
           </div>
           <div *ngIf="book.category">
             <label for="category">Kategorie:</label>
-            <span id="category">{{book.category}}</span>
+            <span id="category">{{getCategory(book.category)}}</span>
           </div>
           <div *ngIf="book.isbn">
             <label for="isbn">ISBN:</label>
@@ -55,29 +54,30 @@
           </div>
 
           <div class="input-group mb-3">
-            <label for="borrowed-on">Ausgeliehen am:</label>
+            <label for="borrowed-on">Auszuleihen am:</label>
             <span>{{lend.lendFrom | date: 'dd.MM.yyyy'}}</span>
-            <input type="date" formControlName="lendFrom" *ngIf="userIsBorrower == true">
+            <!--<input type="date" formControlName="lendFrom" *ngIf="userIsBorrower == true">-->
           </div>
 
           <div class="input-group mb-3">
             <label for="return-date">Rückgabe am:</label>
             <span>{{lend.lendTo | date: 'dd.MM.yyyy'}}</span>
-            <input type="date" formControlName="lendTo" *ngIf="userIsBorrower == true">
+            <!--<input type="date" formControlName="lendTo" *ngIf="userIsBorrower == true">-->
           </div>
 
           <div class="input-group mb-3">
             <label for="notes">Notizen:</label>
-            <span *ngIf="userIsBorrower == false">{{lend.note}}</span>
-            <input type="text" class="form-control" formControlName="note"
-              *ngIf="userIsBorrower == true">
+            <span>{{lend.note}}</span>
+            <!--<input type="text" class="form-control" formControlName="note"
+              *ngIf="userIsBorrower == true">-->
           </div>
         </div>
 
       </div>
       <div class="form-actions">
-        <button class="cancel-btn" type="button" (click)="cancel()" *ngIf="userIsBorrower == true">Abbrechen</button>
-        <button class="borrow-btn" type="submit" *ngIf="userIsBorrower == true">Aktualisieren</button>
+        <button class="cancel-btn" type="button" (click)="cancel()" *ngIf="userIsBorrower == true">Zurück</button>
+        <button class="cancel-btn" type="button" (click)="deleteLend()" *ngIf="userIsBorrower == true">Zurückziehen</button>
+        <!--<button class="borrow-btn" type="submit" *ngIf="userIsBorrower == true">Aktualisieren</button>-->
         <button class="cancel-btn" type="button" (click)="deleteLend()" *ngIf="userIsBorrower == false">Ablehnen</button>
         <button class="borrow-btn" type="button" (click)="acceptLend()" *ngIf="userIsBorrower == false">Annehmen</button>
       </div>

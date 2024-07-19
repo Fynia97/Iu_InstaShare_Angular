@@ -18,6 +18,7 @@ export class BookDisplayComponent implements OnInit {
   public loggedInUser: LoggedInUser | null;
 
   public books: Book[];
+  public filteredBooks: Book[];
   public searchText: string;
 
   constructor(private service: BookService,
@@ -25,20 +26,31 @@ export class BookDisplayComponent implements OnInit {
     private loginService: LoginRegisterService) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+        this.user = JSON.parse(localStorageCurrentUser) as User;
+  
+        this.service.getAllByUserId(this.user.id).subscribe({
+          next: (data) => {
+            this.books = data;
+            this.filteredBooks = data;
+          }
+        })
+      }
+    }
 
-          this.service.getAllByUserId(this.user.id).subscribe({
-            next: (data) => {
-              this.books = data;
-            }
-          })
-        }
-      })
+  protected onBooksSearched() {
+    if (this.searchText === '') {
+      this.filteredBooks = this.books;
+    } else {
+      this.filteredBooks = this.books.filter(books => {
+        const searchTerm = this.searchText.trim();
+
+        return books.title.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1 || books.author.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+      });
     }
   }
 

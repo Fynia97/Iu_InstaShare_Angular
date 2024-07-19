@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Friend } from '../friend.model';
 import { FriendService } from '../friend.service';
 import { UserService } from 'src/app/users/user.service';
@@ -24,10 +23,11 @@ export class FriendDisplayComponent implements OnInit {
   public friendsAsked: Friend[] = [];
   public friendsAccepted: Friend[] = [];
   public friendsAskedForMe: Friend[] = [];
+  protected filteredFriends: Friend[] = [];
 
   public newFriend = new Friend();
   public friendForm!: FormGroup;
-  
+
   public searchText: string;
 
   constructor(private formbuilder: FormBuilder,
@@ -35,62 +35,73 @@ export class FriendDisplayComponent implements OnInit {
     private userService: UserService,
     private loginService: LoginRegisterService) { }
 
-
-
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
-    
-    this.friendForm = this.formbuilder.group({
-      userId: 0,
-      friendId: 0,
-      status: 1
-    })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-          this.service.getAllFriendsByUserId(this.user.id).subscribe({
-            next: (data) => {
-              this.friends = data;
-
-              this.friends.forEach(element => {
-                this.userService.getById(element.friendId).subscribe({
-                  next: (data) => element.friend = data
-                })
-
-                this.userService.getById(element.userId).subscribe({
-                  next: (data) => element.user = data
-                })
-
-                if (element.status.toString() == "ASKED") {
-                  this.friendsAsked.push(element);
-                }
-                else if (element.status.toString() == "ACCEPTED") {
-                  this.friendsAccepted.push(element);
-                }
-              });
-            }
-          })
-
-          this.service.getAllFriendsAskedForMe(this.user.id).subscribe({
-            next: (data) => {
-              this.friendsAskedForMe = data;
-
-              this.friendsAskedForMe.forEach(element => {
-                this.userService.getById(element.friendId).subscribe({
-                  next: (data) => element.friend = data
-                })
-
-                this.userService.getById(element.userId).subscribe({
-                  next: (data) => element.user = data
-                })
-              })
-            }
-          })
-        }
+      this.friendForm = this.formbuilder.group({
+        userId: 0,
+        friendId: 0,
+        status: 1
       })
+  
+            this.service.getAllFriendsByUserId(this.user.id).subscribe({
+              next: (data) => {
+                this.friends = data;
+  
+                this.friends.forEach(element => {
+                  this.userService.getById(element.friendId).subscribe({
+                    next: (data) => element.friend = data
+                  })
+  
+                  this.userService.getById(element.userId).subscribe({
+                    next: (data) => element.user = data
+                  })
+  
+                  if (element.status.toString() == "ASKED") {
+                    this.friendsAsked.push(element);
+                  }
+                  else if (element.status.toString() == "ACCEPTED") {
+                    this.friendsAccepted.push(element);
+                    this.filteredFriends.push(element)
+                  }
+                });
+              }
+            })
+  
+            this.service.getAllFriendsAskedForMe(this.user.id).subscribe({
+              next: (data) => {
+                this.friendsAskedForMe = data;
+  
+                this.friendsAskedForMe.forEach(element => {
+                  this.userService.getById(element.friendId).subscribe({
+                    next: (data) => element.friend = data
+                  })
+  
+                  this.userService.getById(element.userId).subscribe({
+                    next: (data) => element.user = data
+                  })
+                })
+              }
+            })
+          }
+    }
+
+    
+    
+  protected onFriendsSearched() {
+    if (this.searchText === '') {
+      this.filteredFriends = this.friends;
+    } else {
+      this.filteredFriends = this.friendsAccepted.filter(friend => {
+        const searchTerm = this.searchText.trim().replace(/\s/g, '');
+
+        return (friend.friend.firstName + friend.friend.lastName).indexOf(searchTerm) > -1
+      });
     }
   }
 
@@ -107,6 +118,7 @@ export class FriendDisplayComponent implements OnInit {
 
         this.service.create(this.newFriend).subscribe({
           next: () => {
+            this.filteredFriends = [];
             this.ngOnInit()
           }
         });

@@ -5,7 +5,6 @@ import { LoginRegisterService } from 'src/app/common/loginRegister.service';
 import { Observable, of, take } from 'rxjs';
 import { LoggedInUser } from 'src/app/login/loggedInUser.model';
 import { Router } from '@angular/router';
-import { HomeComponent } from 'src/app/home/home.component';
 
 @Component({
   selector: 'app-user-display',
@@ -25,14 +24,19 @@ export class UserDisplayComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+        const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.service.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
-        }
-      })
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;    
+      
+      if (this.loggedInUser != null) {
+        this.service.getByEmail(this.loggedInUser.email).subscribe({
+          next: (u) => {
+            this.user = u;
+          }
+        })
+      }
     }
   }
 

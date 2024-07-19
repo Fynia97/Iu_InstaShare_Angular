@@ -36,34 +36,32 @@ export class LendDisplayComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-          this.service.getAllLendsFromUserByUserId(this.user.id).subscribe({
+      this.service.getAllLendsFromUserByUserId(this.user.id).subscribe({
+        next: (data) => {
+          data.forEach(element => {
+            if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
+              this.lendsFromUserOpen.push(element);
+            }
+            else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
+              this.lendsFromUserAccepted.push(element);
+            }
+          })
+
+          this.service.getAllLendsOfUserByUserId(this.user.id).subscribe({
             next: (data) => {
               data.forEach(element => {
                 if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
-                  this.lendsFromUserOpen.push(element);
+                  this.lendsOfUserOpen.push(element);
                 }
                 else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
-                  this.lendsFromUserAccepted.push(element);
-                }
-              })
-
-              this.service.getAllLendsOfUserByUserId(this.user.id).subscribe({
-                next: (data) => {
-                  data.forEach(element => {
-                    if (element.lendStatus == LendStatusEnum.REQUESTMADE) {
-                      this.lendsOfUserOpen.push(element);
-                    }
-                    else if (element.lendStatus == LendStatusEnum.ACCEPTED || element.lendStatus == LendStatusEnum.CLOSED) {
-                      this.lendsOfUserAccepted.push(element);
-                    }
-                  })
+                  this.lendsOfUserAccepted.push(element);
                 }
               })
             }
@@ -72,6 +70,7 @@ export class LendDisplayComponent implements OnInit {
       })
     }
   }
+
 
   public btnDeleteClicked(element: Lend) {
     if (confirm("Möchtest du dies wirklich löschen?")) {
@@ -89,6 +88,10 @@ export class LendDisplayComponent implements OnInit {
         next: () => {
 
           if (element.book != null) {
+            this.lendsFromUserOpen = [];
+            this.lendsFromUserAccepted = [];
+            this.lendsOfUserOpen = [];
+            this.lendsOfUserAccepted = [];
 
             this.bookService.getByIdAndUserId(element.book.id, element.book.userId).subscribe({
               next: (data) => {

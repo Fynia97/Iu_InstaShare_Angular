@@ -42,40 +42,37 @@ export class BookEditComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-          this.service.getByIdAndUserId(Number(id), this.user.id).subscribe({
-            next: (b) => {
-              this.book = b;
+      this.service.getByIdAndUserId(Number(id), this.user.id).subscribe({
+        next: (b) => {
+          this.book = b;
 
-              this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
-                label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
-                value: key
-              }));
+          this.categoryForDropdown = Object.keys(BookCategoryEnum).map(key => ({
+            label: BookCategoryEnum[key as keyof typeof BookCategoryEnum],
+            value: key
+          }));
 
-              this.bookForm = this.formbuilder.group({
-                id: [this.book.id],
-                isbn: [this.book.isbn],
-                title: [this.book.title],
-                author: [this.book.author],
-                publisher: [this.book.publisher],
-                publishingYear: [this.book.publishingYear],
-                lendOut: [this.book.lendOut],
-                category: [this.book.category],
-                userId: this.user.id
-              })
-            }
+          this.bookForm = this.formbuilder.group({
+            id: [this.book.id],
+            isbn: [this.book.isbn],
+            title: [this.book.title],
+            author: [this.book.author],
+            publisher: [this.book.publisher],
+            publishingYear: [formatDate(this.book.publishingYear, 'yyyy-MM-dd', 'en')],
+            lendOut: [this.book.lendOut],
+            category: [this.book.category],
+            userId: this.user.id
           })
         }
       })
     }
   }
-
 
   public cancel() {
     this.router.navigate(['/buecher']);

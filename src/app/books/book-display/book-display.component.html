@@ -18,7 +18,7 @@
             <h2>Deine Bücher</h2>
             <div class="books-container">
                 <div class="search-bar">
-                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText">
+                    <input type="text" class="form-control search-field" placeholder="Zum Suchen tippen..." [(ngModel)]="searchText" (input)="onBooksSearched()">
                     <button type="button" class="btn add-button" [routerLink]='["/buecher/erstellen"]'>+</button>
                 </div>
                 <div class="container">
@@ -31,7 +31,7 @@
                 <ng-container *ngIf="books; else loader">
                     <div class="book-section">
                         <div class="book-grid">
-                            <div class="book-card" *ngFor="let book of books | search: searchText">
+                            <div class="book-card" *ngFor="let book of filteredBooks">
                                 <div class="book-details">
                                     <div class="title">{{book.title}}</div>
                                     <div class="book-actions">

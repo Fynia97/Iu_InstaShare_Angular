@@ -35,9 +35,11 @@ export class UserEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
+    if (localStorageUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+
       this.service.getByEmail(this.loggedInUser.email).subscribe({
         next: (u) => {
           this.user = u;

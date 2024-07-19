@@ -11,6 +11,7 @@ import { UserService } from 'src/app/users/user.service';
 import { Lend } from '../lend.model';
 import { LendService } from '../lend.service';
 import { LendStatusEnum } from '../lendStatus.enum';
+import { BookCategoryEnum } from 'src/app/books/book.enum';
 
 @Component({
   selector: 'app-lend-edit',
@@ -43,32 +44,30 @@ export class LendEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-          this.route.paramMap.subscribe(params => {
-            this.lendId = params.get('id');
+      this.route.paramMap.subscribe(params => {
+        this.lendId = params.get('id');
 
-            this.lendService.getByIdAndUserId(Number(this.lendId), this.user.id).subscribe({
-              next: (l) => {
-                this.lend = l;
-                if (this.lend.borrowerId == this.user.id) {
-                  this.userIsBorrower = true;
-                }
-                
-                this.bookService.getByIdAndUserId(this.lend.bookId, Number(this.lend.book?.userId)).subscribe({
-                  next: (b) => {
-                    this.book = b;
-                  }
-                })
+        this.lendService.getByIdAndUserId(Number(this.lendId), this.user.id).subscribe({
+          next: (l) => {
+            this.lend = l;
+            if (this.lend.borrowerId == this.user.id) {
+              this.userIsBorrower = true;
+            }
+            
+            this.bookService.getByIdAndUserId(this.lend.bookId, Number(this.lend.book?.userId)).subscribe({
+              next: (b) => {
+                this.book = b;
               }
             })
-          })
-        }
+          }
+        })
       })
     }
     this.lendForm = this.formbuilder.group({
@@ -98,6 +97,10 @@ export class LendEditComponent implements OnInit {
     this.service.update(this.lend).subscribe({
       next: () => this.router.navigate(['/ausleihe'])
     });
+  }
+
+  protected getCategory(category: string): string {
+    return Object.entries(BookCategoryEnum).find(([key, _]) => key === category)?.[1] + '';
   }
 
   public deleteLend() {

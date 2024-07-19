@@ -30,28 +30,27 @@ export class FriendCreateComponent implements OnInit {
     private loginService: LoginRegisterService, private service: FriendService, private router: Router,) { }
 
   ngOnInit(): void {
-    this.loginService.currentUser$.pipe(take(1)).subscribe({ next: (u) => this.loggedInUser = u })
+    const localStorageCurrentUser = localStorage.getItem('currentUser');
+    const localStorageUser = localStorage.getItem('user');
 
-    this.friendForm = this.formbuilder.group({
-      userId: 0,
-      friendId: 0,
-      status: 0
-    })
+    if (localStorageUser != null && localStorageCurrentUser != null) {
+      this.loggedInUser = JSON.parse(localStorageUser) as LoggedInUser;
+      this.user = JSON.parse(localStorageCurrentUser) as User;
 
-    if (this.loggedInUser != null) {
-      this.userService.getByEmail(this.loggedInUser.email).subscribe({
-        next: (u) => {
-          this.user = u;
+      this.friendForm = this.formbuilder.group({
+        userId: 0,
+        friendId: 0,
+        status: 0
+      })
 
-          this.service.getAllPossibleFriends(this.user.id).subscribe({
-            next: (data) => {
-              this.possibleFriends = data;
-            }
-          })
+      this.service.getAllPossibleFriends(this.user.id).subscribe({
+        next: (data) => {
+          this.possibleFriends = data;
         }
       })
     }
   }
+
 
   public onSubmit(id: number) {
     this.friendForm.value.userId = this.user.id;
