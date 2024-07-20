@@ -68,7 +68,7 @@
             </div>
 
             <div class="container-wrapper" routerLink="ausleihe" routerLinkActive="active">
-                <h3 class="container-title">Nächste Rückgabe</h3>
+                <h3 class="container-title">Nächste Abgabe am</h3>
                 <div class="container" style="background-image: url('assets/rueckgabe.png');">
                     <div class="statusAnzeige" *ngIf="nextLendFrom">{{nextLendFrom.lendFrom | date: 'dd.MM.yyyy'}}</div>
                 </div>

@@ -71,6 +71,16 @@ export class LendDisplayComponent implements OnInit {
     }
   }
 
+  public lendFromInFuture(element: Lend) {
+    if(element.lendFrom != null)
+    {
+      if(new Date(element.lendFrom) >= new Date(Date.now()))
+      {
+        return true
+      }
+    }
+    return false
+  }
 
   public btnDeleteClicked(element: Lend) {
     if (confirm("Möchtest du dies wirklich löschen?")) {

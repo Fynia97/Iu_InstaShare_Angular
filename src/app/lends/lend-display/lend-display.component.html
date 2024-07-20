@@ -8,6 +8,7 @@
         <div class="book-card" *ngFor="let element of lendsFromUserAccepted">
           <div>{{element.book?.title}}</div>
           <div>Ausgeliehen an: {{element.borrower?.firstName}} {{element.borrower?.lastName}}</div>
+          <div *ngIf="lendFromInFuture(element)" style="color: black;">vom {{element.lendFrom | date: 'dd.MM.yyyy'}}</div>
           <div style="color: black;">bis zum {{element.lendTo | date: 'dd.MM.yyyy'}}</div>
           <button type="button" class="btn btn-outline-light" (click)="handedBack(element)">Zurückgegeben</button>
         </div>
@@ -23,6 +24,7 @@
       <div class="section-2-sub">
         <div class="book-card" *ngFor="let element of lendsOfUserAccepted">
           <div>{{element.book?.title}}</div>
+          <div *ngIf="lendFromInFuture(element)" style="color: black;">vom {{element.lendFrom | date: 'dd.MM.yyyy'}}</div>
           <div style="color: black;">bis zum {{element.lendTo | date: 'dd.MM.yyyy'}}</div>
         </div>
       </div>
@@ -35,6 +37,8 @@
         <div class="sub-section-content">
           <div class="book-card" *ngFor="let element of lendsOfUserOpen">
             <div>{{element.book?.title}}</div>
+            <div *ngIf="lendFromInFuture(element)" style="color: black;">vom {{element.lendFrom | date: 'dd.MM.yyyy'}}</div>
+            <div style="color: black;">bis zum {{element.lendTo | date: 'dd.MM.yyyy'}}</div>
             <button type="button" class="btn btn-outline-light" [routerLink]="['/ausleihe/' + element.id + '/bearbeiten']">Ansehen</button>
           </div>
       </div>
